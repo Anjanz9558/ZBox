@@ -20,10 +20,10 @@ export const routes: Routes = [
       title: 'Home'
     },
     children: [
-      // {
-      //   path: 'dashboard',
-      //   loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
-      // },
+      {
+        path: '',
+        loadChildren: () => import('./admin/components/routes').then((m) => m.routes)
+      },
       // {
       //   path: '',
       //   loadChildren: () => import('./admin/configuration/routes').then((m) => m.routes)
