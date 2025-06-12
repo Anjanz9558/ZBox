@@ -30,4 +30,14 @@ td{
   z-index: 999999999999999 !important;
 }
 
+.sidenav {
+padding-left: 17.625rem;
+}
 
+
+/* For medium screens */
+@media (max-width: 1199px) {
+  .sidenav {
+    padding-left: 0rem;
+  }
+}

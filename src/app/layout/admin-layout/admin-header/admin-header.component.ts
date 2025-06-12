@@ -27,10 +27,11 @@ import { IconDirective } from '@coreui/icons-angular';
 
 @Component({
     selector: 'app-admin-header',
+    standalone:true,
     templateUrl: './admin-header.component.html',
   imports: [ContainerComponent, HeaderTogglerDirective, SidebarToggleDirective, IconDirective, HeaderNavComponent, RouterLink, NgTemplateOutlet, DropdownComponent, DropdownToggleDirective, DropdownMenuDirective, DropdownItemDirective]
 })
-export class DefaultHeaderComponent extends HeaderComponent {
+export class AdminHeaderComponent extends HeaderComponent {
   userFirstName: string = '';
   userLastName: string = '';
   readonly #colorModeService = inject(ColorModeService);

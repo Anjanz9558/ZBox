@@ -17,9 +17,11 @@ import {
   SidebarTogglerDirective
 } from '@coreui/angular';
 
-import { DefaultFooterComponent, DefaultHeaderComponent } from '.';
+import { DefaultFooterComponent, AdminHeaderComponent } from '.';
 // import { navItems } from './_nav';
 import { AdminLayoutService } from './admin-layout.service';
+import{AdminSidebarComponent} from './admin-sidebar/admin-sidebar.component';
+import{AdminNavbarComponent} from './admin-navbar/admin-navbar.component';
 
 function isOverflown(element: HTMLElement) {
   return (
@@ -42,10 +44,12 @@ function isOverflown(element: HTMLElement) {
     SidebarFooterComponent,
     SidebarToggleDirective,
     SidebarTogglerDirective,
-    DefaultHeaderComponent,
+    AdminHeaderComponent,
     ShadowOnScrollDirective,
     ContainerComponent,
-    RouterOutlet
+    RouterOutlet,
+    AdminNavbarComponent,
+    AdminSidebarComponent
 ]
 })
 export class AdminLayoutComponent implements OnInit {
@@ -62,6 +66,8 @@ export class AdminLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllResourcesList();
+    this.setStaticNavItems(); // Comment out this.getAllResourcesList();
+
   }
 
   getAllResourcesList() {
@@ -99,4 +105,53 @@ mapMenu(menu: any): INavData {
     // console.log('verticalUsed', $event.verticalUsed);
     // }
   }
+
+
+  setStaticNavItems() {
+  this.navItems = [
+    {
+      name: 'Dashboard',
+      url: '/admin/dashboard',
+      icon: 'fa fa-tachometer-alt'
+    },
+    {
+      name: 'Employee Management',
+      icon: 'fa fa-person',
+      children: [
+        {
+          name: 'Employee-List',
+          url: '/admin/employee-list'
+        },
+        {
+          name: 'Role Master',
+          url: '/admin/employee-management/role-master'
+        },
+         {
+          name: 'Designation-master',
+          url: '/admin/employee-management/designation-master'
+        },
+        {
+          name: 'Technology Master',
+          url: '/admin/employee-management/technology-master'
+        },
+           {
+          name: 'Document Type Master',
+          url: '/admin/employee-management/document-type-master'
+        },
+        {
+          name: 'Salary Generation',
+          url: '/admin/employee-management/salary-generation'
+        },
+         {
+          name: 'Interview',
+          url: '/admin/interview-list  '
+        },
+        {
+          name: 'Monthly Salary Details',
+          url: '/admin/employee-management/monthly-salary-details'
+        }
+      ]
+    },
+  ]
+}
 }

@@ -119,11 +119,15 @@ export class AdminLoginComponent implements OnInit {
 
   adminUserLogin() {
     if (this.loginForm.valid) {
-      this.AdminLayoutService.adminLogin(this.loginForm.value).subscribe(
+      let payload = {
+c_Email:this.loginForm.value.email,
+pwd:this.loginForm.value.pwd
+      }
+      this.AdminLayoutService.adminLogin(payload).subscribe(
         (response: any) => {
           if (response.meta.code === 200) {
             localStorage.setItem('LoginUserData', JSON.stringify(response.data));
-            localStorage.setItem('myToken', response.data.token);
+            localStorage.setItem('myToken', response.data.myToken);
             this.router.navigate(['admin/dashboard']);
             this.toastr.success('Login successful');
             this.errorMessage = '';  // Clear error message on success
