@@ -55,7 +55,7 @@ export const routes: Routes = [
             {
                 path: 'employee-list',
                 loadComponent: () =>
-                    import('./employee_management/employee-list/employee-list.component').then((m) => m.EmployeeListComponent),
+                    import('./employee-management/employee-list/employee-list.component').then((m) => m.EmployeeListComponent),
                 data: {
                     title: 'Employee List',
                 },
@@ -63,7 +63,7 @@ export const routes: Routes = [
             {
                 path: 'add-new-employee',
                 loadComponent: () =>
-                    import('./employee_management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
+                    import('./employee-management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
                 data: {
                     title: 'Employee List',
                 },
@@ -71,7 +71,7 @@ export const routes: Routes = [
             {
                 path: 'edit-employee/:id',
                 loadComponent: () =>
-                    import('./employee_management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
+                    import('./employee-management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
                 data: {
                     title: 'Employee List',
                 },
