@@ -26,7 +26,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
 // import { PipeModule } from '../../../shared/pipe/pipe.module';
 import { NgOtpInputComponent } from 'ng-otp-input';
-import { ArraySortPipeDesc, ArraySortPipeAsc, GroupByPipe, NiceTimePipe, ArraySortPipeSimple } from '../../../../shared/pipe/common.pipe';
+import { ArraySortPipeDesc, ArraySortPipeAsc, GroupByPipe, NiceTimePipe, ArraySortPipeSimple, FilterPipe } from '../../../../shared/pipe/common.pipe';
 import { CommonService } from '../../../../shared/common.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
@@ -72,7 +72,8 @@ import { ConfirmDirective } from '../../../../shared/directives/confirm.directiv
     GroupByPipe,
     ArraySortPipeDesc,
     ArraySortPipeAsc,
-    ArraySortPipeSimple
+    ArraySortPipeSimple,
+    FilterPipe,
   ],
 
   standalone: true,
@@ -337,7 +338,9 @@ getFormArray(controlName: string): FormArray {
 
     openBasicInfoModel() {
         this.getBasicInformationById();
-        $("#add-user-basic-details-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+        $("#add-user-basic-details-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-user-basic-details-modal").modal('show');
+
     }
     closeBasicInfoModel() {
         $("#add-user-basic-details-modal").modal("hide");

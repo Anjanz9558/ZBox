@@ -25,7 +25,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ConfirmDirective } from '../../../../shared/directives/confirm.directive';
-import { ArraySortPipeAsc, ArraySortPipeDesc, ArraySortPipeSimple, GroupByPipe, NiceTimePipe } from '../../../../shared/pipe/common.pipe';
+import { ArraySortPipeAsc, ArraySortPipeDesc, ArraySortPipeSimple, FilterPipe, GroupByPipe, NiceTimePipe } from '../../../../shared/pipe/common.pipe';
 declare const $: any;
 
 interface userMasterData {
@@ -73,7 +73,8 @@ interface userMasterData {
     GroupByPipe,
     ArraySortPipeDesc,
     ArraySortPipeAsc,
-    ArraySortPipeSimple
+    ArraySortPipeSimple,
+    FilterPipe,
   ],
 
   standalone: true,

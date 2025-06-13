@@ -2726,12 +2726,12 @@ progress {
 }
 
 .form-control:focus {
-  color: #495057;
+  /* color: #495057;
   background-color: #f2f2f2;
   border-color: #e293d3;
   outline: 0;
   box-shadow: 0 0 0 2px #e9aede;
-  font-family: var(--bs-body-font-family);
+  font-family: var(--bs-body-font-family); */
 }
 
 .form-control::-webkit-date-and-time-value {
@@ -23151,7 +23151,7 @@ hr.horizontal.gray-light {
 }
 
 .sidenav {
-  z-index: 9999;
+  z-index: 1048;
 }
 
 .sidenav .navbar-brand,

@@ -20,7 +20,7 @@ export const routes: Routes = [
                     title: 'dashbaord List',
                 },
             },
-             {
+            {
                 path: 'employee-management/role-master',
                 loadComponent: () =>
                     import('./employee-management/role-master/role-master.component').then((m) => m.RoleMasterComponent),
@@ -28,7 +28,7 @@ export const routes: Routes = [
                     title: 'role master',
                 },
             },
-              {
+            {
                 path: 'employee-management/designation-master',
                 loadComponent: () =>
                     import('./employee-management/designation-master/designation-master.component').then((m) => m.DesignationMasterComponent),
@@ -36,7 +36,7 @@ export const routes: Routes = [
                     title: 'designation master',
                 },
             },
-               {
+            {
                 path: 'employee-management/technology-master',
                 loadComponent: () =>
                     import('./employee-management/department-master/department-master.component').then((m) => m.DepartmentMasterComponent),
@@ -44,12 +44,14 @@ export const routes: Routes = [
                     title: 'department master',
                 },
             },
-                 {
+            {
                 path: 'setting/menu-master',
                 loadComponent: () =>
                     import('./setting/menu-master/menu-master.component').then((m) => m.MenuMasterComponent),
                 data: {
                     title: 'menu master',
+                }
+            },
             {
                 path: 'employee-list',
                 loadComponent: () =>
@@ -60,6 +62,14 @@ export const routes: Routes = [
             },
             {
                 path: 'add-new-employee',
+                loadComponent: () =>
+                    import('./employee_management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
+                data: {
+                    title: 'Employee List',
+                },
+            },
+            {
+                path: 'edit-employee/:id',
                 loadComponent: () =>
                     import('./employee_management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
                 data: {
