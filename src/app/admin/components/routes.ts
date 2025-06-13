@@ -1,5 +1,3 @@
-
-
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -20,6 +18,22 @@ export const routes: Routes = [
                     import('./dashboard/dashboard.component').then((m) => m.DashboardComponent),
                 data: {
                     title: 'dashbaord List',
+                },
+            },
+            {
+                path: 'employee-list',
+                loadComponent: () =>
+                    import('./employee_management/employee-list/employee-list.component').then((m) => m.EmployeeListComponent),
+                data: {
+                    title: 'Employee List',
+                },
+            },
+            {
+                path: 'add-new-employee',
+                loadComponent: () =>
+                    import('./employee_management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
+                data: {
+                    title: 'Employee List',
                 },
             },
             // {
