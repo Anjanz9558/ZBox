@@ -270,9 +270,12 @@ private children: any[] = [];
             return {
                 pastUrl: '#',
                 pastLinkName: '',
-                currentPageName: 'Technology Master'
+                // currentPageName: 'Technology Master'
+                currentPageName: 'Department Master'
+
             };
         }
+        
         //5. document type master
         else if (titlee.includes('document-type-master')) {
             return {
