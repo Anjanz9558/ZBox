@@ -131,5 +131,23 @@ export class NiceTimePipe implements PipeTransform {
     return now.toJSON();
     //return new Date(now.getTime() + (now.getTimezoneOffset() * 60000));
   }
+
+
+  
 }
 
+
+@Pipe({
+  name: 'filter',
+  standalone: true
+})
+export class FilterPipe implements PipeTransform {
+  transform(items: any[], searchText: string): any[] {
+    if (!items || !searchText) return items;
+    return items.filter(item => {
+      return Object.values(item).some(val =>
+        val?.toString().toLowerCase().includes(searchText.toLowerCase())
+      );
+    });
+  }
+}

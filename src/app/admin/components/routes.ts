@@ -20,6 +20,36 @@ export const routes: Routes = [
                     title: 'dashbaord List',
                 },
             },
+             {
+                path: 'employee-management/role-master',
+                loadComponent: () =>
+                    import('./employee-management/role-master/role-master.component').then((m) => m.RoleMasterComponent),
+                data: {
+                    title: 'role master',
+                },
+            },
+              {
+                path: 'employee-management/designation-master',
+                loadComponent: () =>
+                    import('./employee-management/designation-master/designation-master.component').then((m) => m.DesignationMasterComponent),
+                data: {
+                    title: 'designation master',
+                },
+            },
+               {
+                path: 'employee-management/technology-master',
+                loadComponent: () =>
+                    import('./employee-management/department-master/department-master.component').then((m) => m.DepartmentMasterComponent),
+                data: {
+                    title: 'department master',
+                },
+            },
+                 {
+                path: 'setting/menu-master',
+                loadComponent: () =>
+                    import('./setting/menu-master/menu-master.component').then((m) => m.MenuMasterComponent),
+                data: {
+                    title: 'menu master',
             {
                 path: 'employee-list',
                 loadComponent: () =>
