@@ -63,10 +63,10 @@ export class MenuMasterComponent implements OnInit {
   submittedMenuData = false;
   noData: any;
   perentList: any;
-  isView: boolean = false;
-  isCreated: boolean = false;
-  isUpdated: boolean = false;
-  isDeleted: boolean = false;
+  isView: boolean = true;
+  isCreated: boolean = true;
+  isUpdated: boolean = true;
+  isDeleted: boolean = true;
   searchTerm: string = '';
 
   constructor(public commonService: CommonService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private spinner: NgxSpinnerService) {

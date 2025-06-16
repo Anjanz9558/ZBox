@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, NgStyle } from '@angular/common';
-import { IconDirective } from '@coreui/icons-angular';
-import { ContainerComponent, RowComponent, ColComponent, CardGroupComponent, TextColorDirective, CardComponent, CardBodyComponent, FormDirective, InputGroupComponent, InputGroupTextDirective, FormControlDirective, ButtonDirective } from '@coreui/angular';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, FormBuilder, Validators, ValidatorFn, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutService } from '../../layout/admin-layout/admin-layout.service';
+import { CommonService } from './../../shared/common.service';
+import { CookieService } from 'ngx-cookie-service';
+// import * as Chartist from 'chartist';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { StorageService, StorageKey } from '../../shared/storage.service';
+// import { CoreHelperService } from '../../Providers/core-helper/core-helper.service';
+import { environment } from '../../../environments/environment';
+import { CommonModule } from '@angular/common';
+import { CardBodyComponent, CardComponent, CardGroupComponent, ColComponent, ContainerComponent, InputGroupComponent, InputGroupTextDirective, RowComponent, TextColorDirective } from '@coreui/angular';
+import { IconDirective } from '@coreui/icons-angular';
+
 
 
 @Component({
@@ -29,118 +35,81 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './admin-login.component.scss'
 })
 export class AdminLoginComponent implements OnInit {
-  allPageResourcesList: any = [];
-  loginForm!: FormGroup;
-  errorMessage: string = '';  // Define a variable to store the error message
+    loginForm!: FormGroup;
 
-  constructor(
-    private router: Router,
-    private AdminLayoutService: AdminLayoutService,
-    private fb: FormBuilder,
-    private toastr: ToastrService,
+    userId: any;
 
-  ) {
-    this.getAllResourcesList();
-  }
+    hide1 = false;
 
-  ngOnInit(): void {
-    this.verifyTokenExpiry();
-    this.defaultLoginForm();
-  }
+    get fLoginData() { return this.loginForm.controls; }
 
-  verifyTokenExpiry(): void {
-    const token = localStorage.getItem('myToken');
-    if (token) {
-      const payload = this.decodeJwt(token);
-      if (payload && payload.exp) {
-        const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
-        if (payload.exp > currentTime) {
-          // Token is valid, navigate to the dashboard
-          this.router.navigate(['admin/dashboard']);
-        } else {
-          // Token is expired, remove it from localStorage
-          localStorage.removeItem('myToken');
-          localStorage.removeItem('LoginUserData');
+    submittedLoginData = false;
+
+    constructor(private fb: FormBuilder, private router: Router, public commonService: CommonService,  private cookieService: CookieService, public storageService: StorageService, public adminLayoutService: AdminLayoutService, ) {
+
+        if (this.storageService.getValue(StorageKey.IsDiyanLogin) == 'true') {
+            this.router.navigate(['/admin/dashboard']);
         }
-      } else {
-        console.log('Invalid token payload.');
-      }
+
     }
-  }
 
-  decodeJwt(token: string): any {
-    try {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      return JSON.parse(window.atob(base64));
-    } catch (error) {
-      console.log('Error decoding token:', error);
-      return null;
+    ngOnInit() {
+        this.defaultloginForm();
     }
-  }
+    defaultloginForm() {
+        this.loginForm = this.fb.group({
 
-  defaultLoginForm() {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      pwd: [
-        '',
-        [
-          Validators.required,          // Password is required
-          // Validators.minLength(6),       // Minimum length of 8 characters
-          // Validators.pattern('.*[A-Z].*'),  // At least one uppercase letter
-          // Validators.pattern('.*[a-z].*'),  // At least one lowercase letter
-          // Validators.pattern('.*\\d.*'),    // At least one numeric digit
-          // Validators.pattern('.*[!@#$%^&*(),.?":{}|<>].*')  // At least one special character
-        ]
-      ]
-    });
-  }
+            email: ['', [Validators.required, Validators.pattern(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/)]],
+            pwd: ['', [Validators.required]],
+        });
+    }
 
 
-  getAllResourcesList() {
-    this.AdminLayoutService.getAllResources({ languageId: '6751515ce8be630bc927fda4' }).subscribe((Response: any) => {
-      if (Response.meta.code == 200) {
-        this.allPageResourcesList = Response.data.resources;
-        if (localStorage.getItem('resources')) {
-          localStorage.removeItem('resources');
+    handleKeyUp(e:any) {
+        if (e.keyCode === 13) {
+            this.login();
         }
-        localStorage.setItem('resources', JSON.stringify(this.allPageResourcesList));
-      }
-    })
-  }
+    }
 
-  getLabelValue(labelKey: any) {
-    const resource = this.allPageResourcesList.find(
-      (res: any) => res.resourceName === labelKey
-    );
+    login() {
 
-    return resource ? resource.resourceValue : labelKey;
-  }
-
-  adminUserLogin() {
-    if (this.loginForm.valid) {
-      let payload = {
-c_Email:this.loginForm.value.email,
-pwd:this.loginForm.value.pwd
-      }
-      this.AdminLayoutService.adminLogin(payload).subscribe(
-        (response: any) => {
-          if (response.meta.code === 200) {
-            localStorage.setItem('LoginUserData', JSON.stringify(response.data));
-            localStorage.setItem('myToken', response.data.myToken);
-            this.router.navigate(['admin/dashboard']);
-            this.toastr.success('Login successful');
-            this.errorMessage = '';  // Clear error message on success
-          }
-        },
-        (error: any) => {
-          console.log("error", error);
-          this.toastr.error(error.error.meta.message);
+        this.submittedLoginData = true;
+        if (this.loginForm.invalid) {
+            return;
         }
-      );
-    } else {
-      this.loginForm.markAllAsTouched();  
-      }
-  }
+        let loginObj = {
+            c_Email: this.loginForm.value.email,
+            pwd: this.loginForm.value.pwd
+        };
+        this.adminLayoutService.adminLogin(loginObj).subscribe((Response: any) => {
+
+            if (Response.meta.code == 200) {
+                localStorage.setItem('LoginUserData', JSON.stringify(Response.data))
+                this.storageService.setValue(StorageKey.myToken, Response.data.myToken);
+                this.storageService.setValue(StorageKey._id, Response.data._id);
+                this.storageService.setValue(StorageKey.employeeId, Response.data.employeeId);
+                this.storageService.setValue(StorageKey.firstName, Response.data.firstName);
+                this.storageService.setValue(StorageKey.middleName, Response.data.middleName);
+                this.storageService.setValue(StorageKey.lastName, Response.data.lastName);
+                this.storageService.setValue(StorageKey.email, Response.data.c_Email);
+                this.storageService.setValue(StorageKey.p_Email, Response.data.p_Email);
+                this.storageService.setValue(StorageKey.profileImage, Response.data.profile_image);
+                this.storageService.setValue(StorageKey.accountType, Response.data.accountType);
+                this.storageService.setValue(StorageKey.roleType, Response.data.roleName);
+                this.storageService.setValue(StorageKey.IsDiyanLogin, 'true');
+                // this.commonService.notifier.notify('success', Response.meta.message);
+                this.router.navigate(['/admin/dashboard']);
+                // this.commonService.notifier.notify('success', Response.meta.message);
+            }
+            else if (Response.meta.code === 1012) {
+                // this.commonService.notifier.notify('error', Response.meta.message);
+            }
+            else {
+                // this.commonService.notifier.notify('error', Response.meta.message);
+            }
+        }, (error:any) => {
+            console.log(error);
+        });
+    }
 
 }

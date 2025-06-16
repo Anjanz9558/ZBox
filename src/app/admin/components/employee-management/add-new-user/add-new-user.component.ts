@@ -37,52 +37,52 @@ import moment from 'moment';
 import { ConfirmDirective } from '../../../../shared/directives/confirm.directive'
 
 @Component({
-  selector: 'app-add-new-user',
-  imports: [
-    CommonModule,
-    // PipeModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DragDropModule,
-    MatButtonModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatTooltipModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatRadioModule,
-    // Ng2SearchPipeModule,
-    HttpClientModule,
-    AngularEditorModule,
-    MatAutocompleteModule,
-    MatSortModule,
-    EditorModule,
-    NgOtpInputComponent,
-    NgSelectModule,
-    NgxMatSelectSearchModule,
-    ConfirmDirective,
-    // FullCalendarModule,
-    // NgbModule,
-    // NgbDatepickerModule,
-    // NgxMaskModule,
-    NiceTimePipe,
-    GroupByPipe,
-    ArraySortPipeDesc,
-    ArraySortPipeAsc,
-    ArraySortPipeSimple,
-    FilterPipe,
-  ],
+    selector: 'app-add-new-user',
+    imports: [
+        CommonModule,
+        // PipeModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DragDropModule,
+        MatButtonModule,
+        MatRippleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatTooltipModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRadioModule,
+        // Ng2SearchPipeModule,
+        HttpClientModule,
+        AngularEditorModule,
+        MatAutocompleteModule,
+        MatSortModule,
+        EditorModule,
+        NgOtpInputComponent,
+        NgSelectModule,
+        NgxMatSelectSearchModule,
+        ConfirmDirective,
+        // FullCalendarModule,
+        // NgbModule,
+        // NgbDatepickerModule,
+        // NgxMaskModule,
+        NiceTimePipe,
+        GroupByPipe,
+        ArraySortPipeDesc,
+        ArraySortPipeAsc,
+        ArraySortPipeSimple,
+        FilterPipe,
+    ],
 
-  standalone: true,
-  templateUrl: './add-new-user.component.html',
-  styleUrl: './add-new-user.component.scss'
+    standalone: true,
+    templateUrl: './add-new-user.component.html',
+    styleUrl: './add-new-user.component.scss'
 })
 export class AddNewUserComponent implements OnInit {
     resumeInfoForm!: FormGroup;
-    colour:any;
+    colour: any;
     ISeditEmployee = false;
     employeeForm!: FormGroup;
     emergencyContactInforForm!: FormGroup;
@@ -194,11 +194,11 @@ export class AddNewUserComponent implements OnInit {
         return this.leaveBalanceForm.controls;
     }
     get leaveList(): FormArray {
-      return this.leaveBalanceForm.get('leaveList') as FormArray;
+        return this.leaveBalanceForm.get('leaveList') as FormArray;
     }
-getFormArray(controlName: string): FormArray {
-  return this.resumeInfoForm.get(controlName) as FormArray;
-}
+    getFormArray(controlName: string): FormArray {
+        return this.resumeInfoForm.get(controlName) as FormArray;
+    }
     get fResumeData(): { [key: string]: AbstractControl } {
         return this.resumeInfoForm.controls;
     }
@@ -213,7 +213,7 @@ getFormArray(controlName: string): FormArray {
     @ViewChild('fileDoc') myInputVariableDoc!: ElementRef;
     @ViewChild('file1') myInputVariableForSignatureImage!: ElementRef;
     @ViewChild('Expfile') myInputExpVariable!: ElementRef;
-    @ViewChild('resetPin') resetPin:any;
+    @ViewChild('resetPin') resetPin: any;
     resultofDocument: any[] = [];
     keepOriginal: boolean = false;
     selectedDocumentTypeId: any;
@@ -230,16 +230,15 @@ getFormArray(controlName: string): FormArray {
     }
 
     constructor(
-      private http: HttpClient, 
-      private fb: FormBuilder, 
-      // private coreHelper: CoreHelperService, 
-      private route: ActivatedRoute, 
-      private router: Router, 
-      public commonService: CommonService, 
-      public adminLayoutService: AdminLayoutService, 
-      // private companyManagementService: CompanyManagementService
-      ) 
-      {
+        private http: HttpClient,
+        private fb: FormBuilder,
+        // private coreHelper: CoreHelperService, 
+        private route: ActivatedRoute,
+        private router: Router,
+        public commonService: CommonService,
+        public adminLayoutService: AdminLayoutService,
+        // private companyManagementService: CompanyManagementService
+    ) {
         let pagePermission = { module: "employeelist" }
         this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
@@ -1336,10 +1335,10 @@ getFormArray(controlName: string): FormArray {
             qualification: this.educationDetailsForm.value.qualification,
             universityName: this.educationDetailsForm.value.universityName,
             fromYear: this.educationDetailsForm.value.fromYear.toString(),
-            toYear: this.educationDetailsForm.value.toYear? this.educationDetailsForm.value.toYear.toString() : null,
+            toYear: this.educationDetailsForm.value.toYear ? this.educationDetailsForm.value.toYear.toString() : null,
             fromMonth: this.educationDetailsForm.value.fromMonth,
-            toMonth: this.educationDetailsForm.value.toMonth? this.educationDetailsForm.value.toMonth : null,
-            grade: this.educationDetailsForm.value.grade? this.educationDetailsForm.value.grade : null,
+            toMonth: this.educationDetailsForm.value.toMonth ? this.educationDetailsForm.value.toMonth : null,
+            grade: this.educationDetailsForm.value.grade ? this.educationDetailsForm.value.grade : null,
             employeeId: this.userId,
         }
         this.adminLayoutService.SaveEducationDetailsData(educationDetailsObj).subscribe((Res: any) => {
@@ -2848,7 +2847,7 @@ getFormArray(controlName: string): FormArray {
             else {
                 // this.commonService.notifier.notify('error', Response.meta.message);
             }
-        }, (error: any)=> {
+        }, (error: any) => {
             console.log(error);
         });
     }
@@ -2883,7 +2882,7 @@ getFormArray(controlName: string): FormArray {
             else {
                 // this.commonService.notifier.notify('error', Response.meta.message);
             }
-        }, (error: any)=> {
+        }, (error: any) => {
             console.log(error);
         });
     }

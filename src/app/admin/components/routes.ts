@@ -53,29 +53,45 @@ export const routes: Routes = [
                 }
             },
             {
-                path: 'employee-list',
+                path: 'employee-management/employee-list',
                 loadComponent: () =>
-                    import('./employee_management/employee-list/employee-list.component').then((m) => m.EmployeeListComponent),
+                    import('./employee-management/employee-list/employee-list.component').then((m) => m.EmployeeListComponent),
                 data: {
                     title: 'Employee List',
                 },
             },
             {
-                path: 'add-new-employee',
+                path: 'employee-management/add-new-employee',
                 loadComponent: () =>
-                    import('./employee_management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
+                    import('./employee-management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
                 data: {
                     title: 'Employee List',
                 },
             },
             {
-                path: 'edit-employee/:id',
+                path: 'employee-management/edit-employee/:id',
                 loadComponent: () =>
-                    import('./employee_management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
+                    import('./employee-management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
                 data: {
                     title: 'Employee List',
                 },
             },
+            {
+                path: 'setting/role-wise-menu',
+                loadComponent: () =>
+                    import('./Setting/role-wise-menu/role-wise-menu.component').then((m) => m.RoleWiseMenuComponent),
+                data: {
+                    title: 'Role Wise Menu',
+                },
+            },
+            // {
+            //     path: 'employee-management/document-type-master',
+            //     loadComponent: () =>
+            //         import('./employee-management/document-master/document-master.component').then((m) => m.DocumentMasterComponent),
+            //     data: {
+            //         title: 'Document Type Master',
+            //     },
+            // },
             // {
             //   path: 'order',
             //   data: {
