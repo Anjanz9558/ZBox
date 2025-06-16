@@ -84,6 +84,30 @@ export const routes: Routes = [
                     title: 'Role Wise Menu',
                 },
             },
+            {
+                path: 'attendance-management/attendance-list',
+                loadComponent: () =>
+                    import('./attendance-management/attendance-list/attendance-list.component').then((m) => m.AttendanceListComponent),
+                data: {
+                    title: 'Attendance List',
+                },
+            },
+            {
+                path: 'attendance-management/pending-list',
+                loadComponent: () =>
+                    import('./attendance-management/pending-attendance/pending-attendance.component').then((m) => m.PendingAttendanceComponent),
+                data: {
+                    title: 'Pending Attendance',
+                },
+            },
+            {
+                path: 'attendance-management/attendance-consolidate-report',
+                loadComponent: () =>
+                    import('./attendance-management/attendance-consolidation/attendance-consolidation.component').then((m) => m.AttendanceConsolidationComponent),
+                data: {
+                    title: 'Attendance Consolidation Report',
+                },
+            },
             // {
             //     path: 'employee-management/document-type-master',
             //     loadComponent: () =>
