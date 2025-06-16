@@ -902,6 +902,45 @@ export class AdminLayoutService {
     }
 
 
+      // Department master api 
+    // start
+    SaveDepartmentMaster(createroleMasterData: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+        return this.http.post(this.commonService.rootData.rootUrl + 'adminSide/departmentSave', createroleMasterData, { headers: headers });
+    }
+    UpdateDepartmentMaster(createroleMasterData: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+        return this.http.post(this.commonService.rootData.rootUrl + 'adminSide/departmentDataUpdate', createroleMasterData, { headers: headers });
+    }
+    getDepartmentMaster() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+        return this.http.get(this.commonService.rootData.rootUrl + 'adminSide/departmentDataList', { headers: headers });
+    }
+    getDepartmentMasterId(params: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+        return this.http.get(this.commonService.rootData.rootUrl + 'adminSide/departmentDetailsById', { params: params, headers: headers });
+    }
+    StatusDepartmentMaster(updatestatusroleMasterData: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+        return this.http.post(this.commonService.rootData.rootUrl + 'adminSide/departmentActiveDeactive', updatestatusroleMasterData, { headers: headers });
+    }
+
+
     // Document Type master api 
     // start
     SaveDocumentTypeMaster(createroleMasterData: any) {
@@ -1632,4 +1671,5 @@ export class AdminLayoutService {
   }
 
 
+  
 }

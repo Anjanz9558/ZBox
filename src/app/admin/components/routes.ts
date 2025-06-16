@@ -37,7 +37,7 @@ export const routes: Routes = [
                 },
             },
             {
-                path: 'employee-management/technology-master',
+                path: 'employee-management/department-master',
                 loadComponent: () =>
                     import('./employee-management/department-master/department-master.component').then((m) => m.DepartmentMasterComponent),
                 data: {
@@ -84,14 +84,62 @@ export const routes: Routes = [
                     title: 'Role Wise Menu',
                 },
             },
-            // {
-            //     path: 'employee-management/document-type-master',
-            //     loadComponent: () =>
-            //         import('./employee-management/document-master/document-master.component').then((m) => m.DocumentMasterComponent),
-            //     data: {
-            //         title: 'Document Type Master',
-            //     },
-            // },
+            {
+                path: 'employee-management/document-type-master',
+                loadComponent: () =>
+                    import('./employee-management/document-type-master/document-type-master.component').then((m) => m.DocumentTypeMasterComponent),
+                data: {
+                    title: 'Document Type Master',
+                },
+            },
+            {
+                path: 'employee-management/salary-generation',
+                loadComponent: () =>
+                    import('./employee-management/salary-generation/salary-generation.component').then((m) => m.SalaryGenerationComponent),
+                data: {
+                    title: 'Salary Generation',
+                },
+            },
+            {
+                path: 'employee-management/monthly-salary-details',
+                loadComponent: () =>
+                    import('./employee-management/monthly-salary-details/monthly-salary-details.component').then((m) => m.MonthlySalaryDetailsComponent),
+                data: {
+                    title: 'Monthly Salary Details',
+                },
+            },
+            {
+                path: 'leave-management/work-from-home-list',
+                loadComponent: () =>
+                    import('./leave-management/work-from-home/work-from-home.component').then((m) => m.WorkFromHomeComponent),
+                data: {
+                    title: 'Work From Home List',
+                },
+            },
+             {
+                path: 'leave-management/leave-list',
+                loadComponent: () =>
+                    import('./leave-management/leave-list/leave-list.component').then((m) => m.LeaveListComponent),
+                data: {
+                    title: 'Leave List',
+                },
+            },
+            {
+                path: 'leave-management/holiday-list',
+                loadComponent: () =>
+                    import('./leave-management/holiday-list/holiday-list.component').then((m) => m.HolidayListComponent),
+                data: {
+                    title: 'Holiday List',
+                },
+            },
+              {
+                path: 'leave-management/short-leave',
+                loadComponent: () =>
+                    import('./leave-management/short-leave/short-leave.component').then((m) => m.ShortLeaveComponent),
+                data: {
+                    title: 'Short Leave',
+                },
+            },
             // {
             //   path: 'order',
             //   data: {

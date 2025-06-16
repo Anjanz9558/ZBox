@@ -10,7 +10,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { MatSortModule, Sort } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ConfirmDirective } from '../../../../shared/directives/confirm.directive';
+import { ConfirmDirective } from '../../../../shared/directives/common.directive';
 import { ArraySortPipeAsc, ArraySortPipeDesc, ArraySortPipeSimple, FilterPipe, NiceTimePipe } from '../../../../shared/pipe/common.pipe';
 // import { GroupByPipe } from 'ngx-pipes';
 // import { StorageService, StorageKey } from '../../../shared/storage.service';
