@@ -24,9 +24,10 @@ import { NgOtpInputComponent } from 'ng-otp-input';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { ConfirmDirective } from '../../../../shared/directives/confirm.directive';
-import { ArraySortPipeAsc, ArraySortPipeDesc, ArraySortPipeSimple, FilterPipe, GroupByPipe, NiceTimePipe } from '../../../../shared/pipe/common.pipe';
+import { ArraySortPipeAsc, ArraySortPipeDesc, ArraySortPipeSimple, FilterPipe,NiceTimePipe } from '../../../../shared/pipe/common.pipe';
 declare const $: any;
+import { ConfirmDirective } from '../../../../shared/directives/common.directive';
+
 
 interface userMasterData {
   userName: string;
@@ -62,7 +63,6 @@ interface userMasterData {
     NgOtpInputComponent,
     NgSelectModule,
     NgxMatSelectSearchModule,
-    ConfirmDirective,
     NgxPaginationModule,
     RouterModule,
     // FullCalendarModule,
@@ -70,11 +70,11 @@ interface userMasterData {
     // NgbDatepickerModule,
     // NgxMaskModule,
     NiceTimePipe,
-    GroupByPipe,
     ArraySortPipeDesc,
     ArraySortPipeAsc,
     ArraySortPipeSimple,
     FilterPipe,
+    ConfirmDirective
   ],
 
   standalone: true,

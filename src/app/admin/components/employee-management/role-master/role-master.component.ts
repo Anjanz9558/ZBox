@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgModel } from '@angular/forms';
-import { ConfirmDirective } from '../../../../shared/directives/confirm.directive'; 
+import { ConfirmDirective } from '../../../../shared/directives/common.directive';
 import { Router, RouterModule } from '@angular/router';
 import { MatSortModule } from '@angular/material/sort';
 import { CommonService } from '../../../../shared/common.service';
@@ -24,11 +24,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ConfirmDirective, 
     RouterModule,
     MatSortModule,
-    NiceTimePipe,
-    GroupByPipe,
-    ArraySortPipeDesc,
-    ArraySortPipeAsc,
-    ArraySortPipeSimple,
     FilterPipe
   ],
   templateUrl: './role-master.component.html',

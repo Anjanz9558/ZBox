@@ -7,6 +7,9 @@ import { AdminLayoutService } from '../admin-layout.service';
 import { CommonModule,Location } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 // import { CoreHelperService } from '../../Providers/core-helper/core-helper.service';
+import { StorageService, StorageKey } from '../../../shared/storage.service';
+import { TITLEROUTES } from '../admin-sidebar/admin-sidebar.component';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-admin-navbar',
@@ -40,11 +43,13 @@ private children: any[] = [];
     fullName: any;
     userName: any;
     profileId: any;
+    sidebarClose:any;
+
     get formControlChangePassword() { return this.changePasswordForm.controls; }
     get fData() { return this.profileForm.controls; }
 @ViewChild('file') myInputVariable!: ElementRef;
 
-    constructor(location: Location, private element: ElementRef, private fb: FormBuilder, private router: Router,  private cookieService: CookieService, public commonService: CommonService, public adminLayoutService: AdminLayoutService) {
+    constructor(location: Location, private element: ElementRef, private fb: FormBuilder, private router: Router,  private cookieService: CookieService, public commonService: CommonService, public adminLayoutService: AdminLayoutService, public storageService: StorageService,) {
         this.location = location;
         this.sidebarVisible = false;
 
@@ -53,24 +58,24 @@ private children: any[] = [];
 
     ngOnInit() {
 
-        // this.userName = this.storageService.getValue(StorageKey.firstName) + ' ' + this.storageService.getValue(StorageKey.middleName) + ' ' + this.storageService.getValue(StorageKey.lastName);
-        // this.profileId = this.storageService.getValue(StorageKey.employeeId);
-        // this.listTitles = TITLEROUTES.filter(listTitle => listTitle);
-        // const navbar: HTMLElement = this.element.nativeElement;
-        // this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-        // this.router.events.subscribe((event) => {
-        //     this.sidebarClose();
-        //     var $layer: any = document.getElementsByClassName('close-layer')[0];
-        //     if ($layer) {
-        //         $layer.remove();
-        //         this.mobile_menu_visible = 0;
-        //     }
-        // });
+        this.userName = this.storageService.getValue(StorageKey.firstName) + ' ' + this.storageService.getValue(StorageKey.middleName) + ' ' + this.storageService.getValue(StorageKey.lastName);
+        this.profileId = this.storageService.getValue(StorageKey.employeeId);
+        this.listTitles = TITLEROUTES.filter(listTitle => listTitle);
+        const navbar: HTMLElement = this.element.nativeElement;
+        this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+        this.router.events.subscribe((event) => {
+            this.sidebarClose();
+            var $layer: any = document.getElementsByClassName('close-layer')[0];
+            if ($layer) {
+                $layer.remove();
+                this.mobile_menu_visible = 0;
+            }
+        });
 
-        // setTimeout(() => {
-        //     this.profileImg = environment.uploadedUrl + this.storageService.getValue(StorageKey.profileImage)
-        //     this.profileName = this.storageService.getValue('name')
-        // }, 0);
+        setTimeout(() => {
+            this.profileImg = environment.uploadedUrl + this.storageService.getValue(StorageKey.profileImage)
+            this.profileName = this.storageService.getValue('name')
+        }, 0);
     }
 
 
@@ -266,7 +271,7 @@ private children: any[] = [];
             };
         }
         //4. technology master
-        else if (titlee.includes('technology-master')) {
+        else if (titlee.includes('department-master')) {
             return {
                 pastUrl: '#',
                 pastLinkName: '',
@@ -625,5 +630,6 @@ private children: any[] = [];
             currentPageName: 'Dashboard'
         };
     }
+    
 }
 

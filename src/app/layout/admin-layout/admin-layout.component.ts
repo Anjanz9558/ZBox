@@ -6,15 +6,9 @@ import { IconDirective } from '@coreui/icons-angular'
 import { INavData } from '@coreui/angular';
 ;
 import {
-  ContainerComponent,
-  ShadowOnScrollDirective,
   SidebarBrandComponent,
   SidebarComponent,
-  SidebarFooterComponent,
   SidebarHeaderComponent,
-  SidebarNavComponent,
-  SidebarToggleDirective,
-  SidebarTogglerDirective
 } from '@coreui/angular';
 
 import { DefaultFooterComponent, AdminHeaderComponent } from '.';
@@ -35,18 +29,6 @@ function isOverflown(element: HTMLElement) {
     templateUrl: './admin-layout.component.html',
     styleUrls: ['./admin-layout.component.scss'],
     imports: [
-    SidebarComponent,
-    SidebarHeaderComponent,
-    SidebarBrandComponent,
-    RouterLink,
-    NgScrollbar,
-    SidebarNavComponent,
-    SidebarFooterComponent,
-    SidebarToggleDirective,
-    SidebarTogglerDirective,
-    AdminHeaderComponent,
-    ShadowOnScrollDirective,
-    ContainerComponent,
     RouterOutlet,
     AdminNavbarComponent,
     AdminSidebarComponent

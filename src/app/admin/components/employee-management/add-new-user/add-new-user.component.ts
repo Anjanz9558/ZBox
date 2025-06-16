@@ -34,7 +34,7 @@ import { environment } from '../../../../../environments/environment';
 import { AdminLayoutService } from '../../../../layout/admin-layout/admin-layout.service';
 declare const $: any;
 import moment from 'moment';
-import { ConfirmDirective } from '../../../../shared/directives/confirm.directive'
+import { ConfirmDirective } from '../../../../shared/directives/common.directive'
 
 @Component({
     selector: 'app-add-new-user',

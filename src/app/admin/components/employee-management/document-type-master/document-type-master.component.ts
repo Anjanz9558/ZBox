@@ -13,13 +13,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ConfirmDirective } from '../../../../shared/directives/common.directive';
 import { ArraySortPipeAsc, ArraySortPipeDesc, ArraySortPipeSimple, FilterPipe, NiceTimePipe } from '../../../../shared/pipe/common.pipe';
 // import { GroupByPipe } from 'ngx-pipes';
-// import { StorageService, StorageKey } from '../../../shared/storage.service';
+import { StorageService, StorageKey } from '../../../../shared/storage.service';
 declare const $: any;
 
 
 @Component({
-  selector: 'app-department-master',
-  standalone: true,
+  selector: 'app-document-type-master',
+ standalone: true,
   imports: [
     CommonModule,
     FormsModule,
@@ -35,33 +35,34 @@ declare const $: any;
     ArraySortPipeSimple,
     FilterPipe
   ],
-  templateUrl: './department-master.component.html',
-  styleUrl: './department-master.component.scss'
+  templateUrl: './document-type-master.component.html',
+  styleUrl: './document-type-master.component.scss'
 })
-export class DepartmentMasterComponent implements OnInit {
+export class DocumentTypeMasterComponent implements OnInit {
 
-  ISeditDepartmentmaster = false;
-  departmentmasterList: any[] = [];
-  alldepartmentmaster: any[] = [];
-  departmentMasterList: any[] = [];
- l: number = 0;
+  ISeditDocumentTypeMaster = false;
+  documenttypemasterList: any[] = [];
+  alldocumenttypemaster: any[] = [];
+  documenttypeMasterList: any[] = [];
+  l: number = 0;
   p: number = 1;
   itemsPage: any;
-  mySelect: any;
-  departmentmasterForm!: FormGroup;
-  x: any;
+  mySelect:any;
+  documenttypemasterForm!: FormGroup;
+ x: any;
   t: any;
   listindex: any;
-  departmentmasterListlength: any;
+  documenttypemasterListlength: any;
   allimageList: any;
 
-  get fDepartmentnameData() { return this.departmentmasterForm.controls; }
-  submittedDepartmentMasterData = false;
+  get fDocumenttypenameData() { return this.documenttypemasterForm.controls; }
+  submittedDocumenttypeMasterData = false;
   public imagePath: any;
-  imgURL: any;
+   imgURL: any;
   message: any;
   noData: any;
   noimageData: any
+  searchTerm: string = '';
 
   activeTab: any;
   imageList: any;
@@ -72,10 +73,10 @@ export class DepartmentMasterComponent implements OnInit {
   isCreated: boolean = false;
   isUpdated: boolean = false;
   isDeleted: boolean = false;
-  searchTerm: string = '';
 
-  constructor(public commonService: CommonService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private spinner: NgxSpinnerService) {
-    let pagePermission = { module: "departmentmaster" }
+
+  constructor(public commonService: CommonService, public storageService: StorageService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private spinner: NgxSpinnerService) {
+    let pagePermission = { module: "documenttypemaster" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {
@@ -99,14 +100,14 @@ export class DepartmentMasterComponent implements OnInit {
     this.noData = false;
     this.mySelect = 5;
     this.l = 10;
-    this.ISeditDepartmentmaster = false;
-    this.getDepartmentmasterList();
+    this.ISeditDocumentTypeMaster = false;
+    this.getDocumenttypeMasterList();
     this.defaultForm();
   }
   defaultForm() {
-    this.departmentmasterForm = this.fb.group({
+    this.documenttypemasterForm = this.fb.group({
       _id: [''],
-      departmentName: ['', [Validators.required]],
+      documentType: ['', [Validators.required]],
     });
   }
 
@@ -115,37 +116,36 @@ export class DepartmentMasterComponent implements OnInit {
   }
 
 
-  addDepartmentMaster() {
-    // $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
-              $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false });
-$("#add-documenttype-modal").modal('show');
+  addDocumenttypeMaster() {
+    $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false });
+    $("#add-documenttype-modal").modal('show');
 
-    this.ISeditDepartmentmaster = false;
+    this.ISeditDocumentTypeMaster = false;
   }
 
-  cancelDepartmentmaster() {
+  cancelDocumentTypeMaster() {
     $("#add-documenttype-modal").modal("hide");
     this.defaultForm();
-    this.ISeditDepartmentmaster = false;
+    this.ISeditDocumentTypeMaster = false;
   }
-  saveDepartmentmaster() {
+  saveDocumenttypemaster() {
 
 
-    if (this.departmentmasterForm.invalid) {
-      this.submittedDepartmentMasterData = true;
+    if (this.documenttypemasterForm.invalid) {
+      this.submittedDocumenttypeMasterData = true;
       return;
     }
     let documenttypemasterModelObj = {
-      "departmentName": this.departmentmasterForm.controls['departmentName'].value,
+      "documentType": this.documenttypemasterForm.controls['documentType'].value,
     };
 
-    this.adminLayoutService.SaveDepartmentMaster(documenttypemasterModelObj).subscribe((Response: any) => {
+    this.adminLayoutService.SaveDocumentTypeMaster(documenttypemasterModelObj).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {
-        this.submittedDepartmentMasterData = false;
-        this.getDepartmentmasterList();
+        this.submittedDocumenttypeMasterData = false;
+        this.getDocumenttypeMasterList();
         this.defaultForm();
-        this.ISeditDepartmentmaster = false;
+        this.ISeditDocumentTypeMaster = false;
         // this.commonService.notifier.notify('success', Response.meta.message);
         $("#add-documenttype-modal").modal("hide");
       }
@@ -158,26 +158,26 @@ $("#add-documenttype-modal").modal('show');
   }
 
   search(value: string): void {
-    this.departmentmasterList = this.alldepartmentmaster.filter((val: any) => val.departmentName.toLowerCase().includes(value.toLowerCase()));
+    this.documenttypemasterList = this.alldocumenttypemaster.filter((val: any) => val.documentType.toLowerCase().includes(value.toLowerCase()));
     this.p = 1;
-    if (this.departmentmasterList.length == 0) {
+    if (this.documenttypemasterList.length == 0) {
       this.noData = true;
     } else {
       this.noData = false;
     }
   }
 
-  getDepartmentmasterList() {
+  getDocumenttypeMasterList() {
 
-    this.adminLayoutService.getDepartmentMaster().subscribe((Response: any) => {
+    this.adminLayoutService.getDocumentTypeMaster().subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {
-        this.departmentMasterList = Response.data;
-        this.departmentmasterList = this.departmentMasterList
-        this.alldepartmentmaster = this.departmentmasterList
-        this.departmentmasterList = this.departmentMasterList.slice();
-        this.departmentmasterListlength = Response.data.length;
-        this.sortingList({ active: 'departmentName', direction: 'asc' })
+        this.documenttypeMasterList = Response.data;
+        this.documenttypemasterList = this.documenttypeMasterList
+        this.alldocumenttypemaster = this.documenttypemasterList
+        this.documenttypemasterList = this.documenttypeMasterList.slice();
+        this.documenttypemasterListlength = Response.data.length;
+        this.sortingList({ active: 'documentType', direction: 'asc' })
         this.noData = false;
       } else {
         this.noData = true;
@@ -189,42 +189,41 @@ $("#add-documenttype-modal").modal('show');
   }
 
 
-  editDepartmentmaster(paramsObj:any) {
+  editDocumentTypeMaster(paramsObj:any) {
 
-    this.ISeditDepartmentmaster = true;
+    this.ISeditDocumentTypeMaster = true;
     let Id: any = { '_id': paramsObj.id }
-    this.adminLayoutService.getDepartmentMasterId(Id).subscribe((Response: any) => {
 
-      this.departmentmasterForm.controls['_id'].setValue(Response.data._id)
-      this.departmentmasterForm.controls['departmentName'].setValue(Response.data.departmentName)
-      // $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false, show: true });
-          $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false });
-$("#add-documenttype-modal").modal('show');
+    this.adminLayoutService.getDocumentTypeMasterId(Id).subscribe((Response: any) => {
 
+      this.documenttypemasterForm.controls['_id'].setValue(Response.data._id)
+      this.documenttypemasterForm.controls['documentType'].setValue(Response.data.documentType)
+    $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false });
+    $("#add-documenttype-modal").modal('show');
     }, (error) => {
       ////console.log(error);
       //this.commonService.notifier.notify('error', error.error.Message);
     });
   }
-  updateDepartmentmaster() {
+  updateDocumenttypemaster() {
 
 
-    if (this.departmentmasterForm.invalid) {
-      this.submittedDepartmentMasterData = true;
+    if (this.documenttypemasterForm.invalid) {
+      this.submittedDocumenttypeMasterData = true;
       return;
     }
     let documenttypemasterModelObj = {
-      "_id": this.departmentmasterForm.controls['_id'].value,
-      "departmentName": this.departmentmasterForm.controls['departmentName'].value,
+      "_id": this.documenttypemasterForm.controls['_id'].value,
+      "documentType": this.documenttypemasterForm.controls['documentType'].value,
     };
 
-    this.adminLayoutService.UpdateDepartmentMaster(documenttypemasterModelObj).subscribe((Response: any) => {
+    this.adminLayoutService.UpdateDocumentTypeMaster(documenttypemasterModelObj).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {
-        this.submittedDepartmentMasterData = false;
-        this.getDepartmentmasterList();
+        this.submittedDocumenttypeMasterData = false;
+        this.getDocumenttypeMasterList();
         this.defaultForm();
-        this.ISeditDepartmentmaster = false;
+        this.ISeditDocumentTypeMaster = false;
         // this.commonService.notifier.notify('success', Response.meta.message);
         $("#add-documenttype-modal").modal("hide");
       }
@@ -236,22 +235,22 @@ $("#add-documenttype-modal").modal('show');
     });
   }
 
-  statusDepartmentmaster(paramsObj:any) {
+  statusDocumentTypeMaster(paramsObj:any) {
 
 
-    let statusDepartmentmasterModelObj = {
+    let statusDocumentTypeMasterModelObj = {
       "_id": paramsObj.id,
       "status": paramsObj.status
     };
 
 
-    this.adminLayoutService.StatusDepartmentMaster(statusDepartmentmasterModelObj).subscribe((Response: any) => {
+    this.adminLayoutService.StatusDocumentTypeMaster(statusDocumentTypeMasterModelObj).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {
-        this.submittedDepartmentMasterData = false;
-        this.getDepartmentmasterList();
+        this.submittedDocumenttypeMasterData = false;
+        this.getDocumenttypeMasterList();
         this.defaultForm();
-        this.ISeditDepartmentmaster = false;
+        this.ISeditDocumentTypeMaster = false;
         // this.commonService.notifier.notify('success', Response.meta.message);
       }
       else {
@@ -262,19 +261,19 @@ $("#add-documenttype-modal").modal('show');
     });
   }
 
-  sortingList(sort: any) {
+  sortingList(sort: Sort) {
 
-    const data = this.alldepartmentmaster.slice();
+    const data = this.alldocumenttypemaster.slice();
     if (!sort.active || sort.direction === '') {
-      this.departmentmasterList = data;
+      this.documenttypemasterList = data;
       return;
     }
 
-    this.departmentmasterList = data.sort((a, b) => {
+    this.documenttypemasterList = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
 
       switch (sort.active) {
-        case 'departmentName': return compare(a.departmentName, b.departmentName, isAsc);
+        case 'documentType': return compare(a.documentType, b.documentType, isAsc);
         default: return 0;
       }
     });

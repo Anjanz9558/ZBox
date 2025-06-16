@@ -10,12 +10,12 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { MatSortModule, Sort } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ConfirmDirective } from '../../../../shared/directives/confirm.directive';
 import { ArraySortPipeAsc, ArraySortPipeDesc, ArraySortPipeSimple, FilterPipe, NiceTimePipe } from '../../../../shared/pipe/common.pipe';
 // import { GroupByPipe } from 'ngx-pipes';
 // import { StorageService, StorageKey } from '../../../shared/storage.service';
 declare const $: any;
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ConfirmDirective } from '../../../../shared/directives/common.directive';
 
 
 
@@ -27,16 +27,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    ConfirmDirective,
     RouterModule,
     MatSortModule,
-    NiceTimePipe,
-    // GroupByPipe,
-    ArraySortPipeDesc,
-    ArraySortPipeAsc,
-    ArraySortPipeSimple,
-    FilterPipe,
-    NgSelectModule
+    NgSelectModule,
+    ConfirmDirective
   ],
   templateUrl: './menu-master.component.html',
   styleUrl: './menu-master.component.scss'
@@ -410,8 +404,8 @@ $("#add-menu-modal").modal('show');
       value: "fileupload"
     },
     {
-      name: "Technology Master",
-      value: "technologymaster"
+      name: "Department Master",
+      value: "departmentmaster"
     },
     {
       name: "Document Type Master",

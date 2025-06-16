@@ -7,7 +7,7 @@
                     class="searchTerm form-control" [(ngModel)]="searchTerm" placeholder="Type here...">
                 <div class="right-container" *ngIf="this.isCreated == true">
                     <button class="btn bg-gradient-dark mb-0 add-btn right-container-button"
-                        (click)="addTechnologyMaster()">
+                        (click)="addDepartmentMaster()">
                         <span class="long-text">Add New</span>
                         <i class="fas fa-plus" aria-hidden="true"></i></button>
                 </div>
@@ -19,29 +19,29 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table" matSort matSortActive="technologyName" matSortDirection="asc"
+                            <table class="table" matSort matSortActive="departmentName" matSortDirection="asc"
                                 matSortDisableClear="true" (matSortChange)="sortingList($event)">
                                 <thead>
                                     <tr>
                                         <th class="theme-color w-5">No.</th>
-                                        <th class="theme-color w-65" mat-sort-header="technologyName">Technology</th>
+                                        <th class="theme-color w-65" mat-sort-header="departmentName">Department</th>
                                         <th class="theme-color w-15">Status</th>
                                         <th class="theme-color w-15">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr
-                                        *ngFor="let technologyMasterData of technologymasterList | filter : searchTerm | paginate: { itemsPerPage: l, currentPage: p };let technologyIndex = index">
+                                        *ngFor="let departmentMasterData of departmentmasterList | filter : searchTerm | paginate: { itemsPerPage: l, currentPage: p };let departmentIndex = index">
                                         <td class="text-color">
-                                            {{ l * (p - 1) + technologyIndex +1 }}
+                                            {{ l * (p - 1) + departmentIndex +1 }}
                                         </td>
                                         <td class="text-color table-fixed-width-maxwidth">
-                                            {{ technologyMasterData.technologyName }}
+                                            {{ departmentMasterData.departmentName }}
                                         </td>
                                         <td class="text-color">
-                                            <span *ngIf="technologyMasterData.status == 1"
+                                            <span *ngIf="departmentMasterData.status == 1"
                                                 class="badge bg-gradient-success">Active</span>
-                                            <span *ngIf="technologyMasterData.status == 2"
+                                            <span *ngIf="departmentMasterData.status == 2"
                                                 class="badge bg-gradient-danger">Deactive</span>
                                         </td>
                                         <td class="text-color">
@@ -49,21 +49,21 @@
                                                 <li class="action-list-item me-3" *ngIf="this.isUpdated == true">
                                                     <button class="font-20 btn bg-gradient-dark emp-edit-btn"
                                                         title="Edit Project"
-                                                        (click)="editTechnologymaster({id :technologyMasterData._id,index:technologyIndex})">
+                                                        (click)="editDepartmentmaster({id :departmentMasterData._id,index:departmentIndex})">
                                                         <i class="fa fa-edit"></i></button>
                                                 </li>
                                                 <li class="action-list-item" *ngIf="this.isDeleted == true">
-                                                    <button *ngIf="technologyMasterData.status == 2"
+                                                    <button *ngIf="departmentMasterData.status == 2"
                                                         class="dtl-btn btn bg-gradient-dark" title="Active Project"
-                                                        (confirm-click)="statusTechnologymaster({id :technologyMasterData._id,index:technologyIndex, status:1})"
+                                                        (confirm-click)="statusDepartmentmaster({id :departmentMasterData._id,index:departmentIndex, status:1})"
                                                         appConfirm [confirmTitle]="'Active'"
-                                                        [confirmContent]="'Are you sure to Active this Technlogy?'">
+                                                        [confirmContent]="'Are you sure to Active this Department?'">
                                                         <i class="fa fa-plus"></i></button>
-                                                    <button *ngIf="technologyMasterData.status == 1"
+                                                    <button *ngIf="departmentMasterData.status == 1"
                                                         class="dtl-btn btn bg-gradient-dark" title="Deactive Project"
-                                                        (confirm-click)="statusTechnologymaster({id :technologyMasterData._id,index:technologyIndex, status:2})"
+                                                        (confirm-click)="statusDepartmentmaster({id :departmentMasterData._id,index:departmentIndex, status:2})"
                                                         appConfirm [confirmTitle]="'Deactive'"
-                                                        [confirmContent]="'Are you sure to Deactive this Technlogy?'">
+                                                        [confirmContent]="'Are you sure to Deactive this Department?'">
                                                         <i class="fa fa-trash"></i></button>
                                                 </li>
                                             </ul>
@@ -76,7 +76,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <div class="footer-pagination" *ngIf="technologymasterList && technologymasterList.length > l">
+                            <div class="footer-pagination" *ngIf="departmentmasterList && departmentmasterList.length > l">
                                 <pagination-controls (pageChange)="p = $event"></pagination-controls>
                             </div>
                         </div>
@@ -91,26 +91,26 @@
     <div class="modal-dialog model-setting-menu-width" role="document">
         <div class="card modal-content">
             <div class="modal-header">
-                <h4 class="text-center mb-2 w-100" *ngIf="ISeditTechnologymaster === false">Add New Technology</h4>
-                <h4 class="text-center mb-2 w-100" *ngIf="ISeditTechnologymaster === true">Edit Technology</h4>
-                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancelTechnologymaster()">
+                <h4 class="text-center mb-2 w-100" *ngIf="ISeditDepartmentmaster === false">Add New Department</h4>
+                <h4 class="text-center mb-2 w-100" *ngIf="ISeditDepartmentmaster === true">Edit Department</h4>
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancelDepartmentmaster()">
                     <i class="fa fa-times" style="font-size: 10px;"></i>
                 </button>
             </div>
             <div class="card-body model-scroll">
-                <form role="form" class="add-employee-form" [formGroup]="technologymasterForm" autocomplete="off">
+                <form role="form" class="add-employee-form" [formGroup]="departmentmasterForm" autocomplete="off">
                     <div class="p-3 basic-information-form">
                         <div class="row">
                             <div class="col-lg-12">
-                                <label for="role" class="required">Technology</label>
+                                <label for="role" class="required">Department</label>
                                 <div class="mb-3">
                                     <span class="icon-position"><i class="fa fa-desktop"></i></span>
-                                    <input type="text" class="form-control" formControlName="technologyName"
-                                        placeholder="Technology">
+                                    <input type="text" class="form-control" formControlName="departmentName"
+                                        placeholder="Department">
                                     <div
-                                        *ngIf="submittedTechnologyMasterData && fTechnologynameData['technologyName'].errors">
-                                        <div *ngIf="fTechnologynameData['technologyName'].errors['required']">
-                                            <span class="error_msg">Technology is Required.</span>
+                                        *ngIf="submittedDepartmentMasterData && fDepartmentnameData['departmentName'].errors">
+                                        <div *ngIf="fDepartmentnameData['departmentName'].errors['required']">
+                                            <span class="error_msg">Department is Required.</span>
                                         </div>
                                     </div>
                                 </div>
@@ -122,9 +122,9 @@
             <div class="modal-footer">
                 <div class="w-100">
                     <div class="text-center">
-                        <button type="button" *ngIf="ISeditTechnologymaster === false" (click)="saveTechnologymaster()"
+                        <button type="button" *ngIf="ISeditDepartmentmaster === false" (click)="saveDepartmentmaster()"
                             class="btn bg-gradient-dark my-2">Save</button>
-                        <button type="button" *ngIf="ISeditTechnologymaster === true" (click)="updateTechnologymaster()"
+                        <button type="button" *ngIf="ISeditDepartmentmaster === true" (click)="updateDepartmentmaster()"
                             class="btn bg-gradient-dark my-2">Update</button>
                     </div>
                 </div>
