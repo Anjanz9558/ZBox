@@ -1,0 +1,17 @@
+.right-container .right-container-button:hover {
+    width: 170px !important;
+}
+
+.profile-Image {
+    height: 95px !important;
+    width: 95px !important;
+}
+
+.form-control:focus {
+  color: #495057 !important;
+  background-color: #f2f2f2 !important;
+  border-color: #dedede !important;
+  outline: 0 !important;
+  box-shadow: 0 0 0 2px #dedede !important;
+  font-family: var(--bs-body-font-family) !important;
+}
