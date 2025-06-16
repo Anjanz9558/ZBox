@@ -37,52 +37,52 @@ import moment from 'moment';
 import { ConfirmDirective } from '../../../../shared/directives/confirm.directive'
 
 @Component({
-  selector: 'app-add-new-user',
-  imports: [
-    CommonModule,
-    // PipeModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DragDropModule,
-    MatButtonModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatTooltipModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatRadioModule,
-    // Ng2SearchPipeModule,
-    HttpClientModule,
-    AngularEditorModule,
-    MatAutocompleteModule,
-    MatSortModule,
-    EditorModule,
-    NgOtpInputComponent,
-    NgSelectModule,
-    NgxMatSelectSearchModule,
-    ConfirmDirective,
-    // FullCalendarModule,
-    // NgbModule,
-    // NgbDatepickerModule,
-    // NgxMaskModule,
-    NiceTimePipe,
-    GroupByPipe,
-    ArraySortPipeDesc,
-    ArraySortPipeAsc,
-    ArraySortPipeSimple,
-    FilterPipe,
-  ],
+    selector: 'app-add-new-user',
+    imports: [
+        CommonModule,
+        // PipeModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DragDropModule,
+        MatButtonModule,
+        MatRippleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatTooltipModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRadioModule,
+        // Ng2SearchPipeModule,
+        HttpClientModule,
+        AngularEditorModule,
+        MatAutocompleteModule,
+        MatSortModule,
+        EditorModule,
+        NgOtpInputComponent,
+        NgSelectModule,
+        NgxMatSelectSearchModule,
+        ConfirmDirective,
+        // FullCalendarModule,
+        // NgbModule,
+        // NgbDatepickerModule,
+        // NgxMaskModule,
+        NiceTimePipe,
+        GroupByPipe,
+        ArraySortPipeDesc,
+        ArraySortPipeAsc,
+        ArraySortPipeSimple,
+        FilterPipe,
+    ],
 
-  standalone: true,
-  templateUrl: './add-new-user.component.html',
-  styleUrl: './add-new-user.component.scss'
+    standalone: true,
+    templateUrl: './add-new-user.component.html',
+    styleUrl: './add-new-user.component.scss'
 })
 export class AddNewUserComponent implements OnInit {
     resumeInfoForm!: FormGroup;
-    colour:any;
+    colour: any;
     ISeditEmployee = false;
     employeeForm!: FormGroup;
     emergencyContactInforForm!: FormGroup;
@@ -194,11 +194,11 @@ export class AddNewUserComponent implements OnInit {
         return this.leaveBalanceForm.controls;
     }
     get leaveList(): FormArray {
-      return this.leaveBalanceForm.get('leaveList') as FormArray;
+        return this.leaveBalanceForm.get('leaveList') as FormArray;
     }
-getFormArray(controlName: string): FormArray {
-  return this.resumeInfoForm.get(controlName) as FormArray;
-}
+    getFormArray(controlName: string): FormArray {
+        return this.resumeInfoForm.get(controlName) as FormArray;
+    }
     get fResumeData(): { [key: string]: AbstractControl } {
         return this.resumeInfoForm.controls;
     }
@@ -213,7 +213,7 @@ getFormArray(controlName: string): FormArray {
     @ViewChild('fileDoc') myInputVariableDoc!: ElementRef;
     @ViewChild('file1') myInputVariableForSignatureImage!: ElementRef;
     @ViewChild('Expfile') myInputExpVariable!: ElementRef;
-    @ViewChild('resetPin') resetPin:any;
+    @ViewChild('resetPin') resetPin: any;
     resultofDocument: any[] = [];
     keepOriginal: boolean = false;
     selectedDocumentTypeId: any;
@@ -230,16 +230,15 @@ getFormArray(controlName: string): FormArray {
     }
 
     constructor(
-      private http: HttpClient, 
-      private fb: FormBuilder, 
-      // private coreHelper: CoreHelperService, 
-      private route: ActivatedRoute, 
-      private router: Router, 
-      public commonService: CommonService, 
-      public adminLayoutService: AdminLayoutService, 
-      // private companyManagementService: CompanyManagementService
-      ) 
-      {
+        private http: HttpClient,
+        private fb: FormBuilder,
+        // private coreHelper: CoreHelperService, 
+        private route: ActivatedRoute,
+        private router: Router,
+        public commonService: CommonService,
+        public adminLayoutService: AdminLayoutService,
+        // private companyManagementService: CompanyManagementService
+    ) {
         let pagePermission = { module: "employeelist" }
         this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
@@ -282,7 +281,7 @@ getFormArray(controlName: string): FormArray {
         this.l = 10;
         this.getrolelist();
         this.getdesignationlist();
-        this.getTechnologylist();
+        this.getDepartmentlist();
         this.getCompanyActiveList();
         this.getDocumentTypeMasterlist();
         this.getProjectMasterlist();
@@ -409,6 +408,14 @@ getFormArray(controlName: string): FormArray {
     getTechnologylist() {
 
         this.adminLayoutService.getTechnologyList().subscribe((Response: any) => {
+            if (Response.meta.code == 200) {
+                this.technologyList = Response.data;
+            }
+        });
+    }
+    getDepartmentlist() {
+
+        this.adminLayoutService.getDepartmentList().subscribe((Response: any) => {
             if (Response.meta.code == 200) {
                 this.technologyList = Response.data;
             }
@@ -1069,13 +1076,16 @@ getFormArray(controlName: string): FormArray {
         this.defualtCompanyInfoForm();
         this.submittedCompanyInfoData = false;
         // this.getCompanyInformationById();
-        $("#add-company-details-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+        $("#add-company-details-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-company-details-modal").modal("show");
+
     }
     closeCompanyInfoModel() {
         $("#add-company-details-modal").modal("hide");
     }
     openPinUpdateModel() {
-        $("#update-login-pin-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+        $("#update-login-pin-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#update-login-pin-modal").modal("show");
     }
     closePinUpdateModel() {
         $("#update-login-pin-modal").modal("hide");
@@ -1092,15 +1102,15 @@ getFormArray(controlName: string): FormArray {
         this.companyInfoForm = this.fb.group({
             c_Email: ['', [Validators.required, Validators.pattern(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/)]],
             c_SkypeId: [''],
-            companyId: [null, [Validators.required]],
+            companyId: [null],
             joiningDate: ['', [Validators.required]],
-            designationId: [, [Validators.required]],
-            c_1stSalRaise: [, [Validators.required]],
-            c_minEmpTerm: [, [Validators.required]],
-            technologyId: [],
+            designationId: [],
+            c_1stSalRaise: [],
+            c_minEmpTerm: [],
+            departmentId: [],
             roleId: [, [Validators.required]],
             isAdminLogin: [],
-            assignPersonId: [, [Validators.required]],
+            assignPersonId: [],
             _id: [''],
         })
     }
@@ -1144,7 +1154,7 @@ getFormArray(controlName: string): FormArray {
             firstSalRaise: this.companyInfoForm.value.c_1stSalRaise,
             MinEmpTerm: this.companyInfoForm.value.c_minEmpTerm,
             companyId: this.companyInfoForm.value.companyId,
-            technologyId: this.companyInfoForm.value.technologyId,
+            departmentId: this.companyInfoForm.value.departmentId,
             roleId: this.companyInfoForm.value.roleId,
             isAdminLogin: this.companyInfoForm.value.isAdminLogin,
             assignPersonId: this.companyInfoForm.value.assignPersonId,
@@ -1176,7 +1186,7 @@ getFormArray(controlName: string): FormArray {
             firstSalRaise: this.companyInfoForm.value.c_1stSalRaise,
             MinEmpTerm: this.companyInfoForm.value.c_minEmpTerm,
             companyId: this.companyInfoForm.value.companyId,
-            technologyId: this.companyInfoForm.value.technologyId,
+            departmentId: this.companyInfoForm.value.departmentId,
             roleId: this.companyInfoForm.value.roleId,
             isAdminLogin: this.companyInfoForm.value.isAdminLogin,
             assignPersonId: this.companyInfoForm.value.assignPersonId,
@@ -1215,16 +1225,19 @@ getFormArray(controlName: string): FormArray {
                 this.companyInfoForm.controls['c_minEmpTerm'].setValue(Res.data.MinEmpTerm);
                 this.companyInfoForm.controls['designationId'].setValue(Res.data.designationId);
                 this.companyInfoForm.controls['companyId'].setValue(Res.data.companyId);
-                this.companyInfoForm.controls['technologyId'].setValue(Res.data.technologyId);
+                this.companyInfoForm.controls['departmentId'].setValue(Res.data.departmentId);
                 this.companyInfoForm.controls['roleId'].setValue(Res.data.roleId);
                 this.companyInfoForm.controls['isAdminLogin'].setValue(Res.data.isAdminLogin);
                 this.companyInfoForm.controls['assignPersonId'].setValue(Res.data.assignPersonId);
 
-                $("#add-company-details-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+                $("#add-company-details-modal").modal({ backdrop: 'static', keyboard: false });
+                $("#add-company-details-modal").modal("show");
+
             }
             else if (Res.meta.code === 1010) {
                 this.defualtCompanyInfoForm();
-                $("#add-company-details-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+                $("#add-company-details-modal").modal({ backdrop: 'static', keyboard: false });
+                $("#add-company-details-modal").modal("show");
             }
         });
     }
@@ -1336,10 +1349,10 @@ getFormArray(controlName: string): FormArray {
             qualification: this.educationDetailsForm.value.qualification,
             universityName: this.educationDetailsForm.value.universityName,
             fromYear: this.educationDetailsForm.value.fromYear.toString(),
-            toYear: this.educationDetailsForm.value.toYear? this.educationDetailsForm.value.toYear.toString() : null,
+            toYear: this.educationDetailsForm.value.toYear ? this.educationDetailsForm.value.toYear.toString() : null,
             fromMonth: this.educationDetailsForm.value.fromMonth,
-            toMonth: this.educationDetailsForm.value.toMonth? this.educationDetailsForm.value.toMonth : null,
-            grade: this.educationDetailsForm.value.grade? this.educationDetailsForm.value.grade : null,
+            toMonth: this.educationDetailsForm.value.toMonth ? this.educationDetailsForm.value.toMonth : null,
+            grade: this.educationDetailsForm.value.grade ? this.educationDetailsForm.value.grade : null,
             employeeId: this.userId,
         }
         this.adminLayoutService.SaveEducationDetailsData(educationDetailsObj).subscribe((Res: any) => {
@@ -2848,7 +2861,7 @@ getFormArray(controlName: string): FormArray {
             else {
                 // this.commonService.notifier.notify('error', Response.meta.message);
             }
-        }, (error: any)=> {
+        }, (error: any) => {
             console.log(error);
         });
     }
@@ -2883,7 +2896,7 @@ getFormArray(controlName: string): FormArray {
             else {
                 // this.commonService.notifier.notify('error', Response.meta.message);
             }
-        }, (error: any)=> {
+        }, (error: any) => {
             console.log(error);
         });
     }

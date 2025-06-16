@@ -250,6 +250,20 @@ export class AdminLayoutService {
         })
         return this.http.get(this.commonService.rootData.rootUrl + 'adminSide/technologyActiveDataList', { headers: headers });
     }
+    getCompanyActiveList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+        return this.http.get(this.commonService.rootData.rootUrl + 'BillMaster/companyActiveDataList', { headers: headers });
+    }
+    getDepartmentList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+        return this.http.get(this.commonService.rootData.rootUrl + 'adminSide/departmentMasterDataList', { headers: headers });
+    }
 
     getDocumentTypeMasterslist() {
         let myToken = localStorage.getItem("myToken")
@@ -466,13 +480,6 @@ export class AdminLayoutService {
         return this.http.get(this.commonService.rootData.rootUrl + 'adminSide/sendUserCredentials', { params: obj, headers: headers });
     }
 
-    getCompanyActiveList() {
-        let myToken = localStorage.getItem("myToken")
-        let headers = new HttpHeaders({
-            'Authorization': `Bearer ${myToken}`
-        })
-        return this.http.get(this.commonService.rootData.rootUrl + 'BillMaster/companyActiveDataList', { headers: headers });
-    }
 
     // education details save and update
     SaveEducationDetailsData(companyInformationObj: any) {
