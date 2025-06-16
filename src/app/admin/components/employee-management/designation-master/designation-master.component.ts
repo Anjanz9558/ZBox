@@ -13,7 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ConfirmDirective } from '../../../../shared/directives/confirm.directive';
 import { ArraySortPipeAsc, ArraySortPipeDesc, ArraySortPipeSimple, FilterPipe, NiceTimePipe } from '../../../../shared/pipe/common.pipe';
 // import { GroupByPipe } from 'ngx-pipes';
-// import { StorageService, StorageKey } from '../../../shared/storage.service';
+import { StorageService, StorageKey } from '../../../../shared/storage.service';
 declare const $: any;
 
 @Component({
@@ -73,7 +73,7 @@ export class DesignationMasterComponent implements OnInit {
   isUpdated: boolean = false;
   isDeleted: boolean = false;
 
-  constructor(public commonService: CommonService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private spinner: NgxSpinnerService) {
+  constructor(public commonService: CommonService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private spinner: NgxSpinnerService, public storageService: StorageService) {
     let pagePermission = { module: "designationmaster" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 

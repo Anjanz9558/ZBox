@@ -1350,4 +1350,293 @@ export class AdminLayoutService {
         return this.http.get(this.commonService.rootData.rootUrl + 'adminSide/assignPersonDetailsByEmpId', { headers: headers });
     }
 
+
+
+ SaveCompanyInformation(companyInformationObj: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'companyDocumentType/companyMasterSave', companyInformationObj, { headers: headers });
+  }
+  UpdateCompanyInformation(companyInformationObj: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'companyDocumentType/companyMasterUpdate', companyInformationObj, { headers: headers });
+  }
+  getCompanyDetailsByIDS(documentUploadByID: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'companyDocumentType/companyDetailsById', { params: documentUploadByID, headers: headers });
+  }
+  getCompanyDetailsList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'companyDocumentType/companyMasterList', { headers: headers });
+  }
+  StatusCompanyMaster(companyMasterData: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'companyDocumentType/companyMasterActiveDeActive', companyMasterData, { headers: headers });
+  }
+
+
+  getCountryMasterList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'supplierMaster/countryList', { headers: headers });
+  }
+  getStateMasterListByCountryID(countryId:any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'supplierMaster/stateListByCountryId', { params: countryId, headers: headers });
+  }
+  getCityMasterListByStateID(stateId:any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'supplierMaster/cityistByCityId', { params: stateId, headers: headers });
+  }
+
+
+  // document Master
+  SavedocumentMaster(createroleMasterData: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'companyDocumentType/companyDocumentTypeSave', createroleMasterData, { headers: headers });
+  }
+
+  getdocumentMaster() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'companyDocumentType/companyDocumentTypeList', { headers: headers });
+  }
+
+  getdocumentMasterId(params: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'companyDocumentType/companyDocumentTypeById', { params: params, headers: headers });
+  }
+
+  UpdatedocumentMaster(updateroleMasterData: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'companyDocumentType/companyDocumentTypeUpdate', updateroleMasterData, { headers: headers });
+  }
+
+  StatusdocumentMaster(updatestatusroleMasterData: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'companyDocumentType/companyDocumentTypeActiveDeActive', updatestatusroleMasterData, { headers: headers });
+  }
+
+  // document master
+  getDocumentMasterActiveList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'companyDocumentType/activecompanyDocumentTypeList', { headers: headers });
+  }
+  SavedocumentMasterDetails(saveDocumentMasterData: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'companyDocumentMaster/companydocumentMasterSave', saveDocumentMasterData, { headers: headers });
+  }
+  updateDocumentMasterDetails(updateDocumentMasterData: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'companyDocumentMaster/companyDocumentMasterUpdate', updateDocumentMasterData, { headers: headers });
+  }
+  getDocumentMasterByID(documentUploadByID: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'companyDocumentMaster/companydocumentMasterById', { params: documentUploadByID, headers: headers });
+  }
+  getDocumentMasterList(companyId: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'companyDocumentMaster/companyDocumentMasterBycompanyId', { params: companyId, headers: headers });
+  }
+
+  // bank details
+  SaveBankDetails(saveDocumentMasterData: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'companyBankDetails/companyBankDetailsSave', saveDocumentMasterData, { headers: headers });
+  }
+  updateBankDetails(updateDocumentMasterData: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'companyBankDetails/companybankDetailsUpdate', updateDocumentMasterData, { headers: headers });
+  }
+  getBankDetailsByID(documentUploadByID: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'companyBankDetails/companyBankDetailsById', { params: documentUploadByID, headers: headers });
+  }
+  getBankDeleteDetailsByID(documentUploadByID: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'companyBankDetails/deleteCompanyBankDetails', { params: documentUploadByID, headers: headers });
+  }
+  getBankDetailsList(companyId: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'companyBankDetails/companybankDetailsBycompanyId', { params: companyId, headers: headers });
+  }
+
+
+  // template master
+  SaveTempleteMaster(createTemplete: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'TemplateMaster/templateMasterSave', createTemplete, { headers: headers });
+  }
+  getTempleteList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'TemplateMaster/templateList', { headers: headers });
+  }
+  UpdateTempleteMaster(createTemplete: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'TemplateMaster/templateDetailsUpdate', createTemplete, { headers: headers });
+  }
+  getTempleteListById(templeteId: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'TemplateMaster/templateById', { params: templeteId, headers: headers });
+  }
+
+
+  // generate invoice 
+  getCompanyActiveList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'BillMaster/companyActiveDataList', { headers: headers });
+  }
+  getTempleteActiveList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'BillMaster/templateActiveDataList', { headers: headers });
+  }
+  getCurrencyActiveList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'BillMaster/currencyActiveDataList', { headers: headers });
+  }
+  getClientActiveList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'BillMaster/clientActiveDataList', { headers: headers });
+  }
+  getClientActiveByListByComapany(params: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'clientMaster/clientListCompanyWise', { params: params, headers: headers });
+  }
+  getFinancialActiveList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'BillMaster/finacialActiveDataList', { headers: headers });
+  }
+  SaveCreatedInvoiceData(invoiceInformation: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'BillMaster/billMasterSave', invoiceInformation, { headers: headers });
+  }
+  UpdateCreatedInvoiceData(invoiceInformation: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'BillMaster/billMasterUpdate', invoiceInformation, { headers: headers });
+  }
+  getInvoiceMasterList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'BillMaster/billMasterList', { headers: headers });
+  }
+  getInvoiceMasterListById(invoiceId: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'BillMaster/billMasterListById', { params: invoiceId, headers: headers });
+  }
+  invoiceDetailsPdfAdminSide(downloadInvoiceByID: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'BillMaster/invoiceDetailsPdfAdminSide', { params: downloadInvoiceByID, headers: headers });
+  }
+
+
 }

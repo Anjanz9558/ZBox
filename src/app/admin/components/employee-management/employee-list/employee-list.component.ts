@@ -138,7 +138,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   addEmployee() {
-    this.router.navigate(['/admin/add-new-employee']);
+    this.router.navigate(['/admin/employee-management/add-new-employee']);
   }
 
   activeDeactiveDataList = [

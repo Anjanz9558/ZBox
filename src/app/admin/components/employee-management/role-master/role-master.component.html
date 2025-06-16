@@ -5,7 +5,7 @@
                 <span class="icon-position"><i class="fa fa-search"></i></span>
                 <input type="text" style="width:30%" class="searchTerm form-control"
                    (ngModelChange)="search($event)" [(ngModel)]="searchTerm" placeholder="Type here...">
-                <div class="right-container" *ngIf="this.isCreated === true">
+                <div class="right-container" >
                     <button class="btn bg-gradient-dark mb-0 add-btn add-main-btn right-container-button"
                         (click)="addRolemaster()"><span class="long-text">Add New</span>
                         <i id="icon-chat" class="fas fa-plus" aria-hidden="true"></i></button>
