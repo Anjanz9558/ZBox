@@ -250,13 +250,6 @@ export class AdminLayoutService {
         })
         return this.http.get(this.commonService.rootData.rootUrl + 'adminSide/technologyActiveDataList', { headers: headers });
     }
-    getCompanyActiveList() {
-        let myToken = localStorage.getItem("myToken")
-        let headers = new HttpHeaders({
-            'Authorization': `Bearer ${myToken}`
-        })
-        return this.http.get(this.commonService.rootData.rootUrl + 'BillMaster/companyActiveDataList', { headers: headers });
-    }
     getDepartmentList() {
         let myToken = localStorage.getItem("myToken")
         let headers = new HttpHeaders({
