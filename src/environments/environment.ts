@@ -10,7 +10,6 @@ export const environment = {
   // WebAPIUrl: 'http://localhost:5000/v1/',
   // WebAPIUrl: 'http://192.168.1.16:6010/v1/',
   WebAPIUrl: 'http://192.168.1.21:6010/v1/',
-  WebAPIUrl: 'http://192.168.1.21:6010/v1/',
   // WebAPIUrl: 'http://192.168.1.32:5000/v1/',
   // WebAPIUrl: 'http://192.168.1.16:5000/v1/',
 
@@ -19,8 +18,6 @@ export const environment = {
   // uploadsUrl: 'http://192.168.1.16:6010/uploads/',
   uploadedUrl: 'http://192.168.1.21:6010/uploads/photos/',
   uploadsUrl: 'http://192.168.1.21:6010/uploads/',
-  uploadsUrl: 'http://192.168.1.21:6010/uploads/',
-  uploadedUrl: 'http://192.168.1.21:5000/uploads/photos/',
   // uploadsUrl: 'http://192.168.1.32:5000/uploads/',
   // uploadsUrl: 'http://192.168.1.16:5000/uploads/',
 
