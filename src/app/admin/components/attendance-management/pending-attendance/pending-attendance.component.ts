@@ -25,7 +25,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AdminLayoutService } from '../../../../layout/admin-layout/admin-layout.service';
 import { CommonService } from '../../../../shared/common.service';
-import { ConfirmDirective } from '../../../../shared/directives/confirm.directive';
+import { ConfirmDirective } from '../../../../shared/directives/common.directive';
 import { ArraySortPipeAsc, ArraySortPipeDesc, ArraySortPipeSimple, FilterPipe, GroupByPipe, NiceTimePipe } from '../../../../shared/pipe/common.pipe';
 import { StorageService } from '../../../../shared/storage.service';
 import { HttpClientModule } from '@angular/common/http';

@@ -87,16 +87,16 @@ private children: any[] = [];
     }
 
     logout() {
-        // this.storageService.removeValue(StorageKey.myToken);
-        // this.storageService.removeValue(StorageKey._id);
-        // this.storageService.removeValue(StorageKey.firstName);
-        // this.storageService.removeValue(StorageKey.lastName);
-        // this.storageService.removeValue(StorageKey.email);
-        // this.storageService.removeValue(StorageKey.accountType);
-        // this.storageService.removeValue(StorageKey.roleType);
-        // this.storageService.removeValue(StorageKey.profileImage);
-        // this.storageService.removeValue(StorageKey.IsDiyanLogin);
-        this.router.navigate(['/admin/admin-login']);
+        this.storageService.removeValue(StorageKey.myToken);
+        this.storageService.removeValue(StorageKey._id);
+        this.storageService.removeValue(StorageKey.firstName);
+        this.storageService.removeValue(StorageKey.lastName);
+        this.storageService.removeValue(StorageKey.email);
+        this.storageService.removeValue(StorageKey.accountType);
+        this.storageService.removeValue(StorageKey.roleType);
+        this.storageService.removeValue(StorageKey.profileImage);
+        this.storageService.removeValue(StorageKey.IsDiyanLogin);
+        this.router.navigate(['/admin/login']);
     }
     sidebarOpen() {
         const toggleButton = this.toggleButton;

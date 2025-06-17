@@ -457,9 +457,7 @@
                                                     <span
                                                         *ngFor="let tech of employeeCompanyList?.technologyData; let i = index">
                                                         {{tech.technologyName }}{{ (i+1==
-                                                        employeeCompanyList?.technologyData?.length)
-                                                        ? '' : ',
-                                                        '}}
+                                                        employeeCompanyList?.technologyData?.length)? '' : ', '}}
                                                     </span>
                                                 </label>
                                             </div>
@@ -471,9 +469,7 @@
                                                     <span
                                                         *ngFor="let tech of employeeCompanyList?.assignPersonData; let i = index">
                                                         {{tech.userName }}{{ (i+1==
-                                                        employeeCompanyList?.assignPersonData?.length)
-                                                        ? '' : ',
-                                                        '}}
+                                                        employeeCompanyList?.assignPersonData?.length)? '' : ','}}
                                                     </span>
                                                 </label>
                                             </div>
@@ -919,7 +915,7 @@
             </div>
 
             <!-- Resume Information Card -->
-            <div class="row" *ngIf="ISeditEmployee === true">
+            <!-- <div class="row" *ngIf="ISeditEmployee === true">
                 <div class="col-lg-6">
                     <div class="card mb-4 card-height">
                         <div class="card-body pb-2">
@@ -1059,7 +1055,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- Salary Information Card -->
             <div class="row" *ngIf="ISeditEmployee === true">
                 <div class="col-lg-12">

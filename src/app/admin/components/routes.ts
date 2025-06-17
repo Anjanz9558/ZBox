@@ -76,6 +76,14 @@ export const routes: Routes = [
                     title: 'Employee List',
                 },
             },
+                        {
+                path: 'profile/:id',
+                loadComponent: () =>
+                    import('./employee-management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
+                data: {
+                    title: 'Profile List',
+                },
+            },
             {
                 path: 'setting/role-wise-menu',
                 loadComponent: () =>
@@ -162,6 +170,14 @@ export const routes: Routes = [
                     import('./attendance-management/attendance-consolidation/attendance-consolidation.component').then((m) => m.AttendanceConsolidationComponent),
                 data: {
                     title: 'Attendance Consolidation Report',
+                },
+            },
+             {
+                path: 'change-password/:id',
+                loadComponent: () =>
+                    import('./change-password/change-password.component').then((m) => m.ChangePasswordComponent),
+                data: {
+                    title: 'Change Password',
                 },
             },
             // {

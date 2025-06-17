@@ -31,7 +31,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MatSortModule,
   NgSelectModule
   ],
-  templateUrl: './monthly-salary-details.component.html',
+  templateUrl:'./monthly-salary-details.component.html',
   styleUrl: './monthly-salary-details.component.scss'
 })
 export class MonthlySalaryDetailsComponent implements OnInit {

@@ -23,7 +23,7 @@ import * as XLSX from 'xlsx';
 import * as fs from 'file-saver';
 import { NgOtpInputComponent } from 'ng-otp-input';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { ConfirmDirective } from '../../../../shared/directives/confirm.directive';
+import { ConfirmDirective } from '../../../../shared/directives/common.directive';
 import { ArraySortPipeAsc, ArraySortPipeDesc, ArraySortPipeSimple, FilterPipe, GroupByPipe, NiceTimePipe } from '../../../../shared/pipe/common.pipe';
 import { environment } from '../../../../../environments/environment';
 import { CommonService } from '../../../../shared/common.service';
