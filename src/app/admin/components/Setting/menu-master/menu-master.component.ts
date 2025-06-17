@@ -49,7 +49,7 @@ export class MenuMasterComponent implements OnInit {
   menuForm!: FormGroup;
   x: any;
   t: any;
-  listindex: any; 
+  listindex: any;
   menuListlength: any;
 
   get fTitleData() { return this.menuForm.controls; }
@@ -111,9 +111,9 @@ export class MenuMasterComponent implements OnInit {
   }
 
   addMenu() {
-    // $("#add-menu-modal").modal({ backdrop: 'static', keyboard: false, show: true });
-                  $("#add-menu-modal").modal({ backdrop: 'static', keyboard: false });
-$("#add-menu-modal").modal('show');
+    // $("#add-menu-modal").modal({ backdrop: 'static', keyboard: false });
+    $("#add-menu-modal").modal({ backdrop: 'static', keyboard: false });
+    $("#add-menu-modal").modal('show');
     this.ISeditMenu = false;
   }
 
@@ -203,7 +203,7 @@ $("#add-menu-modal").modal('show');
     });
   }
 
-  editRolemaster(paramsObj:any) {
+  editRolemaster(paramsObj: any) {
 
     this.ISeditMenu = true;
     let Id: any = { '_id': paramsObj.id }
@@ -223,9 +223,9 @@ $("#add-menu-modal").modal('show');
       }
       this.menuForm.controls['order'].setValue(parseFloat(Response.data.order))
       this.menuForm.controls['module'].setValue(Response.data.module)
-      // $("#add-menu-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
-                  $("#add-menu-modal").modal({ backdrop: 'static', keyboard: false });
-$("#add-menu-modal").modal('show');
+      // $("#add-menu-modal").modal({ backdrop: 'static', keyboard: false });;
+      $("#add-menu-modal").modal({ backdrop: 'static', keyboard: false });
+      $("#add-menu-modal").modal('show');
     }, (error) => {
       ////console.log(error);
       //this.commonService.notifier.notify('error', error.error.Message);
@@ -282,7 +282,7 @@ $("#add-menu-modal").modal('show');
     });
   }
 
-  statusMenu(paramsObj:any) {
+  statusMenu(paramsObj: any) {
 
 
     let statusmenuModelObj = {
@@ -322,7 +322,7 @@ $("#add-menu-modal").modal('show');
     });
   }
 
-  numberOnly(event:any):any {
+  numberOnly(event: any): any {
 
     const charCode = (event.which) ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 45 || charCode > 57)) {

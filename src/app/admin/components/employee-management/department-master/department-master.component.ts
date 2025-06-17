@@ -44,7 +44,7 @@ export class DepartmentMasterComponent implements OnInit {
   departmentmasterList: any[] = [];
   alldepartmentmaster: any[] = [];
   departmentMasterList: any[] = [];
- l: number = 0;
+  l: number = 0;
   p: number = 1;
   itemsPage: any;
   mySelect: any;
@@ -116,9 +116,9 @@ export class DepartmentMasterComponent implements OnInit {
 
 
   addDepartmentMaster() {
-    // $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
-              $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false });
-$("#add-documenttype-modal").modal('show');
+    // $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false });;
+    $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false });
+    $("#add-documenttype-modal").modal('show');
 
     this.ISeditDepartmentmaster = false;
   }
@@ -189,7 +189,7 @@ $("#add-documenttype-modal").modal('show');
   }
 
 
-  editDepartmentmaster(paramsObj:any) {
+  editDepartmentmaster(paramsObj: any) {
 
     this.ISeditDepartmentmaster = true;
     let Id: any = { '_id': paramsObj.id }
@@ -197,9 +197,9 @@ $("#add-documenttype-modal").modal('show');
 
       this.departmentmasterForm.controls['_id'].setValue(Response.data._id)
       this.departmentmasterForm.controls['departmentName'].setValue(Response.data.departmentName)
-      // $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false, show: true });
-          $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false });
-$("#add-documenttype-modal").modal('show');
+      // $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false });
+      $("#add-documenttype-modal").modal({ backdrop: 'static', keyboard: false });
+      $("#add-documenttype-modal").modal('show');
 
     }, (error) => {
       ////console.log(error);
@@ -236,7 +236,7 @@ $("#add-documenttype-modal").modal('show');
     });
   }
 
-  statusDepartmentmaster(paramsObj:any) {
+  statusDepartmentmaster(paramsObj: any) {
 
 
     let statusDepartmentmasterModelObj = {

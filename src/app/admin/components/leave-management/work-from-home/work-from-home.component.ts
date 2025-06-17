@@ -20,7 +20,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-work-from-home',
- standalone: true,
+  standalone: true,
   imports: [
     CommonModule,
     FormsModule,
@@ -57,11 +57,11 @@ export class WorkFromHomeComponent implements OnInit {
   WorkFromHomeList: any[] = [];
   month = new Date().getMonth() + 1;
   year = new Date().getFullYear()
-  l: number=0;
+  l: number = 0;
   p: number = 1;
   itemsPage: any;
-  mySelect:any;
-  noData:any;
+  mySelect: any;
+  noData: any;
 
   isView: boolean = false;
   isCreated: boolean = false;
@@ -200,14 +200,16 @@ export class WorkFromHomeComponent implements OnInit {
     this.remark = '';
     this.approveRejectedByName = '';
     this.submittedWFHRemark = false;
-    $("#reject-WFH-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+    $("#reject-WFH-modal").modal({ backdrop: 'static', keyboard: false });
+    $("#reject-WFH-modal").modal('show');
   }
 
   approveWFHRemarkModalOpen(id: any) {
     this.cancleWFHID = id;
     this.approveRejectedByName = '';
     this.submittedWFHRemark = false;
-    $("#approve-WFH-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+    $("#approve-WFH-modal").modal({ backdrop: 'static', keyboard: false });
+    $("#approve-WFH-modal").modal('show');
   }
 
   rejectWorkFromHome() {

@@ -315,7 +315,8 @@ export class DashboardComponent implements OnInit {
 
   showList(type: any) {
     this.listShowType = type
-    $("#current-status-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+    $("#current-status-modal").modal({ backdrop: 'static', keyboard: false });
+    $("#current-status-modal").modal('show');
   }
   cancleCurrentStatusModal() {
     $("#current-status-modal").modal('hide');

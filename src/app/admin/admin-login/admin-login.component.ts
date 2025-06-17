@@ -47,13 +47,12 @@ export class AdminLoginComponent implements OnInit {
 
     constructor(private fb: FormBuilder, private router: Router, public commonService: CommonService,  private cookieService: CookieService, public storageService: StorageService, public adminLayoutService: AdminLayoutService, ) {
 
-        if (this.storageService.getValue(StorageKey.IsDiyanLogin) == 'true') {
-            this.router.navigate(['/admin/dashboard']);
-        }
-
     }
 
     ngOnInit() {
+        if (localStorage.getItem('myToken')) {
+            this.router.navigate(['/admin/dashboard']);
+        }
         this.defaultloginForm();
     }
     defaultloginForm() {

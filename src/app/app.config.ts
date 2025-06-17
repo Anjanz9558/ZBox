@@ -12,8 +12,10 @@ import {
 import { DropdownModule, SidebarModule } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
+import { LoaderInterceptor } from './shared/loader/loader.interceptor';
+import { AuthInterceptor } from './admin/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,7 +31,17 @@ export const appConfig: ApplicationConfig = {
       withViewTransitions(),
       // withHashLocation()
     ),
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()), 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     importProvidersFrom(SidebarModule, DropdownModule),
     IconSetService,
     provideAnimations(),

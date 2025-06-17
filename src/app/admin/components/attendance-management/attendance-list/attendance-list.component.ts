@@ -210,7 +210,7 @@ export class AttendanceListComponent implements OnInit {
   }
 
   openDetails(id: any, date: any) {
-    // $("#add-attendance-details-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+    // $("#add-attendance-details-modal").modal({ backdrop: 'static', keyboard: false });
     let Obj = {
       employeeId: id,
       fromDate: date + '/' + this.month + '/' + this.year

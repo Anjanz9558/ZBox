@@ -670,7 +670,7 @@ export class AddNewUserComponent implements OnInit {
                 this.signatureImageURL = environment.uploadedUrl + Response.data.signature;
                 this.file = Response.data.profile_image;
                 this.signatureImageFile = Response.data.signature;
-                // $("#add-education-details-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+                // $("#add-education-details-modal").modal({ backdrop: 'static', keyboard: false });;
             }
         });
     }
@@ -716,7 +716,8 @@ export class AddNewUserComponent implements OnInit {
         this.IsEmergencyContact = false;
         this.submittedEmergencyInfoData = false;
         this.defualtEmergencyContactInfoForm();
-        $("#add-emergency-contact-information-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+        $("#add-emergency-contact-information-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-emergency-contact-information-modal").modal('show');
     }
     cancelEmergencyContactInformation() {
         this.defualtEmergencyContactInfoForm();
@@ -764,7 +765,8 @@ export class AddNewUserComponent implements OnInit {
                 this.emergencyContactInforForm.controls['contactPersonEmailId'].setValue(Res.data.contactPersonEmailId);
                 this.emergencyContactInforForm.controls['relationship'].setValue(Res.data.relationship);
                 this.IsEmergencyContact = true;
-                $("#add-emergency-contact-information-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+                $("#add-emergency-contact-information-modal").modal({ backdrop: 'static', keyboard: false });
+                $("#add-emergency-contact-information-modal").modal('show');
             }
         });
     }
@@ -833,14 +835,14 @@ export class AddNewUserComponent implements OnInit {
         })
     }
     addDocument() {
-
         this.defaultDocumentUploadForm();
         this.resultofDocument = [];
         this.resultofShowingDocuments = [];
         this.IsDocumentUpload = false;
         this.keepOriginal = false;
         this.myInputVariableDoc.nativeElement.value = "";
-        $("#add-document-upload-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+        $("#add-document-upload-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-document-upload-modal").modal('show');
     }
     cancelDocument() {
         this.defaultDocumentUploadForm();
@@ -969,7 +971,8 @@ export class AddNewUserComponent implements OnInit {
                 // this.resultofShowingDocuments = Res.data.documents;
                 this.keepOriginal = Boolean(JSON.parse(Res.data.keepOriginal));
                 this.IsDocumentUpload = true;
-                $("#add-document-upload-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+                $("#add-document-upload-modal").modal({ backdrop: 'static', keyboard: false });
+                $("#add-document-upload-modal").modal('show');
             }
         });
     }
@@ -1333,7 +1336,8 @@ export class AddNewUserComponent implements OnInit {
         this.IsEducationDetails = false;
         this.submittedEducationDetailsData = false;
         this.defaultEducationDetailsForm();
-        $("#add-education-details-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+        $("#add-education-details-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-education-details-modal").modal('show');
     }
     cancelEducationDetails() {
         this.defaultEducationDetailsForm();
@@ -1414,7 +1418,8 @@ export class AddNewUserComponent implements OnInit {
                 this.educationDetailsForm.controls['toMonth'].setValue(Res.data.toMonth);
                 this.educationDetailsForm.controls['grade'].setValue(Res.data.grade);
                 this.IsEducationDetails = true;
-                $("#add-education-details-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+                $("#add-education-details-modal").modal({ backdrop: 'static', keyboard: false });
+                $("#add-education-details-modal").modal('show');
             }
         });
     }
@@ -1479,7 +1484,8 @@ export class AddNewUserComponent implements OnInit {
         this.resultofExpShowDocument = "";
 
         this.myInputExpVariable.nativeElement.value = "";
-        $("#add-experience-details-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+        $("#add-experience-details-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-experience-details-modal").modal('show');
     }
     cancelExperienceDetails() {
         this.defaultExperienceDetailsForm();
@@ -1612,7 +1618,8 @@ export class AddNewUserComponent implements OnInit {
                 };
                 this.resultofExpDocument = Res.data.experienceFile;
                 this.IsExperienceDetails = true;
-                $("#add-experience-details-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+                $("#add-experience-details-modal").modal({ backdrop: 'static', keyboard: false });
+                $("#add-experience-details-modal").modal('show');
             }
         });
     }
@@ -1681,7 +1688,8 @@ export class AddNewUserComponent implements OnInit {
         // this.defaultResumeInfoForm();
         this.submittedResumeInfoData = false;
 
-        $("#add-resume-information-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+        $("#add-resume-information-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-resume-information-modal").modal('show');
     }
     cancelResumeDetails() {
         // this.defaultResumeInfoForm();
@@ -1831,7 +1839,8 @@ export class AddNewUserComponent implements OnInit {
             this.createlanguage(x);
         })
         this.resumeInfoForm.controls['projectId'].setValue(this.empResumeDetailsList.projectId)
-        $("#add-resume-information-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+        $("#add-resume-information-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-resume-information-modal").modal('show');
 
     }
 
@@ -1880,7 +1889,8 @@ export class AddNewUserComponent implements OnInit {
     addTeam() {
         this.defaultAssignTeamForm();
         this.submitAssign = false;
-        $("#assign-team-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+        $("#assign-team-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#assign-team-modal").modal('show');
     }
 
     closeAssignEdit() {
@@ -1923,7 +1933,8 @@ export class AddNewUserComponent implements OnInit {
     addBankDetails() {
         this.defaultBankForm();
         this.submittedBankDetailsData = false;
-        $("#add-bank-information-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+        $("#add-bank-information-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-bank-information-modal").modal('show');
     }
     cancelBankDetails() {
         this.defaultBankForm();
@@ -1996,7 +2007,8 @@ export class AddNewUserComponent implements OnInit {
                 this.bankDetailsForm.controls['bankAccountNo'].setValue(Res.data.bankAccountNo)
                 this.bankDetailsForm.controls['ifscCode'].setValue(Res.data.ifscCode)
                 this.bankDetailsForm.controls['panNo'].setValue(Res.data.panNo)
-                $("#add-bank-information-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+                $("#add-bank-information-modal").modal({ backdrop: 'static', keyboard: false });
+                $("#add-bank-information-modal").modal('show');
             }
         });
     }
@@ -2021,7 +2033,8 @@ export class AddNewUserComponent implements OnInit {
         this.defaultSalaryForm();
         this.submittedSalaryDetailsData = false;
         this.IsEditSalaryDetails = false;
-        $("#add-salary-information-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+        $("#add-salary-information-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-salary-information-modal").modal('show');
     }
     cancelSalaryDetails() {
         this.submittedSalaryDetailsData = false;
@@ -2138,7 +2151,8 @@ export class AddNewUserComponent implements OnInit {
                 this.salaryDetailsForm.controls['isLatest'].setValue(Res.data.isLatest);
                 this.salaryDetailsForm.controls['isFirst'].setValue(Res.data.isFirst);
                 this.IsEditSalaryDetails = true;
-                $("#add-salary-information-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+                $("#add-salary-information-modal").modal({ backdrop: 'static', keyboard: false });
+                $("#add-salary-information-modal").modal('show');
             }
         });
     }
@@ -2233,7 +2247,8 @@ export class AddNewUserComponent implements OnInit {
         this.defaultMonthlySalaryForm();
         this.submittedMonthlySalaryDetailsData = false;
         this.IsEditMonthlySalaryDetails = false;
-        $("#add-monthly-salary-information-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+        $("#add-monthly-salary-information-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-monthly-salary-information-modal").modal('show');
     }
     cancelMonthlySalaryDetails() {
         this.defaultMonthlySalaryForm();
@@ -2324,7 +2339,8 @@ export class AddNewUserComponent implements OnInit {
                 this.monthlySalaryDetailsForm.controls['PFEmployer'].setValue(Res.data.PFEmployer);
                 this.monthlySalaryDetailsForm.controls['miscellaneousAllowances'].setValue(Res.data.miscellaneousAllowances);
                 this.IsEditMonthlySalaryDetails = true;
-                $("#add-monthly-salary-information-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+                $("#add-monthly-salary-information-modal").modal({ backdrop: 'static', keyboard: false });
+                $("#add-monthly-salary-information-modal").modal('show');
             }
         });
     }
@@ -2418,7 +2434,8 @@ export class AddNewUserComponent implements OnInit {
         this.defaultMonthWiseLeaveForm();
         this.submittedMonthWiseLeaveData = false;
         this.IsEditMonthWiseLeave = false;
-        $("#add-month-wise-leave-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+        $("#add-month-wise-leave-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-month-wise-leave-modal").modal('show');
     }
     cancelMonthWiseLeave() {
         this.defaultMonthWiseLeaveForm();
@@ -2497,7 +2514,8 @@ export class AddNewUserComponent implements OnInit {
                 this.monthWiseLeaveForm.controls['lossOfPay'].setValue(Res.data.lossOfPay);
 
                 this.IsEditMonthWiseLeave = true;
-                $("#add-month-wise-leave-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
+                $("#add-month-wise-leave-modal").modal({ backdrop: 'static', keyboard: false });
+                $("#add-month-wise-leave-modal").modal('show');
             }
         });
     }
@@ -2597,7 +2615,8 @@ export class AddNewUserComponent implements OnInit {
         this.getLeaveTypeList()
         this.IsEditLeaveBalance = false;
         this.activeTab = 1;
-        $("#add-leave-balance-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+        $("#add-leave-balance-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-leave-balance-modal").modal('show');
     }
     cancelLeaveBalance() {
         this.defaultLeaveBalanceForm();

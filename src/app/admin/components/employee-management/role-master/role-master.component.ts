@@ -9,37 +9,37 @@ import { CommonService } from '../../../../shared/common.service';
 import { AdminLayoutService } from '../../../../layout/admin-layout/admin-layout.service';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxSpinnerService } from "ngx-spinner";
-import { ArraySortPipeDesc, ArraySortPipeAsc, GroupByPipe, NiceTimePipe, ArraySortPipeSimple ,FilterPipe} from '../../../../shared/pipe/common.pipe';
+import { ArraySortPipeDesc, ArraySortPipeAsc, GroupByPipe, NiceTimePipe, ArraySortPipeSimple, FilterPipe } from '../../../../shared/pipe/common.pipe';
 declare const $: any;
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
-  selector: 'app-role-master',
+    selector: 'app-role-master',
     standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxPaginationModule,
-    ConfirmDirective, 
-    RouterModule,
-    MatSortModule,
-    FilterPipe
-  ],
-  templateUrl: './role-master.component.html',
-  styleUrl: './role-master.component.scss'
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxPaginationModule,
+        ConfirmDirective,
+        RouterModule,
+        MatSortModule,
+        FilterPipe
+    ],
+    templateUrl: './role-master.component.html',
+    styleUrl: './role-master.component.scss'
 })
 export class RoleMasterComponent implements OnInit {
 
 
     ISeditRoleMaster = false;
-    rolemasterList: any[]=[];
+    rolemasterList: any[] = [];
     allrolemaster: any[] = [];
-    roleMasterList: any[] =[];
-    l: number=0;
+    roleMasterList: any[] = [];
+    l: number = 0;
     p: number = 1;
     itemsPage: any;
-    mySelect:any;
+    mySelect: any;
     rolemasterForm!: FormGroup;
     x!: number;
     t!: number;
@@ -49,12 +49,12 @@ export class RoleMasterComponent implements OnInit {
 
     get fRolenameData() { return this.rolemasterForm.controls; }
     submittedroleMasterData = false;
-    public imagePath:any;
+    public imagePath: any;
     imgURL: any;
     message!: string;
-    noData:any;
-    noimageData:any
-    activeTab:  any;
+    noData: any;
+    noimageData: any
+    activeTab: any;
     imageList: any;
     //image: any;
     file: any;
@@ -117,8 +117,8 @@ export class RoleMasterComponent implements OnInit {
 
 
     addRolemaster() {
-     $("#add-role-modal").modal({ backdrop: 'static', keyboard: false });
-$("#add-role-modal").modal('show');
+        $("#add-role-modal").modal({ backdrop: 'static', keyboard: false });
+        $("#add-role-modal").modal('show');
         this.ISeditRoleMaster = false;
     }
 
@@ -180,7 +180,7 @@ $("#add-role-modal").modal('show');
     }
 
 
-    editRolemaster(paramsObj:any) {
+    editRolemaster(paramsObj: any) {
 
         this.ISeditRoleMaster = true;
         let Id: any = { '_id': paramsObj.id }
@@ -188,9 +188,9 @@ $("#add-role-modal").modal('show');
 
             this.rolemasterForm.controls['_id'].setValue(Response.data._id)
             this.rolemasterForm.controls['roleName'].setValue(Response.data.roleName)
-            // $("#add-role-modal").modal({ backdrop: 'static', keyboard: false, show: true });;
-$("#add-role-modal").modal({ backdrop: 'static', keyboard: false });
-$("#add-role-modal").modal('show');
+            // $("#add-role-modal").modal({ backdrop: 'static', keyboard: false });;
+            $("#add-role-modal").modal({ backdrop: 'static', keyboard: false });
+            $("#add-role-modal").modal('show');
 
         }, (error) => {
             ////console.log(error);
@@ -227,7 +227,7 @@ $("#add-role-modal").modal('show');
         });
     }
 
-    statusRolemaster(paramsObj:any) {
+    statusRolemaster(paramsObj: any) {
 
 
         let statusrolemasterModelObj = {

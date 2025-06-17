@@ -115,7 +115,7 @@ export class DesignationMasterComponent implements OnInit {
 
 
   addDesignationMaster() {
-    // $("#add-designation-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+    // $("#add-designation-modal").modal({ backdrop: 'static', keyboard: false });
     $("#add-designation-modal").modal({ backdrop: 'static', keyboard: false });
     $("#add-designation-modal").modal('show');
     this.ISeditDesignationMaster = false;
@@ -195,7 +195,7 @@ export class DesignationMasterComponent implements OnInit {
 
       this.designationmasterForm.controls['_id'].setValue(Response.data._id)
       this.designationmasterForm.controls['name'].setValue(Response.data.name)
-      // $("#add-designation-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+      // $("#add-designation-modal").modal({ backdrop: 'static', keyboard: false });
       $("#add-designation-modal").modal({ backdrop: 'static', keyboard: false });
       $("#add-designation-modal").modal('show');
 

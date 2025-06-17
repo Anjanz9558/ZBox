@@ -174,7 +174,7 @@ export class HolidayListComponent implements OnInit {
 
 
   addEmployee() {
-    $("#add-excel-upload-modal").modal({ backdrop: 'static', keyboard: false});;
+    $("#add-excel-upload-modal").modal({ backdrop: 'static', keyboard: false });;
     $("#add-excel-upload-modal").modal('show');
 
     this.myInputVariable.nativeElement.value = "";
@@ -269,7 +269,7 @@ export class HolidayListComponent implements OnInit {
   addHolidayData() {
     this.defaultHolidayForm();
     this.submittedHolidayData = false;
-    $("#add-holiday-data-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+    $("#add-holiday-data-modal").modal({ backdrop: 'static', keyboard: false });
     $("#add-holiday-data-modal").modal('show');
 
   }

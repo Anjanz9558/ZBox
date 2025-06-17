@@ -9,11 +9,15 @@ import { IconSetService } from '@coreui/icons-angular';
 import { AdminLayoutService } from './layout/admin-layout/admin-layout.service';
 import { DOCUMENT } from '@angular/common';
 import { CommonService } from './shared/common.service';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet />',
-  imports: [RouterOutlet]
+  template: `
+  <app-loader />
+  <router-outlet />
+  `,
+  imports: [RouterOutlet, LoaderComponent]
 })
 export class AppComponent implements OnInit {
   title = 'ZBox';
@@ -73,7 +77,7 @@ export class AppComponent implements OnInit {
       this.#document.head.appendChild(link);
     }
   
-    link.href = faviconUrl; // ✅ Set full URL for favicon
+    link.href = faviconUrl;
   }
   
 }
