@@ -1,0 +1,329 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-lg-12 m-auto">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <div>
+                        <!-- <h4 class="card-title-color">General Setting</h4> -->
+
+                        <form role="form" class="add-employee-form" [formGroup]="commonInfoForm" autocomplete="off">
+                            <div class="row">
+                                <!-- Title -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">Title</label>
+                                    <div class="mb-3 col-md-6 col-sm-12">
+                                        <span class="icon-position"><i class="fa fa-user"></i></span>
+                                        <input type="text" class="form-control" (keypress)="letterOnly($event)"
+                                            formControlName="title" placeholder="Title" maxlength="25" />
+                                        <div *ngIf="submitteduserData && commonInfoForm.controls['title'].errors">
+                                            <span class="error_msg"
+                                                *ngIf="commonInfoForm.controls['title'].errors['required']">
+                                                Title is Required.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Company Name -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">Company Name</label>
+                                    <div class="mb-3 col-md-6 col-sm-12">
+                                        <span class="icon-position"><i class="fa fa-user"></i></span>
+                                        <input type="text" class="form-control" (keypress)="letterOnly($event)"
+                                            formControlName="companyname" placeholder="Company Name" maxlength="25" />
+                                        <div *ngIf="submitteduserData && commonInfoForm.controls['companyname'].errors">
+                                            <span class="error_msg"
+                                                *ngIf="commonInfoForm.controls['companyname'].errors['required']">
+                                                Company Name is Required.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Company Logo Upload -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">Company Logo</label>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div>
+                                            <input type="file" #logoInput accept="image/x-png,image/gif,image/jpeg"
+                                                class="d-none" (change)="preview($event, 'logo')" />
+                                            <button type="button" class="btn btn-primary comBtn"
+                                                (click)="logoInput.click()">Upload Logo</button>
+                                        </div>
+                                        <div class="position-relative" *ngIf="imgURLLogo">
+                                            <img [src]="imgURLLogo" class="img-preview"
+                                                (error)="onImageError($event)" />
+                                            <span class="cancel-icon bg-gradient-dark"
+                                                (click)="removeUploadedFile('logo')">×</span>
+                                        </div>
+                                    </div>
+                                    <span *ngIf="message" class="error_msg">
+                                        Company Logo is Required.
+                                    </span>
+                                </div>
+
+                                <!-- Favicon Upload -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">Favicon Icon</label>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div>
+                                            <input type="file" #faviconInput accept="image/x-png,image/gif,image/jpeg"
+                                                class="d-none" (change)="preview($event, 'favicon')" />
+                                            <button type="button" class="btn btn-primary uploadBtn"
+                                                (click)="faviconInput.click()">Upload Icon</button>
+                                        </div>
+                                        <div class="position-relative" *ngIf="imgURLFavicon">
+                                            <img [src]="imgURLFavicon" class="img-preview"
+                                                (error)="onImageError($event)" />
+                                            <span class="cancel-icon bg-gradient-dark"
+                                                (click)="removeUploadedFile('favicon')">×</span>
+                                        </div>
+                                    </div>
+                                    <span *ngIf="message" class="error_msg">
+                                        Favicon Icon is Required.
+                                    </span>
+
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <button type="button" class="btn bg-gradient-dark"
+                                    (click)="SaveUser('save')">Save</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 m-auto">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <div>
+                        <!-- <h4 class="card-title-color">General Setting</h4> -->
+
+                        <form role="form" class="add-employee-form" [formGroup]="pdfInfoForm" autocomplete="off">
+                            <div class="row">
+
+                                <!-- GST No -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">GST No.</label>
+                                    <div class="mb-3 col-md-6 col-sm-12 position-relative">
+                                        <span class="icon-position"><i class="fa fa-id-card"></i></span>
+                                        <input type="text" class="form-control input-icon" formControlName="gstNo"
+                                            placeholder="GST No" maxlength="25" />
+                                        <div *ngIf="submitteduserData && pdfInfoForm.controls['gstNo'].errors">
+                                            <span class="error_msg"
+                                                *ngIf="pdfInfoForm.controls['gstNo'].errors['required']">GST No. is
+                                                required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PAN No -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">PAN No.</label>
+                                    <div class="mb-3 col-md-6 col-sm-12 position-relative">
+                                        <span class="icon-position"><i class="fa fa-address-card"></i></span>
+                                        <input type="text" class="form-control input-icon" formControlName="panNo"
+                                            placeholder="PAN No" maxlength="25" />
+                                        <div *ngIf="submitteduserData && pdfInfoForm.controls['panNo'].errors">
+                                            <span class="error_msg"
+                                                *ngIf="pdfInfoForm.controls['panNo'].errors['required']">PAN No. is
+                                                required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Website -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">Website</label>
+                                    <div class="mb-3 col-md-6 col-sm-12 position-relative">
+                                        <span class="icon-position"><i class="fa fa-globe"></i></span>
+                                        <input type="text" class="form-control input-icon" formControlName="website"
+                                            placeholder="Website" maxlength="25" />
+                                        <div *ngIf="submitteduserData && pdfInfoForm.controls['website'].errors">
+                                            <span class="error_msg"
+                                                *ngIf="pdfInfoForm.controls['website'].errors['required']">Website is
+                                                required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">Email</label>
+                                    <div class="mb-3 col-md-6 col-sm-12 position-relative">
+                                        <span class="icon-position"><i class="fa fa-envelope"></i></span>
+                                        <input type="email" class="form-control input-icon" formControlName="email"
+                                            placeholder="Email" maxlength="25" />
+                                        <div *ngIf="submitteduserData && pdfInfoForm.controls['email'].errors">
+                                            <span class="error_msg"
+                                                *ngIf="pdfInfoForm.controls['email'].errors['required']">Email is
+                                                required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Proprietor Company -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">Proprieter Company</label>
+                                    <div class="mb-3 col-md-6 col-sm-12 position-relative">
+                                        <span class="icon-position"><i class="fa fa-building"></i></span>
+                                        <input type="text" class="form-control input-icon"
+                                            formControlName="properiterCompany" placeholder="Company Name"
+                                            maxlength="25" />
+                                        <div
+                                            *ngIf="submitteduserData && pdfInfoForm.controls['properiterCompany'].errors">
+                                            <span class="error_msg"
+                                                *ngIf="pdfInfoForm.controls['properiterCompany'].errors['required']">Company
+                                                Name is required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Proprietor Name -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">Proprieter Name</label>
+                                    <div class="mb-3 col-md-6 col-sm-12 position-relative">
+                                        <span class="icon-position"><i class="fa fa-user"></i></span>
+                                        <input type="text" class="form-control input-icon"
+                                            formControlName="properiterName" placeholder="Proprietor Name"
+                                            maxlength="25" />
+                                        <div *ngIf="submitteduserData && pdfInfoForm.controls['properiterName'].errors">
+                                            <span class="error_msg"
+                                                *ngIf="pdfInfoForm.controls['properiterName'].errors['required']">Name
+                                                is required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Mobile No -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">Mobile No.</label>
+
+                                    <div *ngFor="let mobileControl of mobileNumbersControls; let i = index"
+                                        class="mb-3 col-md-6 col-sm-12">
+
+                                        <div class="d-flex align-items-center position-relative">
+                                            <span class="icon-position"><i class="fa fa-phone"></i></span>
+                                            <input type="text" class="form-control input-icon pr-30"
+                                                [formControl]="mobileControl" placeholder="Mobile No." maxlength="10"
+                                                pattern="[0-9]*" inputmode="numeric"
+                                                (keypress)="allowOnlyNumbers($event)" />
+
+
+                                            <!-- + icon on last field only -->
+                                            <span
+                                                *ngIf="i === mobileNumbersControls.length - 1 && mobileNumbersControls.length < 3"
+                                                class="icon-btn ml-2" (click)="addMobileField()">
+                                                <i class="fa fa-plus text-success"></i>
+                                            </span>
+
+                                            <!-- - icon for removing any field except the first -->
+                                            <span *ngIf="mobileNumbersControls.length > 1" class="icon-btn ml-2"
+                                                (click)="removeMobileField(i)">
+                                                <i class="fa fa-trash text-danger"></i>
+                                            </span>
+                                        </div>
+
+                                        <!-- Error -->
+                                        <div *ngIf="submitteduserData && mobileControl.errors">
+                                            <span class="error_msg" *ngIf="mobileControl.errors['required']">Mobile No.
+                                                is required.</span>
+                                            <span class="error_msg" *ngIf="mobileControl.errors['pattern']">Mobile No.
+                                                must be 10 digits.</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- Watermark Image -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">Watermark Image</label>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div>
+                                            <input type="file" #watermarkInput accept="image/*" class="d-none"
+                                                (change)="previewPdfFile($event, 'watermark')" />
+                                            <button type="button" class="btn btn-primary"
+                                                (click)="watermarkInput.click()">Upload Watermark</button>
+                                        </div>
+                                        <div class="position-relative" *ngIf="imgURLWatermark">
+                                            <img [src]="imgURLWatermark" class="img-preview"
+                                                (error)="onImageError($event)" />
+                                            <span class="cancel-icon bg-gradient-dark"
+                                                (click)="removeUploadedPdfFile('watermark')">×</span>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="submitteduserData && !imgURLWatermark">
+                                        <span class="error_msg">Watermark image is required.</span>
+                                    </div>
+                                </div>
+
+                                <!-- PDF Logo -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">PDF Logo</label>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div>
+                                            <input type="file" #pdfLogoInput accept="image/*" class="d-none"
+                                                (change)="previewPdfFile($event, 'pdfLogo')" />
+                                            <button type="button" class="btn btn-primary"
+                                                (click)="pdfLogoInput.click()">Upload PDF Logo</button>
+                                        </div>
+                                        <div class="position-relative" *ngIf="imgURLPdfLogo">
+                                            <img [src]="imgURLPdfLogo" class="img-preview"
+                                                (error)="onImageError($event)" />
+                                            <span class="cancel-icon bg-gradient-dark"
+                                                (click)="removeUploadedPdfFile('pdfLogo')">×</span>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="submitteduserData && !imgURLPdfLogo">
+                                        <span class="error_msg">PDF logo is required.</span>
+                                    </div>
+                                </div>
+
+                                <!-- Header Line -->
+                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                    <label class="required">Header Line Image</label>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div>
+                                            <input type="file" #headerInput accept="image/*" class="d-none"
+                                                (change)="previewPdfFile($event, 'headerLine')" />
+                                            <button type="button" class="btn btn-primary"
+                                                (click)="headerInput.click()">Upload Header Line</button>
+                                        </div>
+                                        <div class="position-relative" *ngIf="imgURLHeaderLine">
+                                            <img [src]="imgURLHeaderLine" class="img-preview"
+                                                (error)="onImageError($event)" />
+                                            <span class="cancel-icon bg-gradient-dark"
+                                                (click)="removeUploadedPdfFile('headerLine')">×</span>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="submitteduserData && !imgURLHeaderLine">
+                                        <span class="error_msg">Header line image is required.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <button type="button" class="btn bg-gradient-dark"
+                                    (click)="SavePdfData('save')">Save</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

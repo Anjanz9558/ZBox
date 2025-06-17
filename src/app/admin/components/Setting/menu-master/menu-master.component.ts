@@ -363,6 +363,10 @@ export class MenuMasterComponent implements OnInit {
       name: "IP Address Master",
       value: "ipaddressmaster"
     },
+     {
+      name: "General Settings",
+      value: "generalsettings"
+    },
     {
       name: "Role Wise Menu",
       value: "rolewisemenu"
