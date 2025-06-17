@@ -354,7 +354,14 @@ private children: any[] = [];
                 currentPageName: 'Role Wise Menu'
             };
         }
-        else if (titlee.includes('user-wise-menu')) {
+        else if (titlee.includes('general-settings')) {
+            return {
+                pastUrl: '#',
+                pastLinkName: '',
+                currentPageName: 'General Settings'
+            };
+        }
+          else if (titlee.includes('')) {
             return {
                 pastUrl: '#',
                 pastLinkName: '',

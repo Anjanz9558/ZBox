@@ -35,26 +35,26 @@
                             <!-- <th class="width-5 theme-color"></th> -->
                             <th class="width-20 theme-color">Menu Name</th>
                             <th class="width-15 theme-color">
-                              <mat-checkbox  #createdAllSelect [(ngModel)]="isCreatedAllSelect" [ngModelOptions]="{standalone: true}"
-                                (change)="isCreatedAllSelectchildrenData(createdAllSelect)">
+                              <mat-checkbox [(ngModel)]="isCreatedAllSelect" [ngModelOptions]="{standalone: true}"
+                                (change)="isCreatedAllSelectchildrenData($event.checked)">
                               </mat-checkbox>
                               Create
                             </th>
                             <th class="width-15 theme-color">
-                              <mat-checkbox #updatedAllSelect [(ngModel)]="isUpdatedAllSelect" [ngModelOptions]="{standalone: true}"
-                                (change)="isUpdatedAllSelectchildrenData(updatedAllSelect)">
+                              <mat-checkbox [(ngModel)]="isUpdatedAllSelect" [ngModelOptions]="{standalone: true}"
+                                (change)="isUpdatedAllSelectchildrenData($event.checked)">
                               </mat-checkbox>
                               Edit
                             </th>
                             <th class="width-15 theme-color">
-                              <mat-checkbox #viewAllSelect [(ngModel)]="isViewAllSelect" [ngModelOptions]="{standalone: true}"
-                                (change)="isViewAllSelectchildrenData(viewAllSelect)">
+                              <mat-checkbox [(ngModel)]="isViewAllSelect" [ngModelOptions]="{standalone: true}"
+                                (change)="isViewAllSelectchildrenData($event.checked)">
                               </mat-checkbox>
                               View
                             </th>
                             <th class="width-15 theme-color">
-                              <mat-checkbox #deletedAllSelect [(ngModel)]="isDeletedAllSelect" [ngModelOptions]="{standalone: true}"
-                                (change)="isDeletedAllSelectchildrenData(deletedAllSelect)">
+                              <mat-checkbox [(ngModel)]="isDeletedAllSelect" [ngModelOptions]="{standalone: true}"
+                                (change)="isDeletedAllSelectchildrenData($event.checked)">
                               </mat-checkbox>
                               Delete
                             </th>
@@ -67,13 +67,12 @@
                           <tr>
                             <td class="width-5">
                               <a *ngIf="getFormArray(getFormGroup(item).get('childrenData')!).length > 0"
-                                    class="cursor-pointer"
-                                    (click)="showHideMenuList({ index: i })">
-                                    <i class="material-icons"
-                                    *ngIf="getFormGroup(item).get('isShowChildrenList')?.value === false">add</i>
-                                    <i class="material-icons"
-                                    *ngIf="getFormGroup(item).get('isShowChildrenList')?.value === true">remove</i>
-                                </a>
+                                class="cursor-pointer" (click)="showHideMenuList({ index: i })">
+                                <i class="material-icons"
+                                  *ngIf="getFormGroup(item).get('isShowChildrenList')?.value === false">add</i>
+                                <i class="material-icons"
+                                  *ngIf="getFormGroup(item).get('isShowChildrenList')?.value === true">remove</i>
+                              </a>
                             </td>
                             <!-- <td class="width-5">
                               <mat-checkbox formControlName="isSelectedMainData"
@@ -81,42 +80,29 @@
                             </td> -->
                             <td>
                               <input type="hidden" formControlName="menuId" />
-                              <input type="hidden" class="form-control-disabled"  formControlName="title" />
+                              <input type="hidden" class="form-control-disabled" formControlName="title" />
                               <h4 class="mb-0 heading-font-style">
                                 {{ getFormGroup(item).get('title')?.value }}
                               </h4>
                             </td>
                             <td>
-                              <mat-checkbox #createAllow formControlName="isCreated" (change)="
-                                  isCreatedAllchildrenData({
-                                    checked: createAllow,
-                                    index: i
-                                  })
-                                "></mat-checkbox>
+                              <mat-checkbox formControlName="isCreated"
+                                (change)="isCreatedAllchildrenData({ checked: $event.checked, index: i })"></mat-checkbox>
                             </td>
                             <td>
-                              <mat-checkbox  #updateAllow formControlName="isUpdated" (change)="
-                                  isUpdatedchildrenData({
-                                    checked: updateAllow,
-                                    index: i
-                                  })
-                                "></mat-checkbox>
+                              <mat-checkbox formControlName="isUpdated"
+                                (change)="isUpdatedchildrenData({ checked: $event.checked, index: i })">
+                              </mat-checkbox>
                             </td>
                             <td>
-                              <mat-checkbox  #viewAllow formControlName="isView" (change)="
-                                  isViewAllchildrenData({
-                                    checked: viewAllow,
-                                    index: i
-                                  })
-                                "></mat-checkbox>
+                              <mat-checkbox formControlName="isView"
+                                (change)="isViewAllchildrenData({ checked: $event.checked, index: i })">
+                              </mat-checkbox>
                             </td>
                             <td>
-                              <mat-checkbox #deleteAllow formControlName="isDeleted" (change)="
-                                  isDeletedchildrenData({
-                                    checked: deleteAllow,
-                                    index: i
-                                  })
-                                "></mat-checkbox>
+                              <mat-checkbox formControlName="isDeleted"
+                                (change)="isDeletedchildrenData({ checked: $event.checked, index: i })">
+                              </mat-checkbox>
                             </td>
                           </tr>
                           <tr formArrayName="childrenData" *ngIf="
@@ -125,10 +111,8 @@
                             <td colspan="6" class="p-0">
                               <table class="table m-0">
                                 <tbody>
-                                  <tr [formGroupName]="x" *ngFor="
-let item1 of getFormArray(getFormGroup(item).get('childrenData')).controls;
-                                      let x = index
-                                    ">
+                                  <tr [formGroupName]="x" *ngFor="let item1 of getFormArray(getFormGroup(item).get('childrenData')).controls;
+                                      let x = index">
                                     <td class="width-5"></td>
                                     <!-- <td class="width-5">
                                       <mat-checkbox formControlName="isMainMenuSelected"
@@ -137,12 +121,11 @@ let item1 of getFormArray(getFormGroup(item).get('childrenData')).controls;
                                     </td> -->
                                     <td class="width-20">
                                       <input type="hidden" formControlName="menuId" />
-                                      <input type="hidden" class="form-control-disabled" 
-                                        formControlName="title" />
+                                      <input type="hidden" class="form-control-disabled" formControlName="title" />
                                       <h4 class="mb-0 heading-font-style">
-                                       {{ getFormGroup(item).get('title')?.value }} >>
-      {{ item1.get('title')?.value }}
-                                      </h4>  
+                                        {{ getFormGroup(item).get('title')?.value }} >>
+                                        {{ item1.get('title')?.value }}
+                                      </h4>
                                     </td>
                                     <td class="width-15">
                                       <mat-checkbox #createAllowChild formControlName="isCreated" (change)="
@@ -153,7 +136,7 @@ let item1 of getFormArray(getFormGroup(item).get('childrenData')).controls;
                                         "></mat-checkbox>
                                     </td>
                                     <td class="width-15">
-                                      <mat-checkbox  #updateAllowChild formControlName="isUpdated" (change)="
+                                      <mat-checkbox #updateAllowChild formControlName="isUpdated" (change)="
                                           isUpdatedmenuData({
                                             checked: updateAllowChild,
                                             menuIndex: i
@@ -199,7 +182,8 @@ let item1 of getFormArray(getFormGroup(item).get('childrenData')).controls;
           <div>
             <!-- <div> -->
             <div class="card-footer" *ngIf="!!selectedRole">
-              <button mat-raised-button class="btn bg-gradient-dark" (click)="saveRolewisemenu()" [ngClass]="'bg-primary'">
+              <button mat-raised-button class="btn bg-gradient-dark" (click)="saveRolewisemenu()"
+                [ngClass]="'bg-primary'">
                 Save
               </button>
             </div>

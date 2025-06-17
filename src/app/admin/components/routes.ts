@@ -76,7 +76,7 @@ export const routes: Routes = [
                     title: 'Employee List',
                 },
             },
-                        {
+            {
                 path: 'profile/:id',
                 loadComponent: () =>
                     import('./employee-management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
@@ -90,6 +90,22 @@ export const routes: Routes = [
                     import('./Setting/role-wise-menu/role-wise-menu.component').then((m) => m.RoleWiseMenuComponent),
                 data: {
                     title: 'Role Wise Menu',
+                },
+            },
+            {
+                path: 'setting/ip-address-master',
+                loadComponent: () =>
+                    import('./Setting/ip-address-master/ip-address-master.component').then((m) => m.IpAddressMasterComponent),
+                data: {
+                    title: 'Ip Address Master',
+                },
+            },
+             {
+                path: 'setting/general-settings',
+                loadComponent: () =>
+                    import('./Setting/general-setting/general-setting.component').then((m) => m.GeneralSettingComponent),
+                data: {
+                    title: 'General Setting',
                 },
             },
             {
@@ -124,7 +140,7 @@ export const routes: Routes = [
                     title: 'Work From Home List',
                 },
             },
-             {
+            {
                 path: 'leave-management/leave-list',
                 loadComponent: () =>
                     import('./leave-management/leave-list/leave-list.component').then((m) => m.LeaveListComponent),
@@ -140,7 +156,7 @@ export const routes: Routes = [
                     title: 'Holiday List',
                 },
             },
-              {
+            {
                 path: 'leave-management/short-leave',
                 loadComponent: () =>
                     import('./leave-management/short-leave/short-leave.component').then((m) => m.ShortLeaveComponent),
@@ -172,7 +188,7 @@ export const routes: Routes = [
                     title: 'Attendance Consolidation Report',
                 },
             },
-             {
+            {
                 path: 'change-password/:id',
                 loadComponent: () =>
                     import('./change-password/change-password.component').then((m) => m.ChangePasswordComponent),
