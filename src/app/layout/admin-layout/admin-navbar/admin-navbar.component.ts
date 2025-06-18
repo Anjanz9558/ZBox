@@ -61,16 +61,16 @@ private children: any[] = [];
         this.userName = this.storageService.getValue(StorageKey.firstName) + ' ' + this.storageService.getValue(StorageKey.middleName) + ' ' + this.storageService.getValue(StorageKey.lastName);
         this.profileId = this.storageService.getValue(StorageKey.employeeId);
         this.listTitles = TITLEROUTES.filter(listTitle => listTitle);
-        const navbar: HTMLElement = this.element.nativeElement;
-        this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-        this.router.events.subscribe((event) => {
-            this.sidebarClose();
-            var $layer: any = document.getElementsByClassName('close-layer')[0];
-            if ($layer) {
-                $layer.remove();
-                this.mobile_menu_visible = 0;
-            }
-        });
+        // const navbar: HTMLElement = this.element.nativeElement;
+        // this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+        // this.router.events.subscribe((event) => {
+        //     this.sidebarClose();
+        //     var $layer: any = document.getElementsByClassName('close-layer')[0];
+        //     if ($layer) {
+        //         $layer.remove();
+        //         this.mobile_menu_visible = 0;
+        //     }
+        // });
 
         setTimeout(() => {
             this.profileImg = environment.uploadedUrl + this.storageService.getValue(StorageKey.profileImage)

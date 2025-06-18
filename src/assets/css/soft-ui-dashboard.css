@@ -6735,7 +6735,7 @@ fieldset:disabled .btn {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99999;
+  z-index: 1050;
   display: none;
   width: 100%;
   height: 100%;
@@ -23156,7 +23156,7 @@ font-size: 18px;
 }
 
 .sidenav {
-  z-index: 1048;
+  z-index: 1049;
 }
 
 .sidenav .navbar-brand,
@@ -28537,7 +28537,7 @@ body.nav-open .layout-overlay {
   background: #435971;
   opacity: 0.5;
   cursor: pointer;
-  z-index: 1099;
+  z-index: 1047;
 }
 @media screen and (maX-width: 1199px){
   .navbar-vertical.navbar-expand-xs{
