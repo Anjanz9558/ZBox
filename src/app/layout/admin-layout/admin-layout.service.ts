@@ -1672,4 +1672,36 @@ export class AdminLayoutService {
 
 
   
+
+  
+  // General setting
+  SaveGeneralSettingCommonInfo(settingInfo: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'adminSide/generalSettingInfoSave', settingInfo, { headers: headers });
+  }
+  getGeneralSettingCommonInfoList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'adminSide/generalSettingInfoGet', { headers: headers });
+  }
+
+  SaveGeneralSettingPdfInfo(settingInfo: any) {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.post(this.commonService.rootData.rootUrl + 'adminSide/pdfInfoSave', settingInfo, { headers: headers });
+  }
+  getGeneralSettingPdfInfoList() {
+        let myToken = localStorage.getItem("myToken")
+        let headers = new HttpHeaders({
+            'Authorization': `Bearer ${myToken}`
+        })
+    return this.http.get(this.commonService.rootData.rootUrl + 'adminSide/pdfInfoGet', { headers: headers });
+  }
 }

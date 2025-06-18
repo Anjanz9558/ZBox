@@ -4,12 +4,12 @@
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <div>
-                        <!-- <h4 class="card-title-color">General Setting</h4> -->
+                        <h4 class="card-title-color">Common Info</h4>
 
                         <form role="form" class="add-employee-form" [formGroup]="commonInfoForm" autocomplete="off">
                             <div class="row">
                                 <!-- Title -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">Title</label>
                                     <div class="mb-3 col-md-6 col-sm-12">
                                         <span class="icon-position"><i class="fa fa-user"></i></span>
@@ -25,7 +25,7 @@
                                 </div>
 
                                 <!-- Company Name -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">Company Name</label>
                                     <div class="mb-3 col-md-6 col-sm-12">
                                         <span class="icon-position"><i class="fa fa-user"></i></span>
@@ -41,7 +41,7 @@
                                 </div>
 
                                 <!-- Company Logo Upload -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">Company Logo</label>
                                     <div class="d-flex align-items-center gap-3">
                                         <div>
@@ -57,13 +57,14 @@
                                                 (click)="removeUploadedFile('logo')">×</span>
                                         </div>
                                     </div>
-                                    <span *ngIf="message" class="error_msg">
-                                        Company Logo is Required.
+                                    <span *ngIf="submitteduserData && isLogoMissing" class="error_msg">
+                                        Company Logo is required.
                                     </span>
+
                                 </div>
 
                                 <!-- Favicon Upload -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">Favicon Icon</label>
                                     <div class="d-flex align-items-center gap-3">
                                         <div>
@@ -79,8 +80,8 @@
                                                 (click)="removeUploadedFile('favicon')">×</span>
                                         </div>
                                     </div>
-                                    <span *ngIf="message" class="error_msg">
-                                        Favicon Icon is Required.
+                                    <span *ngIf="submitteduserData && isFaviconMissing" class="error_msg">
+                                        Favicon Icon is required.
                                     </span>
 
                                 </div>
@@ -109,13 +110,13 @@
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <div>
-                        <!-- <h4 class="card-title-color">General Setting</h4> -->
+                        <h4 class="card-title-color">Pdf Info</h4>
 
                         <form role="form" class="add-employee-form" [formGroup]="pdfInfoForm" autocomplete="off">
                             <div class="row">
 
                                 <!-- GST No -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">GST No.</label>
                                     <div class="mb-3 col-md-6 col-sm-12 position-relative">
                                         <span class="icon-position"><i class="fa fa-id-card"></i></span>
@@ -130,7 +131,7 @@
                                 </div>
 
                                 <!-- PAN No -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">PAN No.</label>
                                     <div class="mb-3 col-md-6 col-sm-12 position-relative">
                                         <span class="icon-position"><i class="fa fa-address-card"></i></span>
@@ -145,7 +146,7 @@
                                 </div>
 
                                 <!-- Website -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">Website</label>
                                     <div class="mb-3 col-md-6 col-sm-12 position-relative">
                                         <span class="icon-position"><i class="fa fa-globe"></i></span>
@@ -160,22 +161,25 @@
                                 </div>
 
                                 <!-- Email -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">Email</label>
                                     <div class="mb-3 col-md-6 col-sm-12 position-relative">
                                         <span class="icon-position"><i class="fa fa-envelope"></i></span>
                                         <input type="email" class="form-control input-icon" formControlName="email"
-                                            placeholder="Email" maxlength="25" />
+                                            placeholder="Email" maxlength="50" />
                                         <div *ngIf="submitteduserData && pdfInfoForm.controls['email'].errors">
                                             <span class="error_msg"
                                                 *ngIf="pdfInfoForm.controls['email'].errors['required']">Email is
                                                 required.</span>
+                                            <span class="error_msg"
+                                                *ngIf="pdfInfoForm.controls['email'].errors['email']">Please
+                                                Enter Valid Email ID.</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Proprietor Company -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">Proprieter Company</label>
                                     <div class="mb-3 col-md-6 col-sm-12 position-relative">
                                         <span class="icon-position"><i class="fa fa-building"></i></span>
@@ -192,7 +196,7 @@
                                 </div>
 
                                 <!-- Proprietor Name -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">Proprieter Name</label>
                                     <div class="mb-3 col-md-6 col-sm-12 position-relative">
                                         <span class="icon-position"><i class="fa fa-user"></i></span>
@@ -208,7 +212,7 @@
                                 </div>
 
                                 <!-- Mobile No -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">Mobile No.</label>
 
                                     <div *ngFor="let mobileControl of mobileNumbersControls; let i = index"
@@ -249,13 +253,13 @@
 
 
                                 <!-- Watermark Image -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">Watermark Image</label>
                                     <div class="d-flex align-items-center gap-3">
                                         <div>
                                             <input type="file" #watermarkInput accept="image/*" class="d-none"
                                                 (change)="previewPdfFile($event, 'watermark')" />
-                                            <button type="button" class="btn btn-primary"
+                                            <button type="button" class="btn btn-primary comBtn"
                                                 (click)="watermarkInput.click()">Upload Watermark</button>
                                         </div>
                                         <div class="position-relative" *ngIf="imgURLWatermark">
@@ -271,13 +275,13 @@
                                 </div>
 
                                 <!-- PDF Logo -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">PDF Logo</label>
                                     <div class="d-flex align-items-center gap-3">
                                         <div>
                                             <input type="file" #pdfLogoInput accept="image/*" class="d-none"
                                                 (change)="previewPdfFile($event, 'pdfLogo')" />
-                                            <button type="button" class="btn btn-primary"
+                                            <button type="button" class="btn btn-primary comBtn"
                                                 (click)="pdfLogoInput.click()">Upload PDF Logo</button>
                                         </div>
                                         <div class="position-relative" *ngIf="imgURLPdfLogo">
@@ -293,13 +297,13 @@
                                 </div>
 
                                 <!-- Header Line -->
-                                <div class="col-lg-12 col-md-6 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="required">Header Line Image</label>
                                     <div class="d-flex align-items-center gap-3">
                                         <div>
                                             <input type="file" #headerInput accept="image/*" class="d-none"
                                                 (change)="previewPdfFile($event, 'headerLine')" />
-                                            <button type="button" class="btn btn-primary"
+                                            <button type="button" class="btn btn-primary comBtn"
                                                 (click)="headerInput.click()">Upload Header Line</button>
                                         </div>
                                         <div class="position-relative" *ngIf="imgURLHeaderLine">

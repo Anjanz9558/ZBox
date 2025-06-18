@@ -10,6 +10,8 @@ export class CommonService {
   constructor(private http: HttpClient) { 
     this.rootData.rootUrl = environment.WebAPIUrl;
     this.rootData.uploadsUrl = environment.uploadsUrl;
+    this.rootData.uploadedUrl = environment.uploadedUrl;
+
     // this.rootData.socketUrl = environment.socketUrl;
    }
 }
