@@ -214,14 +214,14 @@ private children: any[] = [];
         }
         else if (titlee.includes('add-new-employee')) {
             return {
-                pastUrl: 'admin/employee-list',
+                pastUrl: 'employee-management/employee-list',
                 pastLinkName: 'Employee-List / ',
                 currentPageName: 'Add Employee'
             };
         }
         else if (titlee.includes('edit-employee')) {
             return {
-                pastUrl: 'admin/employee-list',
+                pastUrl: 'employee-management/employee-list',
                 pastLinkName: 'Employee-List / ',
                 currentPageName: 'Edit Employee'
             };

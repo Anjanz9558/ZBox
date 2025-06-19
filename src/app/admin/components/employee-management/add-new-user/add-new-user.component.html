@@ -159,22 +159,6 @@
                                         <mat-datepicker #picker1></mat-datepicker>
                                     </div>
                                     <mat-datepicker #picker></mat-datepicker>
-
-                                    <!-- <span class="icon-position cursor-pointer"
-                                        (click)="d.toggle();d.navigateTo(maxDate)"><i class="fa fa-calendar"></i></span>
-                                    <input class="form-control" (click)="d.toggle();d.navigateTo(maxDate)"
-                                        [startDate]="{year: 1700, month: 7}" [minDate]="minDobDate"
-                                        formControlName="dob" [maxDate]="maxDate" (input)="onDobDateChange($event)"
-                                        placeholder="yyyy-mm-dd" name="dp" #d="ngbDatepicker" ngbDatepicker> -->
-                                    <!-- <input type="date" class="text-feild form-control" [max]="getToday()"
-                                        placeholder=" Date of Birth" formControlName="dob"> -->
-                                    <!-- <input type="text" matInput ngxDaterangepickerMd
-                                        [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
-                                        (input)="cancelBasicInfoDateBack($event)" (change)="forBasicInfoDateChange()"
-                                        class="text-feild form-control" placeholder="Select Date" startKey="start"
-                                        endKey="end" [formControl]="employeeForm.controls['dob']" name="daterange"
-                                        [alwaysShowCalendars]="true" [showClearButton]="true"
-                                        [isInvalidDate]="isInvalidDate" [singleDatePicker]="true" /> -->
                                     <div *ngIf="submitteduserData && fuserData['dob'].errors">
                                         <div *ngIf="fuserData['dob'].errors['required']">
                                             <span class="error_msg">Date of Birth is Required.</span>

@@ -34,7 +34,8 @@ import { environment } from '../../../../../environments/environment';
 import { AdminLayoutService } from '../../../../layout/admin-layout/admin-layout.service';
 declare const $: any;
 import moment from 'moment';
-import { ConfirmDirective } from '../../../../shared/directives/common.directive'
+import { ConfirmDirective } from '../../../../shared/directives/common.directive';
+
 
 @Component({
     selector: 'app-add-new-user',
@@ -349,12 +350,12 @@ export class AddNewUserComponent implements OnInit {
         if (this.ISeditEmployee === true && this.profileDetails === false) {
             this.defaultForm();
             this.ISeditEmployee = false;
-            this.router.navigate(['/admin/employee-list']);
+            this.router.navigate(['/admin/employee-management/employee-list']);
         }
         else if (this.ISeditEmployee === false && this.profileDetails === false) {
             this.defaultForm();
             this.ISeditEmployee = false;
-            this.router.navigate(['/admin/employee-list']);
+            this.router.navigate(['/admin/employee-management/employee-list']);
         }
         else {
             this.profileDetails = false;
@@ -522,12 +523,12 @@ export class AddNewUserComponent implements OnInit {
                 this.submitteduserData = false;
                 if (btnName === 'continue') {
                     this.getBasicInformationDetailsByEmpId();
-                    this.router.navigate(['/admin/edit-employee/' + Response.data._id]);
+                    this.router.navigate(['/admin/employee-management/edit-employee/' + Response.data._id]);
                     // this.commonService.notifier.notify('success', "User Created Successfully.");
                 }
                 else if (btnName === 'save') {
                     this.defaultForm();
-                    this.router.navigate(['/admin/employee-list']);
+                    this.router.navigate(['/admin/employee-management/employee-list']);
                     // this.commonService.notifier.notify('success', "User Created Successfully.");
                 }
             }

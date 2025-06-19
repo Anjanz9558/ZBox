@@ -39,5 +39,6 @@ padding-left: 17.625rem;
 @media (max-width: 1199px) {
   .sidenav {
     padding-left: 0rem;
+    z-index: 1046 !important;
   }
 }

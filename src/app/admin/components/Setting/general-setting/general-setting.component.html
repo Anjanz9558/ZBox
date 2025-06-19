@@ -88,7 +88,7 @@
                             </div>
 
                             <div class="mt-3">
-                                <button type="button" class="btn bg-gradient-dark"
+                                <button type="button" *ngIf="this.isCreated == true" class="btn bg-gradient-dark"
                                     (click)="SaveUser('save')">Save</button>
                             </div>
                         </form>
@@ -319,8 +319,8 @@
                                 </div>
                             </div>
 
-                            <div class="mt-3">
-                                <button type="button" class="btn bg-gradient-dark"
+                            <div class="mt-3" >
+                                <button type="button" *ngIf="this.isCreated == true" class="btn bg-gradient-dark"
                                     (click)="SavePdfData('save')">Save</button>
                             </div>
                         </form>

@@ -49,6 +49,11 @@ export class GeneralSettingComponent implements OnInit {
     imgURLHeaderLine: any = '';
     mobileNumbers!: FormArray;
     commonInfoList: any[] = [];
+
+      isView: boolean = false;
+  isCreated: boolean = false;
+  isUpdated: boolean = false;
+  isDeleted: boolean = false;
     constructor(
         private fb: FormBuilder,
         private http: HttpClient,
@@ -56,13 +61,32 @@ export class GeneralSettingComponent implements OnInit {
         private router: Router,
         public commonService: CommonService,
         public adminLayoutService: AdminLayoutService
-    ) { }
+    ) { 
+            let pagePermission = { module: "generalsettings" }
+    this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
+      if (Response.meta.code == 200) {
+        this.isView = Response.data.isView;
+        this.isCreated = Response.data.isCreated;
+        this.isUpdated = Response.data.isUpdated;
+        this.isDeleted = Response.data.isDeleted;
+        if (this.isView === false || this.isCreated === false || this.isUpdated === false) {
+          this.router.navigate(['admin/dashboard']);
+        }
+      }
+      //for select sub industry step
+    }, (error) => {
+      console.log(error.error.Message);
+    });
+  
+    }
 
     ngOnInit(): void {
         this.defaultForm();
         this.pdfForm();
         this.getCommonInfoList();
         this.getpdfInfoList();
+
+
 
     }
 
