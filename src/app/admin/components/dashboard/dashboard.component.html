@@ -251,8 +251,8 @@
           <h5 class="card-title">
             Pending CheckIn List (Date : {{date | date:'dd-MM-yyyy'}})
           </h5>
-          <div class="table-responsive flex-grow-1">
-            <table class="table h-100">
+          <div class="table-responsive flex-grow-1 overflow-auto" style="max-height: 250px;">
+            <table class="table">
               <thead>
                 <tr>
                   <th class="theme-color w-5">No.</th>
@@ -318,8 +318,8 @@
               </ng-select>
             </span>
           </div>
-          <div class="table-responsive flex-grow-1">
-            <table class="table h-100">
+          <div class="table-responsive flex-grow-1 overflow-auto" style="max-height: 400px;">
+            <table class="table">
               <thead>
                 <tr>
                   <th class="theme-color">Name</th>
