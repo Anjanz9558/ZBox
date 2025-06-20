@@ -1,0 +1,4 @@
+.mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background {
+    border-color: #3f51b5 !important;
+    background-color: #3f51b5 !important;
+}

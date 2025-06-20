@@ -277,8 +277,8 @@
                                     </h5>
                                     <span style="font-size:15px;color: gray;" class="mb-0">
                                         Designation : {{employeeCompanyList?.designationName | titlecase}}</span><br>
-                                    <span style="font-size:15px;color: gray;">Technology :
-                                        {{employeeCompanyList?.technologyName | titlecase}}</span>
+                                    <span style="font-size:15px;color: gray;">Department :
+                                        {{employeeCompanyList?.departmentData?.[0]?.departmentName || '' | titlecase}}</span>
                                     <br>
                                     <h6 class="mb-0">Employee ID :
                                         {{employeeCompanyList?.empNumber}}</h6>
@@ -435,14 +435,10 @@
                                             </div>
 
                                             <div class="d-flex">
-                                                <label class="for-company-Label col-lg-4 col-md-6 col-sm-12">Technology
+                                                <label class="for-company-Label col-lg-4 col-md-6 col-sm-12">Department
                                                     :</label>
                                                 <label class="for-company-Label-value col-lg-7">
-                                                    <span
-                                                        *ngFor="let tech of employeeCompanyList?.technologyData; let i = index">
-                                                        {{tech.technologyName }}{{ (i+1==
-                                                        employeeCompanyList?.technologyData?.length)? '' : ', '}}
-                                                    </span>
+                                                    {{employeeCompanyList?.departmentData?.[0]?.departmentName || ''}}
                                                 </label>
                                             </div>
                                             <div class="d-flex">
@@ -479,15 +475,6 @@
                                                 </label>
                                             </div>
                                             <div class="d-flex" *ngIf="employeeCompanyList">
-                                                <label class="for-company-Label col-lg-4 col-md-6 col-sm-12">Offer
-                                                    Letter :</label>
-                                                <label class="">
-                                                    <button class="font-20 btn bg-gradient-dark emp-edit-btn"
-                                                        title="Offer Letter" (click)="downloadExperianceLetter()">
-                                                        <i class="fa fa-download"></i></button>
-                                                </label>
-                                            </div>
-                                             <div class="d-flex" *ngIf="employeeCompanyList">
                                                 <label
                                                     class="for-company-Label col-lg-4 col-md-6 col-sm-12">Training
                                                     Experience Letter :</label>
@@ -1678,7 +1665,7 @@
                         <div class="row">
                             <div class="text-align-center col-lg-12 col-md-12 col-sm-12">
                                 <label class="required">PIN</label>
-                                <ng-otp-input #resetPin [config]="config" (onInputChange)="onPINChange($event)"></ng-otp-input>
+                                <ng-otp-input #resetPin [config]="config" class="d-flex justify-content-center" (onInputChange)="onPINChange($event)"></ng-otp-input>
                                 <div *ngIf="pinResetMessage!=null"><span class="error_msg">{{pinResetMessage}}</span></div>
                             </div>
                         </div>
@@ -1817,7 +1804,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <label>Department</label>
                                 <div class="mb-3">
-                                    <ng-select [items]="technologyList" class="" bindLabel="departmentName"
+                                    <ng-select [items]="departmentList" class="" bindLabel="departmentName"
                                         bindValue="_id" placeholder="Department" formControlName="departmentId"
                                         [multiple]="true" [closeOnSelect]="false">
                                     </ng-select>

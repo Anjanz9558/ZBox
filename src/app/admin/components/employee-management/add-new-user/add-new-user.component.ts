@@ -121,6 +121,7 @@ export class AddNewUserComponent implements OnInit {
     roleList: any[] = [];
     designationList: any[] = [];
     technologyList: any[] = [];
+    departmentList: any[] = [];
     documentTypeMasterList: any[] = [];
     emergencyContactInformationList: any[] = [];
     educationDetailsList: any[] = [];
@@ -418,7 +419,7 @@ export class AddNewUserComponent implements OnInit {
 
         this.adminLayoutService.getDepartmentList().subscribe((Response: any) => {
             if (Response.meta.code == 200) {
-                this.technologyList = Response.data;
+                this.departmentList = Response.data;
             }
         });
     }
@@ -492,7 +493,7 @@ export class AddNewUserComponent implements OnInit {
             gender: ['', [Validators.required]],
             permenentAddress: [''],
             currentAddress: [''],
-            bloodGroup: [],
+            bloodGroup: [''],
             linkedInId: [''],
         });
     }
@@ -512,7 +513,7 @@ export class AddNewUserComponent implements OnInit {
         usermasterModelObj.append('gender', this.employeeForm.value.gender);
         usermasterModelObj.append('permenentAddress', this.employeeForm.value.permenentAddress);
         usermasterModelObj.append('currentAddress', this.employeeForm.value.currentAddress);
-        usermasterModelObj.append('bloodGroup', this.employeeForm.value.bloodGroup);
+        usermasterModelObj.append('bloodGroup', this.employeeForm.value.bloodGroup ? this.employeeForm.value.bloodGroup : '');
         usermasterModelObj.append('linkedInId', this.employeeForm.value.linkedInId);
         usermasterModelObj.append('profile_image', this.file);
         usermasterModelObj.append('signature', this.signatureImageFile);
@@ -560,7 +561,7 @@ export class AddNewUserComponent implements OnInit {
         usermasterModelObj.append('gender', this.employeeForm.value.gender);
         usermasterModelObj.append('permenentAddress', this.employeeForm.value.permenentAddress);
         usermasterModelObj.append('currentAddress', this.employeeForm.value.currentAddress);
-        usermasterModelObj.append('bloodGroup', this.employeeForm.value.bloodGroup);
+        usermasterModelObj.append('bloodGroup', this.employeeForm.value.bloodGroup ? this.employeeForm.value.bloodGroup : '');
         usermasterModelObj.append('linkedInId', this.employeeForm.value.linkedInId);
         usermasterModelObj.append('profile_image', this.file);
         usermasterModelObj.append('signature', this.signatureImageFile);
@@ -664,13 +665,17 @@ export class AddNewUserComponent implements OnInit {
 
                 this.employeeForm.controls['permenentAddress'].setValue(Response.data.permenentAddress);
                 this.employeeForm.controls['currentAddress'].setValue(Response.data.currentAddress);
-                this.employeeForm.controls['bloodGroup'].setValue(Response.data.bloodGroup);
+                Response.data.bloodGroup ? this.employeeForm.controls['bloodGroup'].setValue(Response.data.bloodGroup) : null;
                 this.employeeForm.controls['linkedInId'].setValue(Response.data.linkedInId);
                 this.employeeForm.controls['p_Email'].setValue(Response.data.p_Email);
-                this.imgURL = environment.uploadedUrl + Response.data.profile_image;
-                this.signatureImageURL = environment.uploadedUrl + Response.data.signature;
-                this.file = Response.data.profile_image;
-                this.signatureImageFile = Response.data.signature;
+                if(Response.data.profile_image) {
+                    this.imgURL = environment.uploadedUrl + Response.data.profile_image;
+                    this.file = Response.data.profile_image;
+                }
+                if (Response.data.signature) {
+                    this.signatureImageURL = environment.uploadedUrl + Response.data.signature;
+                    this.signatureImageFile = Response.data.signature;
+                }
                 // $("#add-education-details-modal").modal({ backdrop: 'static', keyboard: false });;
             }
         });
@@ -1877,7 +1882,6 @@ export class AddNewUserComponent implements OnInit {
     }
     teamAssignForm!: FormGroup;
     submitAssign: boolean = false;
-    technologyMasterList: any[] = [];
 
     defaultAssignTeamForm() {
         this.teamAssignForm = this.fb.group({
@@ -2939,14 +2943,4 @@ export class EmpBasicInfoListModel {
     profile_image: any;
     signature: any;
     EmpId: any;
-}
-
-export class EmployeeListModel {
-    designationName: string = '';
-    technologyName: string = '';
-    roleName: string = '';
-    empNumber: any;
-    joiningDate: any;
-    EmailID: any;
-    SkypeID: any
 }

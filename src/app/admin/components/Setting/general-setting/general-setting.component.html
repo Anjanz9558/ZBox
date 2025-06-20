@@ -184,8 +184,7 @@
                                     <div class="mb-3 col-md-6 col-sm-12 position-relative">
                                         <span class="icon-position"><i class="fa fa-building"></i></span>
                                         <input type="text" class="form-control input-icon"
-                                            formControlName="properiterCompany" placeholder="Company Name"
-                                            maxlength="25" />
+                                            formControlName="properiterCompany" placeholder="Company Name" />
                                         <div
                                             *ngIf="submitteduserData && pdfInfoForm.controls['properiterCompany'].errors">
                                             <span class="error_msg"
@@ -201,8 +200,7 @@
                                     <div class="mb-3 col-md-6 col-sm-12 position-relative">
                                         <span class="icon-position"><i class="fa fa-user"></i></span>
                                         <input type="text" class="form-control input-icon"
-                                            formControlName="properiterName" placeholder="Proprietor Name"
-                                            maxlength="25" />
+                                            formControlName="properiterName" placeholder="Proprietor Name" />
                                         <div *ngIf="submitteduserData && pdfInfoForm.controls['properiterName'].errors">
                                             <span class="error_msg"
                                                 *ngIf="pdfInfoForm.controls['properiterName'].errors['required']">Name
@@ -221,8 +219,7 @@
                                         <div class="d-flex align-items-center position-relative">
                                             <span class="icon-position"><i class="fa fa-phone"></i></span>
                                             <input type="text" class="form-control input-icon pr-30"
-                                                [formControl]="mobileControl" placeholder="Mobile No." maxlength="10"
-                                                pattern="[0-9]*" inputmode="numeric"
+                                                [formControl]="mobileControl" placeholder="Mobile No." 
                                                 (keypress)="allowOnlyNumbers($event)" />
 
 

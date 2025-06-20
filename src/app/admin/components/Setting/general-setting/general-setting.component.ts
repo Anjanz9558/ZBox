@@ -112,7 +112,7 @@ export class GeneralSettingComponent implements OnInit {
     allowOnlyNumbers(event: KeyboardEvent): boolean {
         const charCode = event.charCode;
         // Allow only digits (0–9)
-        if (charCode >= 48 && charCode <= 57) {
+        if ((charCode >= 48 && charCode <= 57) || charCode == 43) {
             return true;
         }
         event.preventDefault();
@@ -124,7 +124,7 @@ export class GeneralSettingComponent implements OnInit {
         return (this.pdfInfoForm.get('mobileNumbers') as FormArray).controls as FormControl[];
     }
     createMobileField(): FormControl {
-        return this.fb.control('', [Validators.required, Validators.pattern('^[0-9]{10}$')]);
+        return this.fb.control('', Validators.required);
     }
 
     addMobileField(): void {
