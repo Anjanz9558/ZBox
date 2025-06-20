@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import moment from 'moment';
 
 // @Pipe({
 //   name: 'common'
@@ -133,7 +134,7 @@ export class NiceTimePipe implements PipeTransform {
   }
 
 
-  
+
 }
 
 
@@ -149,5 +150,15 @@ export class FilterPipe implements PipeTransform {
         val?.toString().toLowerCase().includes(searchText.toLowerCase())
       );
     });
+  }
+}
+
+
+@Pipe({
+  name: 'niceDateFormat'
+})
+export class NiceDateFormatPipe implements PipeTransform {
+  transform(value: any): string {
+    return value ? moment(value).format('DD MMM YYYY, h:mm A') : '';
   }
 }

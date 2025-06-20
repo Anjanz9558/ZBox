@@ -1,0 +1,550 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 card-width-fixed"
+            *ngFor="let leaveCountShowData of leaveCountShowList;let leaveCountIndex = index">
+            <div class="card mb-3">
+                <div class="card-body card-body-padding">
+                    <div class="position-relative text-center">
+                        <div class="mt-2 mb-2">
+                            <div class="recipe-image">
+                                <img src="{{leaveCountShowData.img}}" class="leaveCount-images" alt="" width="60px"
+                                    height="60px">
+                            </div>
+                        </div>
+                        <div class="recipe-image-control">
+                            <button class="border-0 float-right delete-btn-icon">
+                                {{leaveCountShowData.leaveCountForThisMonth}}
+                            </button>
+                        </div>
+                        <div class="leave-type-name">
+                            {{leaveCountShowData.leaveType}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <div class="card mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="form-group mb-lg-0 mb-sm-3">
+                        <ng-select [(ngModel)]="month" [items]="monthArray" class="" bindLabel="month" bindValue="value"
+                            placeholder="Select Month" [clearable]="false">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="form-group mb-lg-0 mb-sm-3">
+                        <ng-select [(ngModel)]="year" [items]="yearArray" class="" bindLabel="yearArray"
+                            bindValue="yearArray" placeholder="Select Year" [clearable]="false">
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-6 col-6">
+                    <div>
+                        <a class="btn bg-gradient-dark mb-0 add-btn d-block" style="float: left;"
+                            (click)="getLeaveListMonthWise()">Search</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-6 col-6">
+                    <div class="">
+                        <a class="btn bg-gradient-dark mb-0 add-btn d-block" (click)="leaveModalOpen()">Apply Leave</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="row mt-15">
+                    <div class="">
+                        <a class="btn bg-gradient-dark mb-0 add-btn d-block" (click)="leaveModalOpen()">Apply
+                            Leave</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="theme-color">Leave Status</th>
+                                    <th class="theme-color">From Date</th>
+                                    <th class="theme-color">To Date</th>
+                                    <th class="theme-color">Reason</th>
+                                    <th class="theme-color">Remark</th>
+                                    <th class="theme-color">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let monthWiseLeaveData of monthWiseLeaveList;let menuIndex = index"
+                                    class="hover-table-row">
+                                    <td class="text-color">
+                                        <span class="badge" [ngClass]="{'bg-gradient-success' : monthWiseLeaveData.leaveStatus == 2,
+                                            'bg-gradient-danger' : monthWiseLeaveData.leaveStatus == 3 || monthWiseLeaveData.leaveStatus == 4,
+                                            'bg-gradient-warning' : monthWiseLeaveData.leaveStatus == 1
+                                    }">
+                                            {{monthWiseLeaveData.leaveStatus == 1 ? 'Pending'
+                                            :monthWiseLeaveData.leaveStatus == 2 ? 'Approved'
+                                            :monthWiseLeaveData.leaveStatus == 4 ? 'Cancle'
+                                            :monthWiseLeaveData.leaveStatus == 3 ? 'Reject' : '' }}
+                                        </span>
+                                    </td>
+                                    <td class="text-color">
+                                        {{monthWiseLeaveData.fromDate}}
+                                    </td>
+                                    <td class="text-color">
+                                        {{monthWiseLeaveData.toDate}}
+                                    </td>
+                                    <td class="text-color white-space-normal">
+                                        {{monthWiseLeaveData.reason}}
+                                    </td>
+                                    <td class="text-color white-space-normal">
+                                        {{monthWiseLeaveData.remark}}
+                                    </td>
+                                    <td class="text-color">
+                                        <!-- <a class="btn bg-gradient-dark mb-0 add-btn d-block"
+                                            (click)="getLeaveListMonthWise(monthWiseLeaveData._id)">
+                                            <i class="fa fa-info"></i>
+                                        </a> -->
+                                        <ul class="d-flex align-items-center action-list p-0">
+                                            <li class="action-list-item me-3">
+                                                <div title="Details" tooltip="Details"
+                                                    (click)="getLeaveListByEmpLeaveID(monthWiseLeaveData._id)"
+                                                    class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-dark text-center me-2 d-flex align-items-center cursor-pointer justify-content-center">
+                                                    <!-- <i class="material-icons">{{menuItem.icon}}</i> -->
+                                                    <i class="fa fa-info"></i>
+                                                </div>
+                                            </li>
+                                            <li class="action-list-item me-3"
+                                                *ngIf="monthWiseLeaveData.leaveStatus == 1">
+                                                <div (click)="cancleLeaveList(monthWiseLeaveData._id)"
+                                                    title="Cancle Leave"
+                                                    class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-dark text-center me-2 d-flex align-items-center cursor-pointer justify-content-center">
+                                                    <!-- <i class="material-icons">{{menuItem.icon}}</i> -->
+                                                    <i class="fa fa-times"></i>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="noData" class="text-center">
+                                    <td colspan="4">
+                                        <span>
+                                            <h4>Data Not Found</h4>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="footer-pagination">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- show leave list by leave id  -->
+<div class="modal quick-edit-modal fade" tabindex="-1" id="leave-List-LeaveID-modal" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center mb-2 w-100">Date Wise Leave List</h4>
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancelLeaveListLeaveIdModal()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll">
+                <div class="row">
+                    <div class="col-lg-12 mb-2">
+                        <div class="row mb-2">
+                            <div class="col-lg-3">
+                                <strong>Employee No. :</strong>
+                            </div>
+                            <div class="col-lg-9">
+                                {{empNo}}
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-lg-3">
+                                <strong>Name : </strong>
+                            </div>
+                            <div class="col-lg-9">
+                                {{name}}
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-lg-3">
+                                <strong>Reason :</strong>
+                            </div>
+                            <div class="col-lg-9">
+                                {{leaveListByLeaveId[0]?.reason}}
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-lg-3">
+                                <strong>Leave Status : </strong>
+                            </div>
+                            <div class="col-lg-9">
+                                <span class="badge" [ngClass]="{'bg-gradient-success' : leaveListByLeaveId[0]?.leaveStatus == 2,
+                        'bg-gradient-danger' : leaveListByLeaveId[0]?.leaveStatus == 3 || leaveListByLeaveId[0]?.leaveStatus == 4,
+                        'bg-gradient-warning' : leaveListByLeaveId[0]?.leaveStatus == 1
+                }">
+                                    {{leaveListByLeaveId[0]?.leaveStatus == 1 ? 'Pending'
+                                    :leaveListByLeaveId[0]?.leaveStatus == 2 ? 'Approved'
+                                    :leaveListByLeaveId[0]?.leaveStatus == 4 ? 'Cancled'
+                                    :leaveListByLeaveId[0]?.leaveStatus == 3 ? 'Rejected' : '' }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <!-- <th class="theme-color">Leave Status</th> -->
+                                <th class="theme-color">Date</th>
+                                <th class="theme-color">Leave Type</th>
+                                <th class="theme-color">Day Type</th>
+                                <!-- <th class="theme-color">Reason</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let leaveListByLeaveIdData of leaveListByLeaveId;let menuIndex = index">
+                                <!-- <td class="text-color">
+                                    <span class="badge" [ngClass]="{'bg-gradient-success' : leaveListByLeaveIdData.leaveStatus == 2,
+                                        'bg-gradient-danger' : leaveListByLeaveIdData.leaveStatus == 3 || leaveListByLeaveIdData.leaveStatus == 4,
+                                        'bg-gradient-warning' : leaveListByLeaveIdData.leaveStatus == 1
+                                }">
+                                        {{leaveListByLeaveIdData.leaveStatus == 1 ? 'Pending'
+                                        :leaveListByLeaveIdData.leaveStatus == 2 ? 'Approved'
+                                        :leaveListByLeaveIdData.leaveStatus == 4 ? 'Cancled'
+                                        :leaveListByLeaveIdData.leaveStatus == 3 ? 'Rejected' : '' }}
+                                    </span>
+                                </td> -->
+                                <td class="text-color">
+                                    {{leaveListByLeaveIdData.date}}
+                                </td>
+                                <td class="text-color">
+                                    {{leaveListByLeaveIdData.leaveTypeName}}
+                                    <span *ngIf="leaveListByLeaveIdData.lossOfPayType">
+                                        {{leaveListByLeaveIdData.lossOfPayType == 1 ? '(Casual)'
+                                        :leaveListByLeaveIdData.lossOfPayType == 2 ? '(Sick)' :
+                                        leaveListByLeaveIdData.lossOfPayType == 3 ? '(Emergency)' : ''}}</span>
+                                </td>
+                                <td class="text-color">
+                                    {{leaveListByLeaveIdData.leaveIs}}
+                                </td>
+                                <!-- <td class="text-color">
+                                    {{leaveListByLeaveIdData.reason}}
+                                </td> -->
+                            </tr>
+                            <tr *ngIf="noDataForLeave" class="text-center">
+                                <td colspan="6">
+                                    <span>
+                                        <h4>Data Not Found</h4>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="footer-pagination">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- leave apply modal  -->
+<div class="modal quick-edit-modal fade" tabindex="-1" id="apply-leave-modal" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center mb-2 w-100">Apply Leave</h4>
+                <!-- <h4 class="text-center mb-2 w-100">Edit Role Master</h4> -->
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancelLeaveModal()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll">
+                <!-- <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 card-width-fixed"
+                        *ngFor="let leaveCountShowData of leaveCountShowList;let leaveCountIndex = index">
+                        <div class="card mb-3">
+                            <div class="card-body card-body-padding">
+                                <div class="position-relative text-center">
+                                    <div class="mt-2 mb-2">
+                                        <div class="recipe-image">
+                                            <img src="{{leaveCountShowData.img}}" class="leaveCount-images" alt=""
+                                                width="60px" height="60px">
+                                        </div>
+                                    </div>
+                                    <div class="recipe-image-control">
+                                        <button class="border-0 float-right delete-btn-icon">
+                                            {{leaveCountShowData.remainLeave}}
+                                        </button>
+                                    </div>
+                                    <div class="leave-type-name">
+                                        {{leaveCountShowData.leaveType}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> -->
+
+                <form role="form" class="add-employee-form add-leave-border-form" [formGroup]="leaveTypeForm"
+                    autocomplete="off">
+                    <div class="p-3 basic-information-form">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label for="role" class="required">Leave Type</label>
+                                <div class="mb-3">
+                                    <ng-select formControlName="leaveTypeId" [items]="leaveTypeListWithoutLOP" class=""
+                                        bindLabel="leaveType" (change)="getLeaveTypeWiseCountData()"
+                                        placeholder="Select Leave Type">
+                                    </ng-select>
+                                    <div *ngIf="submittedLeaveTypeData && fLeaveTypeData['leaveTypeId'].errors">
+                                        <div *ngIf="fLeaveTypeData['leaveTypeId'].errors['required']">
+                                            <span class="error_msg">Leave Type is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="role" class="required">From Date</label>
+                                <div class="mb-3 position-relative mat-date-picker" (click)="fromDate.open()">
+                                    <input matInput class="form-control" placeholder="Please Select From Date"
+                                        (dateChange)="leaveFromDateChange()" [matDatepicker]="fromDate"
+                                        formControlName="fromDate">
+                                    <div class="mat-dat-picker-icon">
+                                        <div class="calendar-icon"><i class="bx bxs-calendar"></i></div>
+                                        <mat-datepicker-toggle matSuffix [for]="fromDate">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #fromDate></mat-datepicker>
+                                    </div>
+                                    <div *ngIf="submittedLeaveTypeData && fLeaveTypeData['fromDate'].errors">
+                                        <div *ngIf="fLeaveTypeData['fromDate'].errors['required']">
+                                            <span class="error_msg">From Date is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="role" class="required">To Date</label>
+                                <div class="mb-3 position-relative mat-date-picker" (click)="toDate.open()">
+                                    <input matInput class="form-control" (dateChange)="getLeaveTypeWiseCountData()"
+                                        [disabled]="fLeaveTypeData['fromDate'].value == null"
+                                        [min]="fLeaveTypeData['fromDate'].value" placeholder="Please Select To Date"
+                                        [matDatepicker]="toDate" formControlName="toDate">
+                                    <div class="mat-dat-picker-icon">
+                                        <div class="calendar-icon"><i class="bx bxs-calendar"></i></div>
+                                        <mat-datepicker-toggle matSuffix [for]="toDate">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #toDate></mat-datepicker>
+                                    </div>
+                                    <div *ngIf="submittedLeaveTypeData && fLeaveTypeData['toDate'].errors">
+                                        <div *ngIf="fLeaveTypeData['toDate'].errors['required']">
+                                            <span class="error_msg">To Date is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="role" class="required">Reason</label>
+                                <div class="mb-3">
+                                    <textarea rows="2" class="form-control ps-2" formControlName="reason"
+                                        placeholder="Enter Leave Reason"></textarea>
+                                    <div *ngIf="submittedLeaveTypeData && fLeaveTypeData['reason'].errors">
+                                        <div *ngIf="fLeaveTypeData['reason'].errors['required']">
+                                            <span class="error_msg">Reason is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="role" class="">Discuss With</label>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control ps-2" formControlName="leaveapprovedby"
+                                        placeholder="Discuss with">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="text-center">
+                        <button type="button" class="btn bg-gradient-dark my-2"
+                            (click)="setDateWiseLeaveData()">Next</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- leave apply date wise modal -->
+<div class="modal quick-edit-modal fade" tabindex="-1" id="apply-leave-datewise-modal" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center mb-2 w-100">Select Day Type</h4>
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancelDateWiseLeaveModal()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll card-body-padding">
+                <!-- <form role="form" class="add-employee-form add-leave-border-form" [formGroup]="leaveDataForm"
+                    autocomplete="off">
+                    <div class="p-3 basic-information-form leave-form-overflow">
+                        <div formArrayName="leaveData" class="w-100">
+                            <div>
+                                <div [formGroupName]="leaveIndex" class="leave-data-row"
+                                    *ngFor="let item of leaveDataForm.get('leaveData')['controls']; let leaveIndex = index;"> -->
+                                    <!-- <td class="co">
+                                        <div class="">
+
+                                        </div>
+                                        <div class="row">
+                                            {{item.controls.leaveTypeName.value}}
+                                        </div>
+                                        <div class="row">
+                                            {{item.controls.leaveIs.value}}
+                                        </div>
+                                        <div class="row">
+                                            {{item.controls.date.value}}
+                                        </div>
+                                        <div class="row">
+                                            {{item.controls.leaveIs.value}}
+                                        </div>
+                                    </td> -->
+                                    <!-- <div class="row align-items-center">
+                                        <div class="leave-date-mobileView">
+                                            <div class="col-lg-3">
+                                                <span>
+                                                    <strong>{{item.controls.date.value | date : 'dd/MM/yyyy'}}</strong>
+                                                </span>
+                                                <br>
+                                                <span>
+                                                    <strong>{{'('+item.controls.dayName.value+')'}}</strong>
+                                                </span>
+                                                <br>
+                                                <span>
+                                                    {{item.controls.leaveTypeName.value}}
+                                                </span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                Full Day
+                                                <input type="radio" id="{{'leaveIs' + i}}" formControlName="leaveIs"
+                                                    value="fullDay">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                First Half
+                                                <input type="radio" id="{{'leaveIs' + i}}" formControlName="leaveIs"
+                                                    value="firstHalfDay">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                Second Half
+                                                <input type="radio" id="{{'leaveIs' + i}}" formControlName="leaveIs"
+                                                    value="secondHalfDay">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr *ngIf="leaveIndex + 1 != leaveDataArray.length">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form> -->
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="text-center">
+                        <button type="button" class="btn bg-gradient-dark my-2"
+                            (click)="showPreviewListModal()">Next</button>
+                        <!-- <button type="button" class="btn bg-gradient-dark my-2"
+                            (click)="saveLeaveDateWise()">Apply</button> -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- leave apply Preview modal -->
+<div class="modal quick-edit-modal fade" tabindex="-1" id="apply-leave-preview-modal" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center mb-2 w-100">View Leave Details</h4>
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="canclePreviewModal()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll card-body-padding">
+                <form role="form" class="add-employee-form add-leave-border-form" autocomplete="off">
+                    <div class="p-3 basic-information-form leave-form-overflow">
+                        <div class="w-100">
+                            <div>
+                                <div class="leave-data-row"
+                                    *ngFor="let item of showPreviewList; let leaveIndex = index;">
+                                    <div class="row align-items-center">
+                                        <div class="leave-date-mobileView">
+                                            <div class="col-lg-4">
+                                                <span>
+                                                    <strong>{{item.date | date : 'dd/MM/yyyy'}}</strong>
+                                                </span>
+                                                <br>
+                                                <span>
+                                                    <strong>{{'('+item.dayName+')'}}</strong>
+                                                </span>
+
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <span>
+                                                    {{item.leaveTypeName}}
+                                                </span>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <span>
+                                                    {{item.leaveIs}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr *ngIf="leaveIndex+1 != showPreviewList.length">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="text-center">
+                        <button type="button" class="btn bg-gradient-dark my-2"
+                            (click)="saveLeaveDateWise()">Apply</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

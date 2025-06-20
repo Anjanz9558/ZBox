@@ -84,39 +84,39 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   createNewUser(): void {
-    const password = this.registrationForm.get('pwd')?.value;
-    const confirmNewPassword = this.registrationForm.get('confirmpwd')?.value;
+    // const password = this.registrationForm.get('pwd')?.value;
+    // const confirmNewPassword = this.registrationForm.get('confirmpwd')?.value;
 
-    if (password !== confirmNewPassword) {
-        this.registrationForm.get('confirmpwd')?.setErrors({ mismatch: true });
-        return;
-    }
-    if (this.registrationForm.valid) {
+    // if (password !== confirmNewPassword) {
+    //     this.registrationForm.get('confirmpwd')?.setErrors({ mismatch: true });
+    //     return;
+    // }
+    // if (this.registrationForm.valid) {
 
 
-      const userData = this.registrationForm.value; // Get form data
+    //   const userData = this.registrationForm.value; // Get form data
   
-      this.frontLayoutService.createNewUser(userData).subscribe(
-        (response: any) => {
-          this.toastr.success("Customer registration successfully");
+    //   this.frontLayoutService.createNewUser(userData).subscribe(
+    //     (response: any) => {
+    //       this.toastr.success("Customer registration successfully");
 
-          // Assuming the response structure includes 'data' and within it 'user' and 'token'
-          const user = response.data.user;
-          const token = response.data.token;
-          if (user && token) {
-            localStorage.setItem('usertoken', token); // Save token under 'usertoken'
-            localStorage.setItem('customerLoginData',JSON.stringify(user)); 
-              this.router.navigate(['home']);
-          }
-        },
-        (error) => {
-          this.toastr.error(error.error.meta.message);
-        }
+    //       // Assuming the response structure includes 'data' and within it 'user' and 'token'
+    //       const user = response.data.user;
+    //       const token = response.data.token;
+    //       if (user && token) {
+    //         localStorage.setItem('usertoken', token); // Save token under 'usertoken'
+    //         localStorage.setItem('customerLoginData',JSON.stringify(user)); 
+    //           this.router.navigate(['home']);
+    //       }
+    //     },
+    //     (error) => {
+    //       this.toastr.error(error.error.meta.message);
+    //     }
 
-      );
-    } else {
-      this.registrationForm.markAllAsTouched();  
-    }
+    //   );
+    // } else {
+    //   this.registrationForm.markAllAsTouched();  
+    // }
   }
 
   limitContactLength(event: any) {
