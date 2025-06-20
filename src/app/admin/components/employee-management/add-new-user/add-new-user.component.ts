@@ -35,6 +35,7 @@ import { AdminLayoutService } from '../../../../layout/admin-layout/admin-layout
 declare const $: any;
 import moment from 'moment';
 import { ConfirmDirective } from '../../../../shared/directives/common.directive';
+import { StorageKey, StorageService } from '../../../../shared/storage.service';
 
 
 @Component({
@@ -239,6 +240,7 @@ export class AddNewUserComponent implements OnInit {
         private router: Router,
         public commonService: CommonService,
         public adminLayoutService: AdminLayoutService,
+          public storageService: StorageService,
         // private companyManagementService: CompanyManagementService
     ) {
         let pagePermission = { module: "employeelist" }
@@ -521,7 +523,10 @@ export class AddNewUserComponent implements OnInit {
         this.adminLayoutService.SaveUserBasicInfoMaster(usermasterModelObj).subscribe((Response: any) => {
 
             if (Response.meta.code == 200) {
+                console.log(Response.data);
                 this.submitteduserData = false;
+                  this.storageService.setValue(StorageKey.profileImage, Response.data.profile_image);
+
                 if (btnName === 'continue') {
                     this.getBasicInformationDetailsByEmpId();
                     this.router.navigate(['/admin/employee-management/edit-employee/' + Response.data._id]);
@@ -569,7 +574,10 @@ export class AddNewUserComponent implements OnInit {
         this.adminLayoutService.UpdateUserBasicInfoMaster(usermasterModelObj).subscribe((Response: any) => {
 
             if (Response.meta.code == 200) {
+                console.log(Response.data);
+
                 this.submitteduserData = false;
+                  this.storageService.setValue(StorageKey.profileImage, Response.data.profile_image);
                 this.getBasicInformationDetailsByEmpId();
                 $("#add-user-basic-details-modal").modal("hide");
                 // this.commonService.notifier.notify('success', "User Basic Information Updated Successfully.");

@@ -1,19 +1,9 @@
-
-
-<head>
-    
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-</head>
-
-<div class="front-layout" style="font-family: Montserrat,sans-serif;">
-    <!-- <div class="cursor-dot"></div>
-<div class="cursor-ring"></div> -->
-
-    <app-front-header></app-front-header>
-    <router-outlet>
-    </router-outlet>
-    <app-front-footer></app-front-footer>
-    <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    
+<app-front-sidebar/>
+<div class="front-layout">
+<div class="sidenav fixed-start">
+  <main class="main-content position-relative max-height-vh-200 h-100 border-radius-lg ">
+    <app-front-navbar/>
+    <router-outlet></router-outlet>
+  </main>
+</div>
 </div>

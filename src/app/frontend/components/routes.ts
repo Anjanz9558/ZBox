@@ -12,13 +12,21 @@ export const routes: Routes = [
         redirectTo: '',
         pathMatch: 'full'
       },
+      // {
+      //   path: '',
+      //   loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
+      //   data: {
+      //     title: 'Home'
+      //   }
+      // },
       {
-        path: '',
-        loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
+        path: 'leave',
+        loadComponent: () => import('../components/leave-apply/leave-apply.component').then(m => m.LeaveApplyComponent),
         data: {
-          title: 'Home'
+          title: 'Leave Apply'
         }
       },
+
     ]
   },
   // {

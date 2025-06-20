@@ -42,37 +42,10 @@ export class FrontHeaderComponent implements OnInit {
         } 
       });
     
-    this.getAllCategoriesList();
-    this.getGeneralSetting();
-    this.getAllManufacturerList();
+
   }
 
 
-  getAllCategoriesList() {
-    this.frontLayoutService.getHeaderCategories().subscribe((Response: any) => {
-      if (Response.meta.code == 200) {
-        this.allCategoriesList = Response.data;
-      }
-    })
-  }
-
-  getAllManufacturerList() {
-    this.frontLayoutService.getAllHomePageManufacturer().subscribe((response: any) => {
-      if (response.meta.code == 200) {
-        this.allManufacturerList = response.data;
-      }
-    });
-  }
-
-
-  getGeneralSetting() {
-    this.frontLayoutService.getGeneralSetting().subscribe((Response: any) => {
-      if (Response.meta.code == 200) {
-        this.generalSettingData = Response.data;
-        this.selectedImageForLogo = Response.data.storeLogo; // Image URL for storeLogo
-      }
-    })
-  }
 
 
   isLoggedIn(): boolean {

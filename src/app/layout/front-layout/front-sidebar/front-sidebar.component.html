@@ -1,0 +1,441 @@
+<aside
+    class="bg-img sidenav d-none d-xl-block navbar navbar-vertical navbar-expand-xs border-0 shadow blur border-radius-xl  my-2 fixed-start ms-3 scrollbar-morpheus-den"
+    id="sidenav-main">
+    <div class="sidenav-header sticky-top bg-white d-flex">
+
+        <a class="navbar-brand m-0" href="javascript:;" style="min-width: 100%;">
+            <img src="../../../assets/img/balck_full.png" class="navbar-brand-img" alt="main_logo"
+                style="min-width: 100%;">
+        </a>
+        <a (click)="sidebarClose()" href="javascript:;">
+            <i class="fas fa-times p-3 cursor-pointer text-secondary end-0 top-0 d-xl-none" aria-hidden="true"
+                id="iconSidenav"></i>
+        </a>
+    </div>
+    <hr class="horizontal dark mt-0">
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+        <ul class="navbar-nav">
+            <!-- <li class="nav-item">
+                <div class="nav-link">
+                    <div class="mobile-menu-logout-dropdown ">
+                        <a href="javascript:;" class="text-body p-0 d-flex align-items-center" data-toggle="dropdown"> -->
+                            <!-- <i class="fa fa-user mr-10 user-icon"></i> -->
+                            <!-- <img [src]="profileImage" onerror="this.src ='../assets/img/no-image-available.jpg'"
+                                class="user-pic">
+                            <span class="d-sm-block mobile-menu-user-name">{{userName}}</span> -->
+                        <!-- </a>
+                    </div>
+                </div>
+            </li> -->
+
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" (click)="toggleClose()"
+                    routerLink="dashboard" title="Dashboard">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">dashboard</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" (click)="toggleClose()"
+                    routerLink="task-report" title="My Work Report">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">work_history</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">My Work Report</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer"
+                    (click)="toggle[0] = !toggle[0]; toggle[1] = false;  toggle[2] = false" title="Leave Management">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">assignment_late</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Leave Management</span>
+                    <b style="height: 18px;" class="caret-icon caret"></b>
+                </a>
+                <div class="collapse" [ngClass]="toggle[0] ? 'show': ''">
+                    <ul class="nav ml-20">
+                        <li style="list-style-type: none;" routerLinkActive="active" title="Leave" class="nav-item">
+                            <a class=" nav-link cursor-pointer" routerLink="leave">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Leave</span>
+                            </a>
+                        </li>
+                        <li style="list-style-type: none;" routerLinkActive="active" class="nav-item">
+                            <a class=" nav-link cursor-pointer" title="Work From Home" routerLink="work-from-home">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Work From Home</span>
+                            </a>
+                        </li>
+
+                        <li style="list-style-type: none;" routerLinkActive="active" class="nav-item">
+                            <a class=" nav-link cursor-pointer" title="Short Leave" routerLink="short-leave">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Short Leave</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="manual-attendance"
+                    title="Manual Attendance" (click)="toggleClose()">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">free_cancellation</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Manual Attendance</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer" title="Task Management"
+                    (click)="toggle[1] = !toggle[1]; toggle[0] = false;  toggle[2] = false">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">add_task</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Reports</span>
+                    <b style="height: 18px;" class="caret-icon caret"></b>
+                </a>
+                <div class="collapse" [ngClass]="toggle[1] ? 'show': ''">
+                    <ul class="nav ml-20">
+                        <!-- <li style="list-style-type: none;" routerLinkActive="active" class="nav-item">
+                            <a class=" nav-link cursor-pointer" title="Task Board"
+                                routerLink="task-management/task-board">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Task Board</span>
+                            </a>
+                        </li> -->
+                        <!-- <li style="list-style-type: none;" routerLinkActive="active" class="nav-item"
+                            *ngIf="assignProjectListShowHide == true">
+                            <a class=" nav-link cursor-pointer" title="Assign Project List"
+                                routerLink="task-management/assign-project-list">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Assign Project List</span>
+                            </a>
+                        </li> -->
+                        <!-- <li style="list-style-type: none;" routerLinkActive="active" class="nav-item">
+                            <a class=" nav-link cursor-pointer" routerLink="task-report" title="Task Report">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Task Report</span>
+                            </a>
+                        </li> -->
+                        <!-- <li style="list-style-type: none;" routerLinkActive="active" class="nav-item"
+                            *ngIf="empTaskReport == false">
+                            <a class=" nav-link cursor-pointer"
+                                routerLink="task-management/employee-wise-assign-task-list"
+                                title="Employee Assign Task List">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Employee Assign Task List</span>
+                            </a>
+                        </li> -->
+                        
+                        <li style="list-style-type: none;" routerLinkActive="active" class="nav-item">
+                            <a class=" nav-link cursor-pointer" routerLink="summary-report"
+                                title="Summary Report">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Attendance Report</span>
+                            </a>
+                        </li>
+                        <li style="list-style-type: none;" routerLinkActive="active" class="nav-item"
+                            *ngIf="empTaskReport == false">
+                            <a class=" nav-link cursor-pointer" routerLink="employee-task-report"
+                                title="Employee Task Report">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Employee Task Report</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item" *ngIf="empTaskReport == false || assignProjectListShowHide == true">
+                <a class="nav-link cursor-pointer" title="Task Management"
+                    (click)="toggle[2] = !toggle[2]; toggle[0] = false;  toggle[1] = false">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">group</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Team Management</span>
+                    <b style="height: 18px;" class="caret-icon caret"></b>
+                </a>
+                <div class="collapse" [ngClass]="toggle[2] ? 'show': ''">
+                    <ul class="nav ml-20">
+                        <!-- <li style="list-style-type: none;" routerLinkActive="active" class="nav-item">
+                            <a class=" nav-link cursor-pointer" title="Task Board"
+                                routerLink="task-management/task-board">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Task Board</span>
+                            </a>
+                        </li> -->
+                        <!-- <li class="nav-item" *ngIf="empTaskReport == false">
+                            <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="assign-user-status"
+                                title="User Current Status" (click)="toggleClose()">
+                                <div
+                                    class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                    <i class="material-icons">person</i>
+                                </div>
+                                <span class="nav-link-text ms-1 sidebar-ellips">User Current Status</span>
+                            </a>
+                        </li> -->
+                        <li style="list-style-type: none;" routerLinkActive="active" class="nav-item"
+                            *ngIf="empTaskReport == false">
+                            <a class=" nav-link cursor-pointer" title="User Current Status"
+                                routerLink="assign-user-status">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Change Employee Time</span>
+                            </a>
+                        </li>
+                        <li style="list-style-type: none;" routerLinkActive="active" class="nav-item"
+                            *ngIf="assignProjectListShowHide == true">
+                            <a class=" nav-link cursor-pointer" title="Assign Project List"
+                                routerLink="task-management/assign-project-list">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Assign Project List</span>
+                            </a>
+                        </li>
+                        <li style="list-style-type: none;" *ngIf="empTaskReport == false" routerLinkActive="active"
+                            class="nav-item">
+                            <a class=" nav-link cursor-pointer" title="Employees Leave List"
+                                routerLink="employee-leave-list">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Employees Leave List</span>
+                                <span class="ct-docs-sidenav-pro-badge"
+                                    [ngClass]="pendingDataCount?.pendingLeave != 0 ? 'd-block' : 'd-none'">{{pendingDataCount?.pendingLeave}}</span>
+                            </a>
+                        </li>
+
+                        <li style="list-style-type: none;" *ngIf="empTaskReport == false" routerLinkActive="active"
+                            class="nav-item">
+                            <a class=" nav-link cursor-pointer" title="Employees Work From Home"
+                                routerLink="employee-work-from-home">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Employees Work From Home</span>
+                                <span class="ct-docs-sidenav-pro-badge"
+                                    [ngClass]="pendingDataCount?.pendingWorkFromHome != 0 ? 'd-block' : 'd-none'">{{pendingDataCount?.pendingWorkFromHome}}</span>
+                            </a>
+                        </li>
+
+                        <li style="list-style-type: none;" *ngIf="empTaskReport == false" routerLinkActive="active"
+                            class="nav-item">
+                            <a class=" nav-link cursor-pointer" title="Employees Short Leave List"
+                                routerLink="employee-short-leave">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Employees Short Leave List</span>
+                                <span class="ct-docs-sidenav-pro-badge"
+                                    [ngClass]="pendingDataCount?.pendingShortLeave != 0 ? 'd-block' : 'd-none'">{{pendingDataCount?.pendingShortLeave}}</span>
+                            </a>
+                        </li>
+                        <!-- <li style="list-style-type: none;" routerLinkActive="active" class="nav-item">
+                            <a class=" nav-link cursor-pointer" routerLink="task-report" title="Task Report">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Task Report</span>
+                            </a>
+                        </li> -->
+                        <!-- <li style="list-style-type: none;" routerLinkActive="active" class="nav-item"
+                            *ngIf="empTaskReport == false">
+                            <a class=" nav-link cursor-pointer"
+                                routerLink="task-management/employee-wise-assign-task-list"
+                                title="Employee Assign Task List">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Employee Assign Task List</span>
+                            </a>
+                        </li> -->
+
+                        <!-- <li style="list-style-type: none;" routerLinkActive="active" class="nav-item"
+                            *ngIf="empTaskReport == false">
+                            <a class=" nav-link cursor-pointer" routerLink="employee-task-report"
+                                title="Employee Task Report">
+                                <i class="ms-3 material-icons">fiber_manual_record</i>
+                                <span class="sidebar-normal sidebar-ellips">Employee Task Report</span>
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+            </li>
+
+            <!-- <li class="nav-item">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="summary-report"
+                    title="Summary Report" (click)="toggleClose()">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">report</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Summary Report</span>
+                </a>
+            </li> -->
+
+
+
+            <!-- <li class="nav-item">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="task-management/task-board"
+                    title="Assign Project List" (click)="toggleClose()">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">task</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Task Board</span>
+                </a>
+            </li> -->
+
+
+
+            <!-- <li class="nav-item">
+                <a class="nav-link cursor-pointer" routerLinkActive="active"
+                    routerLink="task-management/assign-project-list" title="Assign Project List">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">add_task</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Assign Project List</span>
+                </a>
+            </li> -->
+
+            <!-- <li class="nav-item">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="tickets/tickets-list"
+                    title="Tickets" (click)="toggleClose()">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">confirmation_number</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Tickets</span>
+                </a>
+            </li> -->
+
+
+
+            <!-- <li class="nav-item" *ngIf="empTaskReport == false">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="employee-task-report"
+                    title="Employee Task Report">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">add_task</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Employee Task Report</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="task-report"
+                    title="Task Report">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">add_task</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Task Report</span>
+                </a>
+            </li> -->
+
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer" (click)="toggleClose()" routerLinkActive="active"
+                    routerLink="interview" title="Interview">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">event</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Interview</span>
+                </a>
+            </li>
+
+
+
+            <!-- <li class="nav-item">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="leave" title="Leave">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">assignment_late</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Leave</span>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="empTaskReport == false">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="employee-leave-list"
+                    title="Employees Leave List">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">assignment_late</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Employees Leave List</span>
+                    <span class="ct-docs-sidenav-pro-badge"
+                        [ngClass]="pendingDataCount?.pendingLeave != 0 ? 'd-block' : 'd-none'">{{pendingDataCount?.pendingLeave}}</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="work-from-home"
+                    title="Work From Home">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">assignment_late</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Work From Home</span>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="empTaskReport == false">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="employee-work-from-home"
+                    title="Employees Work From Home">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">assignment_late</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Employees Work From Home</span>
+                    <span class="ct-docs-sidenav-pro-badge"
+                        [ngClass]="pendingDataCount?.pendingWorkFromHome != 0 ? 'd-block' : 'd-none'">{{pendingDataCount?.pendingWorkFromHome}}</span>
+                </a>
+            </li> -->
+            <!-- <li class="nav-item">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="short-leave"
+                    title="Short Leave">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">assignment_late</i>
+                    </div>
+                    <span title="Employees Short Leave List" class="nav-link-text ms-1 sidebar-ellips">Short
+                        Leave</span>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="empTaskReport == false">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="employee-short-leave"
+                    title="Employees Short Leave List">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">assignment_late</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Employees Short Leave List</span>
+                    <span class="ct-docs-sidenav-pro-badge"
+                        [ngClass]="pendingDataCount?.pendingShortLeave != 0 ? 'd-block' : 'd-none'">{{pendingDataCount?.pendingShortLeave}}</span>
+                </a>
+            </li> -->
+
+            <li class="nav-item mobile-menu-logout-dropdown">
+                <a class="nav-link cursor-pointer" routerLinkActive="active" routerLink="leave" (click)="logout()">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons">logout</i>
+                    </div>
+                    <span class="nav-link-text ms-1 sidebar-ellips">Logout</span>
+                </a>
+            </li>
+
+            <!-- <li class="nav-item">
+                <div class="nav-link">
+                    <div class="mobile-menu-logout-dropdown">
+                        <button class="btn bg-gradient-dark d-block" (click)="logout()">
+                            LOGOUT
+                        </button>
+                    </div>
+                </div>
+            </li> -->
+
+        </ul>
+    </div>
+    <!-- <img src="../../../assets/img/Asset-2.png" class="sidebar-bg-effect"> -->
+</aside>
