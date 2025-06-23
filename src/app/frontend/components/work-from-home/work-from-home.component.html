@@ -1,0 +1,281 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="row mt-15" style="padding-right: 15px;padding-top: 15px;">
+                    <div class="">
+                        <a class="btn bg-gradient-dark mb-0 add-btn d-block" (click)="wfhModalOpen()">Apply
+                            Work From Home</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="theme-color">Status</th>
+                                    <th class="theme-color">From Date</th>
+                                    <th class="theme-color">To Date</th>
+                                    <th class="theme-color">Reason</th>
+                                    <th class="theme-color">Remark</th>
+                                    <th class="theme-color">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let wfhDataList of wfhListData;let menuIndex = index"
+                                    class="hover-table-row">
+                                    <td class="text-color">
+                                        <span class="badge" [ngClass]="{'bg-gradient-success' : wfhDataList.workFromHomeStatus == 2,
+                                            'bg-gradient-danger' : wfhDataList.workFromHomeStatus == 3 || wfhDataList.workFromHomeStatus == 4,
+                                            'bg-gradient-warning' : wfhDataList.workFromHomeStatus == 1
+                                    }">
+                                            {{wfhDataList.workFromHomeStatus == 1 ? 'Pending'
+                                            :wfhDataList.workFromHomeStatus == 2 ? 'Approved'
+                                            :wfhDataList.workFromHomeStatus == 4 ? 'Cancle'
+                                            :wfhDataList.workFromHomeStatus == 3 ? 'Reject' : '' }}
+                                        </span>
+                                    </td>
+                                    <td class="text-color">
+                                        {{wfhDataList.fromDate}}
+                                    </td>
+                                    <td class="text-color">
+                                        {{wfhDataList.toDate}}
+                                    </td>
+                                    <td class="text-color white-space-normal">
+                                        {{wfhDataList.reason}}
+                                    </td>
+                                    <td class="text-color white-space-normal">
+                                        {{wfhDataList.remark}}
+                                    </td>
+                                    <td class="text-color">
+                                        <ul class="d-flex align-items-center action-list p-0">
+                                            <li class="action-list-item me-3"
+                                                *ngIf="wfhDataList.workFromHomeStatus == 1">
+                                                <div (click)="cancelWFHRemarkModalOpen(wfhDataList._id)"
+                                                    title="Cancle Work From Home"
+                                                    class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-dark text-center me-2 d-flex align-items-center cursor-pointer justify-content-center">
+                                                    <!-- <i class="material-icons">{{menuItem.icon}}</i> -->
+                                                    <i class="fa fa-times"></i>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="noData" class="text-center">
+                                    <td colspan="5">
+                                        <span>
+                                            <h4>Data Not Found</h4>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="footer-pagination">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal quick-edit-modal fade" tabindex="-1" id="apply-wfh-modal" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center mb-2 w-100">Apply Work From Home</h4>
+                <!-- <h4 class="text-center mb-2 w-100">Edit Role Master</h4> -->
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancelWFHModal()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll">
+
+                <form role="form" class="add-employee-form add-leave-border-form" [formGroup]="wfhForm"
+                    autocomplete="off">
+                    <div class="p-3 basic-information-form">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="role" class="required">From Date</label>
+                                <div class="mb-3 position-relative mat-date-picker" (click)="fromDate.open()">
+                                    <input matInput class="form-control" placeholder="Please Select From Date"
+                                        (dateChange)="WFHFromDateChange()" [matDatepicker]="fromDate"
+                                        formControlName="fromDate">
+                                    <div class="mat-dat-picker-icon">
+                                        <div class="calendar-icon"><i class="bx bxs-calendar"></i></div>
+                                        <mat-datepicker-toggle matSuffix [for]="fromDate">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #fromDate></mat-datepicker>
+                                    </div>
+                                    <div *ngIf="submittedWFHData && fWFHData['fromDate'].errors">
+                                        <div *ngIf="fWFHData['fromDate'].errors['required']">
+                                            <span class="error_msg">From Date is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="role" class="required">To Date</label>
+                                <div class="mb-3 position-relative mat-date-picker" (click)="toDate.open()">
+                                    <input matInput class="form-control" [disabled]="fWFHData['fromDate'].value == null"
+                                        [min]="fWFHData['fromDate'].value" placeholder="Please Select To Date"
+                                        [matDatepicker]="toDate" formControlName="toDate">
+                                    <div class="mat-dat-picker-icon">
+                                        <div class="calendar-icon"><i class="bx bxs-calendar"></i></div>
+                                        <mat-datepicker-toggle matSuffix [for]="toDate">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #toDate></mat-datepicker>
+                                    </div>
+                                    <div *ngIf="submittedWFHData && fWFHData['toDate'].errors">
+                                        <div *ngIf="fWFHData['toDate'].errors['required']">
+                                            <span class="error_msg">To Date is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="role" class="required">Reason</label>
+                                <div class="mb-3">
+                                    <textarea rows="2" class="form-control ps-2" formControlName="reason"
+                                        placeholder="Enter Work From Home Reason"></textarea>
+                                    <div *ngIf="submittedWFHData && fWFHData['reason'].errors">
+                                        <div *ngIf="fWFHData['reason'].errors['required']">
+                                            <span class="error_msg">Reason is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="role" class="required">Discuss With</label>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control ps-2"
+                                        formControlName="workFromHomeApprovedby" placeholder="Discuss With">
+                                    <div *ngIf="submittedWFHData && fWFHData['workFromHomeApprovedby'].errors">
+                                        <div *ngIf="fWFHData['workFromHomeApprovedby'].errors['required']">
+                                            <span class="error_msg">Approved By is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="text-center">
+                        <button type="button" class="btn bg-gradient-dark my-2"
+                            (click)="saveWorkFromHomeData()">Save</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal quick-edit-modal fade" tabindex="-1" id="cancel-WFH-modal" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center mb-2 w-100">Cancel Remark</h4>
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancleWFHRemarkModal()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label for="role" class="required">Remark</label>
+                        <div class="mb-3">
+                            <textarea name="" class="form-control ps-2" id="" [(ngModel)]="remark" placeholder="Remark"
+                                rows="3"></textarea>
+                            <div *ngIf="submittedWFHRemark && !remark">
+                                <span class="error_msg">Enter Remark</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="text-center">
+                        <button type="button" (click)="cancleWorkFromHome()" class="btn bg-gradient-dark my-2">Cancle
+                            Work From
+                            Home</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- leave apply date wise modal -->
+<!-- <div class="modal quick-edit-modal fade" tabindex="-1" id="apply-wfh-date-wise" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center mb-2 w-100">Select Day Type</h4>
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancelDateWiseLeaveModal()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll card-body-padding">
+                <form role="form" class="add-employee-form add-leave-border-form" [formGroup]="WFHDataForm"
+                    autocomplete="off">
+                    <div class="p-3 basic-information-form leave-form-overflow">
+                        <div formArrayName="leaveData" class="w-100">
+                            <div>
+                                <div [formGroupName]="leaveIndex" class="leave-data-row"
+                                    *ngFor="let item of WFHDataForm.get('leaveData')['controls']; let leaveIndex = index;">
+                                    <div class="row align-items-center">
+                                        <div class="leave-date-mobileView">
+                                            <div class="col-lg-3">
+                                                <span>
+                                                    <strong>{{item.controls.date.value | date : 'dd/MM/yyyy'}}</strong>
+                                                </span>
+                                                <br>
+                                                <span>
+                                                    <strong>{{'('+item.controls.dayName.value+')'}}</strong>
+                                                </span>
+                                                <br>
+                                                <span>
+                                                    {{item.controls.leaveTypeName.value}}
+                                                </span>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                Full Day
+                                                <input type="radio" id="{{'leaveIs' + i}}" formControlName="leaveIs"
+                                                    value="fullDay">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                First Half
+                                                <input type="radio" id="{{'leaveIs' + i}}" formControlName="leaveIs"
+                                                    value="firstHalfDay">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                Second Half
+                                                <input type="radio" id="{{'leaveIs' + i}}" formControlName="leaveIs"
+                                                    value="secondHalfDay">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr *ngIf="leaveIndex+1 != WFHDataForm.controls.leaveData.length">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="text-center">
+                        <button type="button" class="btn bg-gradient-dark my-2"
+                            (click)="saveLeaveDateWise()">Apply</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> -->

@@ -33,6 +33,13 @@ export const routes: Routes = [
           title: 'Leave Apply'
         }
       },
+       {
+        path: 'work-from-home',
+        loadComponent: () => import('../components/work-from-home/work-from-home.component').then(m => m.WorkFromHomeComponent),
+        data: {
+          title: 'Work From Home'
+        }
+      },
 
     ]
   },
