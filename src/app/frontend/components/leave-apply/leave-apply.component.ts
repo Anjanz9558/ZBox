@@ -30,7 +30,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-NgSelectModule
+    NgSelectModule
   ],
   templateUrl: './leave-apply.component.html',
   styleUrl: './leave-apply.component.scss'
@@ -298,7 +298,9 @@ export class LeaveApplyComponent implements OnInit {
     this.defaultLeaveDataForm();
     this.submittedLeaveTypeData = false;
     this.leaveDataListFormArray.clear();
-    $("#apply-leave-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+    $("#apply-leave-modal").modal({ backdrop: 'static', keyboard: false });
+    $("#apply-leave-modal").modal('show');
+
   }
   cancelLeaveModal() {
     this.defaultForm();
@@ -394,7 +396,9 @@ export class LeaveApplyComponent implements OnInit {
 
 
     $("#apply-leave-modal").modal('hide');
-    $("#apply-leave-datewise-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+    $("#apply-leave-datewise-modal").modal({ backdrop: 'static', keyboard: false });
+    $("#apply-leave-datewise-modal").modal('show');
+
   }
 
   transform(collection: any[], property: string): any {
@@ -416,7 +420,9 @@ export class LeaveApplyComponent implements OnInit {
   cancelDateWiseLeaveModal() {
     this.defaultLeaveDataForm();
     this.leaveDataListFormArray.clear();
-    $("#apply-leave-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+    $("#apply-leave-modal").modal({ backdrop: 'static', keyboard: false});
+    $("#apply-leave-modal").modal('show');
+
     $("#apply-leave-datewise-modal").modal('hide');
   }
   canclePreviewModal() {
@@ -427,7 +433,9 @@ export class LeaveApplyComponent implements OnInit {
     this.isLossOfPay = false;
     $("#apply-leave-preview-modal").modal('hide');
     $("#apply-leave-modal").modal('hide');
-    $("#apply-leave-datewise-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+    $("#apply-leave-datewise-modal").modal({ backdrop: 'static', keyboard: false});
+    $("#apply-leave-datewise-modal").modal('show');
+
   }
 
   showPreviewList: any[] = []
@@ -807,7 +815,9 @@ export class LeaveApplyComponent implements OnInit {
 
 
     $("#apply-leave-datewise-modal").modal('hide');
-    $("#apply-leave-preview-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+    $("#apply-leave-preview-modal").modal({ backdrop: 'static', keyboard: false});
+    $("#apply-leave-preview-modal").modal('show');
+
   }
 
   // showPreviewListModal() {
@@ -1113,7 +1123,9 @@ export class LeaveApplyComponent implements OnInit {
           let Bdate = new Date(b.date.split('/')[2] + '-' + b.date.split('/')[1] + '-' + b.date.split('/')[0])
           return (Adate < Bdate ? -1 : 1) * (true ? 1 : -1)
         });
-        $("#leave-List-LeaveID-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+        $("#leave-List-LeaveID-modal").modal({ backdrop: 'static', keyboard: false});
+        $("#leave-List-LeaveID-modal").modal('show');
+
         this.noDataForLeave = false;
       }
       else {

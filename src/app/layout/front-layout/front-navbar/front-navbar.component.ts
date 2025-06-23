@@ -6,7 +6,7 @@ import { environment } from '../../../../environments/environment';
 import { FrontLayoutService } from '../../front-layout/front-layout.service';
 import { SocketIOService } from '../../front-layout/socket-io.service';
 import { CommonService } from '../../../shared/common.service';
-import { NiceDateFormatPipe } from 'src/app/shared/pipe/common.pipe';
+import { NiceDateFormatPipe } from '../../../shared/pipe/common.pipe';
 declare const $: any;
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
