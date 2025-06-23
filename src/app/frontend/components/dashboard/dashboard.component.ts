@@ -41,6 +41,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ArraySortPipeAsc,
     ArraySortPipeSimple,
     FilterPipe,
+    DatePipe
+  ],
+  providers: [
+    DatePipe 
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
