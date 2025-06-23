@@ -98,7 +98,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link cursor-pointer" title="Task Management"
+                <!-- <a class="nav-link cursor-pointer" title="Task Management"
                     (click)="toggle[1] = !toggle[1]; toggle[0] = false;  toggle[2] = false">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -106,7 +106,7 @@
                     </div>
                     <span class="nav-link-text ms-1 sidebar-ellips">Reports</span>
                     <b style="height: 18px;" class="caret-icon caret"></b>
-                </a>
+                </a> -->
                 <div class="collapse" [ngClass]="toggle[1] ? 'show': ''">
                     <ul class="nav ml-20">
                         <!-- <li style="list-style-type: none;" routerLinkActive="active" class="nav-item">
@@ -147,20 +147,20 @@
                                 <span class="sidebar-normal sidebar-ellips">Attendance Report</span>
                             </a>
                         </li>
-                        <li style="list-style-type: none;" routerLinkActive="active" class="nav-item"
+                        <!-- <li style="list-style-type: none;" routerLinkActive="active" class="nav-item"
                             *ngIf="empTaskReport == false">
                             <a class=" nav-link cursor-pointer" routerLink="employee-task-report"
                                 title="Employee Task Report">
                                 <i class="ms-3 material-icons">fiber_manual_record</i>
                                 <span class="sidebar-normal sidebar-ellips">Employee Task Report</span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </li>
 
             <li class="nav-item" *ngIf="empTaskReport == false || assignProjectListShowHide == true">
-                <a class="nav-link cursor-pointer" title="Task Management"
+                <!-- <a class="nav-link cursor-pointer" title="Task Management"
                     (click)="toggle[2] = !toggle[2]; toggle[0] = false;  toggle[1] = false">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -168,7 +168,7 @@
                     </div>
                     <span class="nav-link-text ms-1 sidebar-ellips">Team Management</span>
                     <b style="height: 18px;" class="caret-icon caret"></b>
-                </a>
+                </a> -->
                 <div class="collapse" [ngClass]="toggle[2] ? 'show': ''">
                     <ul class="nav ml-20">
                         <!-- <li style="list-style-type: none;" routerLinkActive="active" class="nav-item">

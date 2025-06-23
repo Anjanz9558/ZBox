@@ -14,6 +14,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { FrontLayoutService } from '../../../layout/front-layout/front-layout.service';
 declare const $: any;
 import moment from 'moment';
+import swal from 'sweetalert';
 import { ConfirmDirective } from '../../../shared/directives/common.directive';
 import { ArraySortPipeAsc, ArraySortPipeDesc, ArraySortPipeSimple, FilterPipe, GroupByPipe, NiceTimePipe } from '../../../shared/pipe/common.pipe';
 import { NgSelectModule } from '@ng-select/ng-select';
