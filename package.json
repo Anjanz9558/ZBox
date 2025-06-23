@@ -63,6 +63,7 @@
     "ng2-search-filter": "^0.5.1",
     "ngx-chips": "^3.0.0",
     "ngx-cookie-service": "^19.1.2",
+    "ngx-device-detector": "^10.0.2",
     "ngx-infinite-scroll": "^19.0.0",
     "ngx-mat-select-search": "^8.0.2",
     "ngx-owl-carousel-o": "^19.0.0",

@@ -20,6 +20,13 @@ export const routes: Routes = [
       //   }
       // },
       {
+        path: 'dashboard',
+        loadComponent: () => import('../components/dashboard/dashboard.component').then(m => m.DashboardComponent),
+        data: {
+          title: 'Leave Apply'
+        }
+      },
+      {
         path: 'leave',
         loadComponent: () => import('../components/leave-apply/leave-apply.component').then(m => m.LeaveApplyComponent),
         data: {

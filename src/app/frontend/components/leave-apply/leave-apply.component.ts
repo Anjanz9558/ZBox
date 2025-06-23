@@ -18,7 +18,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-leave-apply',
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatRippleModule,
@@ -30,7 +31,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-NgSelectModule
+    NgSelectModule
   ],
   templateUrl: './leave-apply.component.html',
   styleUrl: './leave-apply.component.scss'
@@ -319,7 +320,7 @@ export class LeaveApplyComponent implements OnInit {
 
     let fromDate = this.leaveTypeForm.value.fromDate
 
-    let dateArray = [];
+    let dateArray: any = [];
     let holidayArray: any = [];
 
 
@@ -449,7 +450,7 @@ export class LeaveApplyComponent implements OnInit {
     let dateWiseArray = this.transform(this.leaveDataForm.controls['leaveData'].value, 'month');
 
 
-    let leaveCalculationArrayData = [];
+    let leaveCalculationArrayData: any = [];
     let fromMonth = parseInt(moment(this.leaveTypeForm.value.fromDate).format('M'))
     let toMonth = parseInt(moment(this.leaveTypeForm.value.toDate).format('M'))
     let month = fromMonth
@@ -635,10 +636,10 @@ export class LeaveApplyComponent implements OnInit {
 
               if (k + 1 == dateWiseArray[i].value?.length) {
                 if (leaveCalculationArrayData.length > 1) {
-                  leaveCalculationArrayData.forEach((data, index) => {
+                  leaveCalculationArrayData.forEach((data: any, index: any) => {
                     if (countData.month == data.month && data.leaveCount != 0) {
                       let newCount = data.leaveCount;
-                      leaveCalculationArrayData.forEach((data1) => {
+                      leaveCalculationArrayData.forEach((data1: any) => {
                         if (countData.month + 1 == data1.month) {
                           data1.leaveCount = newCount + data1.leaveCount;
                         }

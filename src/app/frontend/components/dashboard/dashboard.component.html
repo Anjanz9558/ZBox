@@ -1,0 +1,1065 @@
+<div class="container-fluid py-4">
+    <!-- <div class="card mb-3">
+        <div class="card-body">
+            <div [formGroup]="dayreportForm">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group mb-0">
+                            <div class="form-control d-flex">
+                                <span class="me-3">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                                <span>{{currentDate}}</span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group mb-0">
+                            <div class="form-control">
+                                <span class="me-3"><i class="fa fa-clock"></i></span>
+                                <span>{{currentTime}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group mb-0">
+                            <ng-select formControlName="action" [items]="actionList" class="" bindLabel="name"
+                                bindValue="value" placeholder="Select Action">
+                            </ng-select>
+                        </div>
+                        <div *ngIf="submitData && fData.action.errors">
+                            <div *ngIf="fData.action.errors.required">
+                                <span class="error_msg">Please select action.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="float-left">
+                            <a class="btn bg-gradient-dark mb-0 add-btn d-block"
+                                (click)="saveDayreport()">&nbsp;&nbsp;Submit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="theme-color">Action</th>
+                                    <th class="theme-color">Date</th>
+                                    <th class="theme-color">Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let dailyReportData of dailyReportList">
+
+                                    <td class="text-color">
+                                        {{actionList[dailyReportData.dayReportType - 1].name}}
+                                    </td>
+                                    <td class="text-color">
+                                        {{dailyReportData.dateTime | date: 'dd/MM/yyyy'}}
+                                    </td>
+                                    <td class="text-color">
+                                        {{dailyReportData.dateTime | date: 'hh:mm:ss a'}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="footer-pagination">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col-lg-6 ">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="card-title">Timesheet <br><small class="text-muted">{{date | date: 'dd MMM, yyyy'}}</small>
+                        </h5>
+                        <h5><i class="fa fa-user-clock" (click)="openViewActivityModal()" title="View Today's Activity"
+                                style="cursor: pointer;"></i></h5>
+                    </div>
+                    <!-- <div class="punch-det mb-3">
+                        <h6>Punch In at</h6>
+                        <p>{{checkInTimeInDate}}</p>
+                    </div> -->
+                    <div class="d-flex justify-content-around align-items-center">
+                        <div class="punch-info mb-0">
+                            <div class="donat inner-circle">
+                                <h6>Production</h6>
+                                <p>{{productionTime}}</p>
+                            </div>
+                        </div>
+    
+                        <span>+</span>
+                        <div class="punch-info mb-0">
+                            <div class="punch-hours">
+                                <div class="text-center">
+                                    <h6>Break Time</h6>
+                                    <p>{{breakTime}}</p>
+                                    <!-- <p *ngIf="isBreakStart === true">{{breakTimeSW}}</p> -->
+                                </div>
+                            </div>
+    
+                        </div>
+                        <span>=</span>
+                        <div class="punch-info mb-0">
+                            <div class="punch-hours">
+                                <div class="text-center">
+                                    <h6>Total Time</h6>
+                                    <p *ngIf="isCheckOut === false">{{totalTime}}</p>
+                                    <p *ngIf="isCheckOut === true">{{totalTimeAfterCheckOut}}</p>
+    
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-around"
+                        *ngIf="(os == 'Windows' || os == 'Mac' ) && deviceType == 'desktop'">
+                        <div class="text-center" *ngIf="isCheckIn === false">
+                            <button class="btn bg-gradient-dark d-block mt-3" (click)="getIPAddress(1)">Check
+                                In</button>
+                        </div>
+                        <div class="text-center" *ngIf="isCheckIn === true && isCheckOut === false">
+                            <button class="btn bg-gradient-dark d-block mt-3" (click)="getIPAddress(2)">Check
+                                Out</button>
+                        </div>
+                        <!-- <div class="text-center" *ngIf="isCheckIn === true && isCheckOut === false">
+                                    <button class="btn bg-gradient-dark d-block mt-3" (confirm-click)="getIPAddress(2)"
+                                        appConfirm [confirmTitle]="'Check Out'"
+                                        [confirmContent]="'Are you sure Want to Check Out?'">Check Out</button>
+                                </div> -->
+                        <div class="text-center" *ngIf="isCheckIn === true && isBreak === false && isCheckOut === false">
+                            <button class="btn bg-gradient-dark d-block mt-3" (click)="getIPAddress(3)">Break
+                                Start</button>
+                        </div>
+                        <!-- <div class="text-center"
+                                    *ngIf="isCheckIn === true && isBreak === false && isCheckOut === false">
+                                    <button class="btn bg-gradient-dark d-block mt-3" (confirm-click)="getIPAddress(3)"
+                                        appConfirm [confirmTitle]="'Break Start'"
+                                        [confirmContent]="'Are you sure Want to Start Break?'">Break
+                                        Start</button>
+                                </div> -->
+                        <div class="text-center" *ngIf="isCheckIn === true && isBreak === true && isCheckOut === false">
+                            <button class="btn bg-gradient-dark d-block mt-3" [disabled]="breakButtonDisabled == true"
+                                (click)="getIPAddress(4)">Break
+                                End</button>
+                        </div>
+                        <!-- <div class="text-center" *ngIf="isCheckIn === true && isBreak === true && isCheckOut === false">
+                                    <button class="btn bg-gradient-dark d-block mt-3" (confirm-click)="getIPAddress(4)"
+                                        appConfirm [confirmTitle]="'Break End'"
+                                        [confirmContent]="'Are you sure Want to Start End?'">Break
+                                        End</button>
+                                </div> -->
+                    </div>
+                    <div class="punch-det" style="margin-top: 0.75rem !important; margin-bottom: 0px !important;" *ngIf="isCheckOut">
+                        <!-- <div>
+                            <h6>Punch In at</h6>
+                            <p>{{checkInTimeInDate}}</p>
+                        </div>
+                        <div>
+                            <h6>Punch Out at</h6>
+                            <p>{{checkOutTimeInDate}}</p>
+                        </div> -->
+                        <div class="d-flex justify-content-between">
+                            <h6>Punch In at</h6>
+                            <h6>Punch Out at</h6>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p>{{checkInTimeInDate}}</p>
+                            <p>{{checkOutTimeInDate}}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="punch-det mt-3">
+                                <h6>Punch Out at</h6>
+                                <p>{{checkOutTimeInDate}}</p>
+                            </div> -->
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-lg-6">
+    
+            <!-- <div class="col-lg-12"> -->
+            <div class="card">
+                <form [formGroup]="leaveOrWFHForm" class="mb-0">
+                    <div class="tabs">
+                        <input type="radio" id="leave" value="1" formControlName="searchBy">
+                        <label for="leave" class="tab">Today Leave<span class="badge bg-light text-dark rounded-pill px-2 py-1 ms-3">{{allPersonLeaveList.length}}</span></label>
+                        <input type="radio" id="wfh" value="2" formControlName="searchBy">
+                        <label for="wfh" class="tab">Today WFH<span class="badge bg-light text-dark rounded-pill px-2 py-1 ms-3">{{allPersonWFHList.length}}</span></label>
+                        <span class="glider bg-gradient-dark"></span>
+                    </div>
+                </form>
+                <div class="card-body" *ngIf="leaveOrWFHForm.value.searchBy == 1">
+                    <!-- <h5 class="card-title align-items-center d-flex">
+                        <span>Today Absent</span>
+                        
+                    </h5> -->
+                    <div style="height: 207px; overflow: auto;">
+                        <div class="leave-info-box" style="border-radius: 10px;"
+                            *ngFor="let allPersonLeaveListData of allPersonLeaveList;let indexLeave = index">
+                            <div class="media align-items-center d-flex">
+                                <a class="avatar">
+                                    <img alt="" onerror="this.src ='../assets/img/no-image-available.jpg'" class="h-100"
+                                        [src]="commonService.rootData.uploadsUrl+'photos/'+ allPersonLeaveListData.profile_image">
+                                </a>
+                                <div class="media-body flex-grow-1">
+                                    <div class="text-sm my-0"><b>{{allPersonLeaveListData.userName}}</b></div>
+                                    <h6 class="mb-0">
+                                        {{allPersonLeaveListData.leaveIs == 'fullDay' ? 'Full Day' :
+                                        allPersonLeaveListData.leaveIs == 'firstHalfDay' ? 'First Half Day' :
+                                        allPersonLeaveListData.leaveIs == 'secondHalfDay' ? 'Second Half Day' : ''
+                                        }}
+                                    </h6>
+                                </div>
+                            </div>
+                            
+                        
+                        </div>
+                        <div class="leave-info-box text-center m-auto" style="height: 207px; border-radius: 10px;"
+                            *ngIf="allPersonLeaveList.length == 0">
+                            <span class="d-flex justify-content-center align-items-center h-100">
+                                <h4>Data Not Found</h4>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body" *ngIf="leaveOrWFHForm.value.searchBy == 2">
+                    <!-- <h5 class="card-title  align-items-center d-flex"><span>Today Work From Home</span>
+                                        
+                                    </h5> -->
+                    <div style="height: 207px; overflow: auto;">
+                        <div class="leave-info-box" style="border-radius: 10px;"
+                            *ngFor="let allPersonWFHListData of allPersonWFHList;let indexLeave = index">
+                            <div class="media align-items-center d-flex">
+                                <a class="avatar">
+                                    <img alt="" onerror="this.src ='../assets/img/no-image-available.jpg'" class="h-100"
+                                        [src]="commonService.rootData.uploadsUrl+'photos/'+ allPersonWFHListData.profile_image">
+                                </a>
+                                <div class="media-body flex-grow-1">
+                                    <div class="text-sm my-0"><b>{{allPersonWFHListData.userName}}</b></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="leave-info-box text-center m-auto" style="height: 207px; border-radius: 10px;" *ngIf="allPersonWFHList.length == 0">
+                            <span class="d-flex justify-content-center align-items-center h-100">
+                                <h4>Data Not Found</h4>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+            <div class="col-lg-12">
+                <div class="card mb-3">
+    
+                </div>
+            </div>
+    
+        </div>
+        <!-- <div class="clock_container">
+                <div class="timer">
+                    <div class="donat outer-circle">
+                        <p class="global_percent center_text"></p>
+                        <div class="donat inner-circle">
+                            <p class="local_percent center_text"></p>
+                            <p class="clock-time clock-timer"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timer_controls">
+                    <button (click)="start_timer()" class="player-control">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </button>
+                    <button (click)="stop_timer()" class="player-control">
+                        <svg class="feather" fill="white" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        </svg>
+                    </button>
+                </div>
+            </div> -->
+        <!-- <div class="col-lg-6">
+                    <div class="card mb-3 recent-activity">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title">Today Activity</h5>
+                                <button *ngIf="isCheckIn === true && isCheckOut === false"
+                                    class="btn bg-gradient-dark d-block mt-3" (click)="addManualBreakPopup()">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="activity-height">
+                                <ul class="res-activity-list ">
+                                    <li *ngFor="let dailyReportData of dailyReportList">
+                                        <p class="mb-0">{{actionList[dailyReportData.dayReportType - 1].name}}
+                                            {{dailyReportData.isLunchBreak}}</p>
+                                        <p class="res-activity-time"><i class="fa fa-clock-o"></i> {{dailyReportData.dateTime |
+                                            date: 'hh:mm:ss a'}} </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+        <div class="col-lg-3" *ngIf="assignPersonUserStatusList.length > 0">
+            <div class="card mb-3">
+                <div class="card-body" (click)="showList(1)">
+                    <h5 class="card-title">
+                        Day Not Started
+                    </h5>
+                    <div class="mt-3">
+                        <div>
+                            <h5>
+                                {{dayNotStartList.length}}<span class="text-muted"> /
+                                    {{assignPersonUserStatusList.length}}</span>
+                            </h5>
+                            <div class="progress mb-2" style="height: 6px;">
+                                <div role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                    class="progress-bar bg-primary shadow-none mt-0 "
+                                    [style.width.%]="(dayNotStartList.length * 100) / assignPersonUserStatusList.length">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <span (click)="showList(1)">
+                                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3" *ngIf="assignPersonUserStatusList.length > 0">
+            <div class="card mb-3">
+                <div class="card-body" (click)="showList(2)">
+                    <h5 class="card-title">
+                        Working
+                    </h5>
+                    <div class="mt-3">
+                        <div>
+                            <h5>
+                                {{inWorkingList.length}}<span class="text-muted"> /
+                                    {{assignPersonUserStatusList.length}}</span>
+                            </h5>
+                            <div class="progress mb-2" style="height: 6px;">
+                                <div role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                    class="progress-bar bg-primary shadow-none mt-0 "
+                                    [style.width.%]="(inWorkingList.length * 100) / assignPersonUserStatusList.length">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <span (click)="showList(2)">
+                                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3" *ngIf="assignPersonUserStatusList.length > 0">
+            <div class="card mb-3">
+                <div class="card-body" (click)="showList(3)">
+                    <h5 class="card-title">
+                        In Break
+                    </h5>
+                    <div class="mt-3">
+                        <div>
+                            <h5>
+                                {{inBreakList.length}}<span class="text-muted"> /
+                                    {{assignPersonUserStatusList.length}}</span>
+                            </h5>
+                            <div class="progress mb-2" style="height: 6px;">
+                                <div role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                    class="progress-bar bg-primary shadow-none mt-0 "
+                                    [style.width.%]="(inBreakList.length * 100) / assignPersonUserStatusList.length">
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- <div class="progress-bar" role="progressbar" [style.width.%]="portsData.Percentage"
+                                    aria-valuemin="0" aria-valuemax="100"></div> -->
+                        <!-- <span (click)="showList(3)">
+                                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3" *ngIf="assignPersonUserStatusList.length > 0">
+            <div class="card mb-3">
+                <div class="card-body" (click)="showList(4)">
+                    <h5 class="card-title">
+                        Day End
+                    </h5>
+                    <div class="mt-3">
+                        <div>
+                            <h5>
+                                {{dayEndList.length}}<span class="text-muted"> /
+                                    {{assignPersonUserStatusList.length}}</span>
+                            </h5>
+                            <div class="progress mb-2" style="height: 6px;">
+                                <div role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                                    class="progress-bar bg-primary shadow-none mt-0 "
+                                    [style.width.%]="(dayEndList.length * 100) / assignPersonUserStatusList.length">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <span>
+                                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                </span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- <div class="col-lg-6" *ngIf="assignPersonUserStatusList.length > 0">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Employee Current Status (Date : {{todayDate | date : 'dd/MM/yyyy'}})
+                            </h5>
+                            <div class="table-responsive leave-list-height">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="theme-color">Name</th>
+                                            <th class="theme-color">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let assignPersonUserStatusListData of assignPersonUserStatusList;let menuIndex = index"
+                                            class="hover-table-row">
+        
+                                            <td class="text-color">
+                                                {{assignPersonUserStatusListData.userName}}
+                                            </td>
+                                            <td class="text-color" [ngSwitch]="assignPersonUserStatusListData.userStatus">
+                                                <span class="badge bg-gradient-danger" *ngSwitchCase="'Day Not Start'">
+                                                    Day Not Started
+                                                </span>
+                                                <span class="badge bg-gradient-success" *ngSwitchCase="'In Working'">
+                                                    In Working
+                                                </span>
+                                                <span class="badge bg-gradient-warning" *ngSwitchCase="'In Break'">
+                                                    In Break
+                                                </span>
+                                                <span class="badge bg-gradient-gray" *ngSwitchCase="'Day End'">
+                                                    Day End
+                                                </span>
+        
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="footer-pagination">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+        <!-- <div class="col-lg-6" *ngIf="leaveOrWFHForm.value.searchBy == 1">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title align-items-center d-flex">
+                                <span>Today Absent</span>
+                                <span class="badge bg-inverse-danger ms-3">{{allPersonLeaveList.length}}</span>
+                            </h5>
+                            <div style="height: 501px; overflow: auto;">
+                                <div class="leave-info-box"
+                                    *ngFor="let allPersonLeaveListData of allPersonLeaveList;let indexLeave = index">
+                                    <div class="media align-items-center d-flex">
+                                        <a class="avatar">
+                                            <img alt="" onerror="this.src ='../assets/img/no-image-available.jpg'" class="h-100"
+                                                [src]="commonService.rootData.uploadsUrl+'photos/'+ allPersonLeaveListData.profile_image">
+                                        </a>
+                                        <div class="media-body flex-grow-1">
+                                            <div class="text-sm my-0"><b>{{allPersonLeaveListData.userName}}</b></div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center mt-3">
+                                        <div class="col-6">
+                                            <h6 class="mb-0">{{todayDate | date : 'dd MMM yyyy'}} -
+                                                {{allPersonLeaveListData.leaveIs == 'fullDay' ? 'Full Day' :
+                                                allPersonLeaveListData.leaveIs == 'firstHalfDay' ? 'First Half Day' :
+                                                allPersonLeaveListData.leaveIs == 'secondHalfDay' ? 'Second Half Day' : '' }}
+                                            </h6>
+                                            <span class="text-sm text-muted">{{allPersonLeaveListData.reason}}</span><br>
+                                            <span class="text-sm text-muted">Approved By :
+                                                <b>{{allPersonLeaveListData?.approvedBy}}</b></span>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <span class="badge"
+                                                [ngClass]="allPersonLeaveListData.leaveStatus == 1 ? 'bg-gradient-warning' : allPersonLeaveListData.leaveStatus == 2 ? ' bg-gradient-success' : ''">{{allPersonLeaveListData.leaveStatus
+                                                == 1 ? 'Pending' :allPersonLeaveListData.leaveStatus == 2 ? 'Approved' : ''
+                                                }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="leave-info-box text-center m-auto" style="height: 156px"
+                                    *ngIf="allPersonLeaveList.length == 0">
+                                    <span class="d-flex justify-content-center align-items-center h-100">
+                                        <h4>Data Not Found</h4>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" *ngIf="leaveOrWFHForm.value.searchBy == 2">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title  align-items-center d-flex"><span>Today Work From Home</span>
+                                <span class="badge bg-inverse-danger ms-3">{{allPersonWFHList.length}}</span>
+                            </h5>
+                            <div style="height: 501px; overflow: auto;">
+                                <div class="leave-info-box"
+                                    *ngFor="let allPersonWFHListData of allPersonWFHList;let indexLeave = index">
+                                    <div class="media align-items-center d-flex">
+                                        <a class="avatar">
+                                            <img alt="" onerror="this.src ='../assets/img/no-image-available.jpg'" class="h-100"
+                                                [src]="commonService.rootData.uploadsUrl+'photos/'+ allPersonWFHListData.profile_image">
+                                        </a>
+                                        <div class="media-body flex-grow-1">
+                                            <div class="text-sm my-0"><b>{{allPersonWFHListData.userName}}</b></div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center mt-3">
+                                        <div class="col-12">
+                                            <h6 class="mb-0">{{todayDate | date : 'dd MMM yyyy'}}
+                                            </h6>
+                                            <span class="text-sm text-muted">{{allPersonWFHListData.reason}}</span><br>
+                                            <span class="text-sm text-muted">Approved By :
+                                                <b>{{allPersonWFHListData?.approvedBy}}</b></span>
+                                        </div>
+                                        <div class="col-12 text-end">
+                                            <span class="badge"
+                                                [ngClass]="allPersonWFHListData.workFromHomeStatus == 1 ? 'bg-gradient-warning' : allPersonWFHListData.workFromHomeStatus == 2 ? ' bg-gradient-success' : ''">{{allPersonWFHListData.workFromHomeStatus
+                                                == 1 ? 'Pending' :allPersonWFHListData.workFromHomeStatus == 2 ? 'Approved' :
+                                                ''
+                                                }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="leave-info-box text-center m-auto" style="height: 156px"
+                                    *ngIf="allPersonWFHList.length == 0">
+                                    <span class="d-flex justify-content-center align-items-center h-100">
+                                        <h4>Data Not Found</h4>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div> -->
+        <div class="col-lg-4">
+            <div class="card mb-3">
+                <div class="card-body" (click)="showList(7)">
+                    <h5 class="card-title">
+                        Upcoming Bithday
+                    </h5>
+                    <div class="mt-4">
+                        <div class="">
+                            <h5 class="">
+                                {{birthdayUpcomingData?.dob}}-{{currentYear}} | {{birthdayUpcomingData?.firstName}}
+                                {{birthdayUpcomingData?.lastName}}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mb-3">
+                <div class="card-body" (click)="showList(5)">
+                    <h5 class="card-title">
+                        Upcoming Holiday
+                    </h5>
+                    <div class="mt-4">
+                        <div class="">
+                            <h5 class="">
+                                {{holidayUpcomingData?.date | date : 'd-M-y'}} |
+                                {{holidayUpcomingData?.Holiday}}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mb-3">
+                <div class="card-body" (click)="showList(6)">
+                    <h5 class="card-title">
+                        Your Leave
+                    </h5>
+                    <div class="mt-4">
+                        <div class="">
+                            <h5 class="">
+                                Leave Taken : {{leaveListCount}}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+    </div>
+</div>
+
+
+
+<div class="modal quick-edit-modal fade" tabindex="-1" id="todayActivityModal" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center mb-2 w-100">Today Activity</h4>
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancleViewActivityModal()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll recent-activity">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                <!-- <div class="card mb-3 recent-activity">
+                    <div class="card-body"> -->
+                        <div class="d-flex float-end">
+                            <!-- <h5 class="card-title">Today Activity</h5> -->
+                            <button *ngIf="isCheckIn === true && isCheckOut === false"
+                                class="btn bg-gradient-dark d-block mt-3" (click)="addManualBreakPopup()">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="activity-height">
+                            <ul class="res-activity-list ">
+                                <li *ngFor="let dailyReportData of dailyReportList">
+                                    <p class="mb-0">{{actionList[dailyReportData.dayReportType - 1].name}}
+                                        {{dailyReportData.isLunchBreak}}</p>
+                                    <p class="res-activity-time"><i class="fa fa-clock-o"></i> {{dailyReportData.dateTime |
+                                        date: 'hh:mm:ss a'}} </p>
+                                </li>
+                            </ul>
+                        </div>
+                    <!-- </div> -->
+                <!-- </div> -->
+            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="w-100">
+                        <div class="text-center">
+                            <button type="button" class="btn bg-gradient-dark my-2"
+                                (click)="addManualBreak()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal quick-edit-modal fade" tabindex="-1" id="break-add-manually" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center mb-2 w-100">Add Break</h4>
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancleManualBreakModal()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll recent-activity" [formGroup]="manualBreakForm">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label for="role">Break Start Time</label>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label for="role" class="required">Hours</label>
+                                    <div class="mb-3">
+                                        <ng-select [items]="hourList" formControlName="breakStartHours" class=""
+                                            bindLabel="name" bindValue="value" placeholder="Select Hour">
+                                        </ng-select>
+                                        <div *ngIf="submittedManualBreak && fManualBreakData['breakStartHours'].errors">
+                                            <div *ngIf="fManualBreakData['breakStartHours'].errors['required']">
+                                                <span class="error_msg">Start Hours is Required.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="role" class="required">Minutes</label>
+                                    <div class="mb-3">
+                                        <ng-select [items]="minitesList" formControlName="breakStartMinutes" class=""
+                                            bindLabel="name" bindValue="value" placeholder="Select Minutes">
+                                        </ng-select>
+                                        <div *ngIf="submittedManualBreak && fManualBreakData['breakStartMinutes'].errors">
+                                            <div *ngIf="fManualBreakData['breakStartMinutes'].errors['required']">
+                                                <span class="error_msg">Start Minutes is Required.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="role">Break End Time</label>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label for="role" class="required">Hours</label>
+                                    <div class="mb-3">
+                                        <ng-select [items]="hourList" formControlName="breakEndHours" class=""
+                                            bindLabel="name" bindValue="value" placeholder="Select Hour">
+                                        </ng-select>
+                                        <div *ngIf="submittedManualBreak && fManualBreakData['breakEndHours'].errors">
+                                            <div *ngIf="fManualBreakData['breakEndHours'].errors['required']">
+                                                <span class="error_msg">End Hours is Required.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="role" class="required">Minutes</label>
+                                    <div class="mb-3">
+                                        <ng-select [items]="minitesList" formControlName="breakEndMinutes" class=""
+                                            bindLabel="name" bindValue="value" placeholder="Select Minutes">
+                                        </ng-select>
+                                        <div *ngIf="submittedManualBreak && fManualBreakData['breakEndMinutes'].errors">
+                                            <div *ngIf="fManualBreakData['breakEndMinutes'].errors['required']">
+                                                <span class="error_msg">End Minutes is Required.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="w-100">
+                        <div class="text-center">
+                            <button type="button" class="btn bg-gradient-dark my-2"
+                                (click)="addManualBreak()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal quick-edit-modal fade" tabindex="-1" id="current-status-modal" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center  w-100" [ngSwitch]="listShowType">
+                    <span *ngSwitchCase="1">
+                        Day Not Started Employee List
+                    </span>
+                    <span *ngSwitchCase="2">
+                        In Working Employee List
+                    </span>
+                    <span *ngSwitchCase="3">
+                        In Break Employee List
+                    </span>
+                    <span *ngSwitchCase="4">
+                        Day End Employee List
+                    </span>
+                    <span *ngSwitchCase="5">
+                        Holiday List
+                    </span>
+                    <span *ngSwitchCase="6">
+                        Your Leave List
+                    </span>
+                    <span *ngSwitchCase="7">
+                        Birthday List
+                    </span>
+                </h4>
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancleCurrentStatusModal()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll recent-activity">
+                <div class="">
+                    <div class="table-responsive leave-list-height" *ngIf="listShowType == 1">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="theme-color">Name</th>
+                                    <th class="theme-color">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let dayNotStartListData of dayNotStartList | sort : 'userName';let menuIndex = index"
+                                    class="hover-table-row">
+
+                                    <td class="text-color">
+                                        {{dayNotStartListData.userName}}
+                                    </td>
+                                    <td class="text-color">
+                                        <span class="badge bg-gradient-danger">
+                                            Day Not Started
+                                        </span>
+                                        <!-- <span class="badge bg-gradient-success" *ngSwitchCase="'In Working'">
+                                            In Working
+                                        </span>
+                                        <span class="badge bg-gradient-warning" *ngSwitchCase="'In Break'">
+                                            In Break
+                                        </span>
+                                        <span class="badge bg-gradient-gray" *ngSwitchCase="'Day End'">
+                                            Day End
+                                        </span> -->
+
+                                    </td>
+                                </tr>
+                                <tr *ngIf="dayNotStartList.length == 0" class="text-center">
+                                    <td colspan="3">
+                                        <span>
+                                            <h4>Data Not Found</h4>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-responsive leave-list-height" *ngIf="listShowType == 2">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="theme-color">Name</th>
+                                    <th class="theme-color">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let inWorkingListData of inWorkingList | sort : 'userName';let menuIndex = index"
+                                    class="hover-table-row">
+
+                                    <td class="text-color">
+                                        {{inWorkingListData.userName}}
+                                    </td>
+                                    <td class="text-color">
+                                        <span class="badge bg-gradient-success">
+                                            In Working
+                                        </span>
+                                        <!-- 
+                                        <span class="badge bg-gradient-warning" *ngSwitchCase="'In Break'">
+                                            In Break
+                                        </span>
+                                        <span class="badge bg-gradient-gray" *ngSwitchCase="'Day End'">
+                                            Day End
+                                        </span> -->
+
+                                    </td>
+                                </tr>
+                                <tr *ngIf="inWorkingList.length == 0" class="text-center">
+                                    <td colspan="3">
+                                        <span>
+                                            <h4>Data Not Found</h4>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-responsive leave-list-height" *ngIf="listShowType == 3">
+                        <div>
+                            <button class="btn bg-gradient-dark mb-0 float-end" (confirm-click)="startBreak()"
+                                appConfirm [confirmTitle]="'Start Break'" title="Start Break"
+                                [confirmContent]="'Are you sure want to start all Employees Break?'">
+                                <i class="fa fa-cutlery me-2" style="font-size: 10px;"></i> Start
+                            </button>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="theme-color">Name</th>
+                                    <th class="theme-color">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let inBreakListData of inBreakList | sort : 'userName';let menuIndex = index"
+                                    class="hover-table-row">
+
+                                    <td class="text-color">
+                                        {{inBreakListData.userName}}
+                                    </td>
+                                    <td class="text-color">
+                                        <span class="badge bg-gradient-warning">
+                                            In Break
+                                        </span>
+                                        <!-- 
+
+                                        <span class="badge bg-gradient-gray" *ngSwitchCase="'Day End'">
+                                            Day End
+                                        </span> -->
+
+                                    </td>
+                                </tr>
+                                <tr *ngIf="inBreakList.length == 0" class="text-center">
+                                    <td colspan="3">
+                                        <span>
+                                            <h4>Data Not Found</h4>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-responsive leave-list-height" *ngIf="listShowType == 4">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="theme-color">Name</th>
+                                    <th class="theme-color">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let dayEndListData of dayEndList | sort : 'userName';let menuIndex = index"
+                                    class="hover-table-row">
+
+                                    <td class="text-color">
+                                        {{dayEndListData.userName}}
+                                    </td>
+                                    <td class="text-color">
+                                        <span class="badge bg-gradient-gray">
+                                            Day End
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="dayEndList.length == 0" class="text-center">
+                                    <td colspan="3">
+                                        <span>
+                                            <h4>Data Not Found</h4>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-responsive leave-list-height" *ngIf="listShowType == 5">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="theme-color">Date</th>
+                                    <th class="theme-color">Day</th>
+                                    <th class="theme-color">Holiday</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let holidayListData of holidayList;let menuIndex = index"
+                                    class="hover-table-row">
+
+                                    <td class="text-color">
+                                        {{holidayListData.holidayDate}}
+                                    </td>
+                                    <td class="text-color">
+                                        {{holidayListData.Day}}
+                                    </td>
+                                    <td class="text-color">
+                                        {{holidayListData.Holiday}}
+                                    </td>
+
+                                </tr>
+                                <tr *ngIf="noHolidaydata" class="text-center">
+                                    <td colspan="3">
+                                        <span>
+                                            <h4>Holiday Data Not Found</h4>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="footer-pagination">
+                        </div>
+                    </div>
+                    <div class="table-responsive leave-list-height" *ngIf="listShowType == 6">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="theme-color">Date</th>
+                                    <th class="theme-color">Leave Type</th>
+                                    <th class="theme-color">Reason</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let leaveListData of leaveList;let menuIndex = index"
+                                    class="hover-table-row">
+
+                                    <td class="text-color">
+                                        {{leaveListData.date | date : 'dd/MM/yyyy'}}
+                                    </td>
+                                    <td class="text-color">
+                                        {{leaveListData.leaveIs}}
+                                    </td>
+                                    <td class="text-color">
+                                        {{leaveListData.reason}}
+                                    </td>
+
+                                </tr>
+                                <tr *ngIf="leaveList.length == 0" class="text-center">
+                                    <td colspan="3">
+                                        <span>
+                                            <h4>Leave Data Not Found</h4>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="footer-pagination">
+                        </div>
+                    </div>
+                    <div class="table-responsive leave-list-height" *ngIf="listShowType == 7">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="theme-color">Date</th>
+                                    <!-- <th class="theme-color">Day</th> -->
+                                    <th class="theme-color">Birthday</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let birthdayListData of birthdayList;let menuIndex = index"
+                                    class="hover-table-row">
+
+                                    <td class="text-color">
+                                        {{birthdayListData.dob}}-{{currentYear}}
+                                    </td>
+
+                                    <td class="text-color">
+                                        {{birthdayListData.firstName}} {{birthdayListData.lastName}}
+                                    </td>
+
+                                </tr>
+                                <tr *ngIf="noHolidaydata" class="text-center">
+                                    <td colspan="3">
+                                        <span>
+                                            <h4>Birthday Data Not Found</h4>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="footer-pagination">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
