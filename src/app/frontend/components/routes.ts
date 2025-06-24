@@ -12,18 +12,11 @@ export const routes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full'
       },
-      // {
-      //   path: '',
-      //   loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
-      //   data: {
-      //     title: 'Home'
-      //   }
-      // },
       {
         path: 'dashboard',
         loadComponent: () => import('../components/dashboard/dashboard.component').then(m => m.DashboardComponent),
         data: {
-          title: 'Leave Apply'
+          title: 'Dashboard'
         }
       },
       {
@@ -40,7 +33,28 @@ export const routes: Routes = [
           title: 'Work From Home'
         }
       },
+       {
+        path: 'short-leave',
+        loadComponent: () => import('../components/short-leave/short-leave.component').then(m => m.ShortLeaveComponent),
+        data: {
+          title: 'Short Leave'
+        }
+      },
 
+       {
+        path: 'manual-attendance',
+        loadComponent: () => import('../components/manual-attendance/manual-attendance.component').then(m => m.ManualAttendanceComponent),
+        data: {
+          title: 'Manual Attendance'
+        }
+      },
+       {
+        path: 'summary-report',
+        loadComponent: () => import('../components/summary-report/summary-report.component').then(m => m.SummaryReportComponent),
+        data: {
+          title: 'Summary Report'
+        }
+      },
     ]
   },
   // {

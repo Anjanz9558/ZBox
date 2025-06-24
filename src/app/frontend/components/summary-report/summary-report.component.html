@@ -1,0 +1,184 @@
+<div class="container-fluid py-4">
+    <div class="card mb-3">
+        <div class="card-body">
+            <div [formGroup]="summaryForm">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-5">
+                        <div class="form-group mb-lg-0 mb-sm-3">
+                            <ng-select formControlName="month" [items]="monthArray" class="" bindLabel="month"
+                                bindValue="value" placeholder="Select Month" [clearable]="false">
+                            </ng-select>
+                            <div *ngIf="submittedSummaryFormData && fsummaryFormData['month'].errors">
+                                <div *ngIf="fsummaryFormData['month'].errors['required']">
+                                    <span class="error_msg">Month is Required.</span>
+                                </div>
+                            </div>
+                            <div *ngIf="monthInvalid === true" class="error_msg">please select valid month.</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-5">
+                        <div class="form-group mb-lg-0 mb-sm-3">
+                            <ng-select formControlName="year" [items]="yearArray" class="" bindLabel="yearArray"
+                                bindValue="yearArray" placeholder="Select Year" [clearable]="false">
+                            </ng-select>
+                            <div *ngIf="submittedSummaryFormData && fsummaryFormData['year'].errors">
+                                <div *ngIf="fsummaryFormData['year'].errors['required']">
+                                    <span class="error_msg">Year is Required.</span>
+                                </div>
+                            </div>
+                            <div *ngIf="yearInvalid === true" class="error_msg">please select valid year</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-5">
+                        <div class="form-group mb-lg-0 mb-sm-3">
+                            <ng-select formControlName="employeeId" [items]="userList" class="" bindValue="_id"
+                                bindLabel="userName" [clearable]="false" placeholder="Select User">
+                            </ng-select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-2 ">
+                        <div class="float-left ">
+                            <a class="btn bg-gradient-dark mb-0 add-btn d-block"
+                                (click)="getSummaryReportList()">Search</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <!-- <th class="theme-color">No.</th> -->
+                                    <th class="theme-color">Date</th>
+                                    <th class="theme-color">Status</th>
+                                    <th class="theme-color">Total Time</th>
+                                    <th class="theme-color">Break Time</th>
+                                    <th class="theme-color">Production Time</th>
+                                    <th class="theme-color">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let summaryReportData of summaryReportList;let menuIndex = index"
+                                    [ngClass]="{
+                                'running-background': ((summaryReportData?.finalType == 'Running')), 
+                                'normal-background': ((summaryReportData?.totalMinute > 479 && summaryReportData?.finalType == 'full')), 
+                                'half-day-background': (summaryReportData?.totalMinute > 239 && summaryReportData?.finalType == 'half'),
+                                'holiday-background': (summaryReportData?.finalType == 'public' || summaryReportData?.finalType == 'regular'),
+                                'leave-background': (summaryReportData?.finalType == 'leave' || summaryReportData?.isAutoCheckout == true),
+                                'production-background': ((summaryReportData?.totalMinute <= 479 && summaryReportData?.finalType == 'full') || (summaryReportData?.totalMinute <= 239 && summaryReportData?.finalType == 'half'))}" class="hover-table-row">
+                                    <!-- <td class="text-color">
+                                        {{ l * (p - 1) + pendingAttendanceIndex +1 }}
+                                    </td> -->
+                                    <td class="text-color">
+                                        {{summaryReportData.date}}
+                                        <!-- {{attendancedayType[summaryReportData?.attendancedayType - 1]}} -->
+                                    </td>
+
+                                    <!-- Status -->
+
+                                    <td>
+                                        <!-- // Day Not Start  -->
+                                        <span
+                                            *ngIf="summaryReportData.finalType == 'leave' && summaryReportData.date == todayDate && summaryReportData?.isEarly == true">
+                                            Leave
+                                        </span>
+                                        <span
+                                            *ngIf="summaryReportData.finalType == 'leave' && summaryReportData.date == todayDate && summaryReportData?.isEarly != true">
+                                            Day Not Started
+                                        </span>
+
+                                        <!-- leave -->
+                                        <span
+                                            *ngIf="summaryReportData.finalType == 'leave' && summaryReportData.date != todayDate">
+                                            Leave
+                                        </span>
+
+                                        <!-- In working -->
+                                        <span *ngIf="summaryReportData.finalType == 'Running'">
+                                            In Working
+                                        </span>
+
+                                        <!-- half day -->
+                                        <span
+                                            *ngIf="summaryReportData.finalType == 'half' && summaryReportData?.isAutoCheckout != true && summaryReportData?.attendancedayType == 1">
+                                            First Half Day
+                                        </span>
+                                        <span
+                                            *ngIf="summaryReportData.finalType == 'half' && summaryReportData?.isAutoCheckout != true && summaryReportData?.attendancedayType == 2">
+                                            Second Half Day
+                                        </span>
+
+                                        <!-- regular week off -->
+                                        <span *ngIf="summaryReportData.finalType == 'regular'">
+                                            {{summaryReportData.Day}} Week Off
+                                        </span>
+
+                                        <!-- public holiday -->
+                                        <span *ngIf="summaryReportData.finalType == 'public' ">
+                                            {{summaryReportData.Day}}
+                                        </span>
+
+                                        <!-- full day -->
+                                        <span
+                                            *ngIf="summaryReportData.finalType == 'full'  && summaryReportData?.isAutoCheckout != true">
+                                            Full Day
+                                        </span>
+
+                                        <!-- auto checkout -->
+                                        <span *ngIf="summaryReportData?.isAutoCheckout == true">
+                                            Leave
+                                        </span>
+                                    </td>
+
+                                    <!-- total  hours  -->
+                                    <td class="text-color">
+                                        {{summaryReportData.totalWorkingHours}}
+                                    </td>
+
+                                    <!-- total break time  -->
+                                    <td class="text-color">
+                                        {{summaryReportData.totalBreakHours}}
+                                    </td>
+
+                                    <!-- total working time  -->
+                                    <td class="text-color">
+                                        {{summaryReportData.total}}
+                                    </td>
+
+                                    <td class="text-color w-7 align-center">
+                                        <button class="font-20 btn bg-gradient-dark emp-edit-btn">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                    </td>
+                                    <!-- <td *ngIf="summaryReportData.finalType != 'regular' && summaryReportData.finalType != 'public' && summaryReportData.finalType != 'leave'"
+                                        class="text-color">
+                                        {{summaryReportData.totalWorkingHours}}
+                                    </td>
+                                    <td *ngIf="summaryReportData.finalType != 'regular' && summaryReportData.finalType != 'public' && summaryReportData.finalType != 'leave'"
+                                        class="text-color">
+                                        {{summaryReportData.totalBreakHours}}
+                                    </td>
+                                    <td *ngIf="summaryReportData.finalType != 'regular' && summaryReportData.finalType != 'public' && summaryReportData.finalType != 'leave'"
+                                        class="text-color">
+                                        {{summaryReportData.total}}
+                                    </td> -->
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="footer-pagination">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

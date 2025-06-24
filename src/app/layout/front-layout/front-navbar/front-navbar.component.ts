@@ -331,7 +331,7 @@ export class FrontNavbarComponent implements OnInit {
 
     if (titlee.includes('dashboard')) {
       return {
-        pastUrl: '#',
+        pastUrl: '',
         pastLinkName: '',
         currentPageName: 'Dashboard'
       };

@@ -113,7 +113,7 @@ ngOnInit() {
   logout() {
 
     localStorage.clear();
-    this.router.navigate(['/admin-login/login']);
+    this.router.navigate(['login']);
   }
 
   toggleClose() {

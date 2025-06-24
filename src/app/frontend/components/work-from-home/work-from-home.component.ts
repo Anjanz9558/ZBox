@@ -19,6 +19,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-work-from-home',
+  standalone:true,
   imports: [CommonModule,ReactiveFormsModule,FormsModule,
     MatButtonModule,
     MatRippleModule,

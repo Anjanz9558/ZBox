@@ -1,0 +1,109 @@
+<section class="login-bg-img overflow-hidden position-relative bg-cover">
+  <div class="mask bg-gradient-dark-2"></div>
+  <div class="page-header min-vh-75">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto position-relative">
+          <div class="card mt-8 log-in-card-bg-img">
+            <div class="card-header pb-0 text-left">
+              <div class="login-logo">
+                <img src="../../../assets/img/balck_full.png" alt="logo" width="95%">
+              </div>
+            </div>
+            <div class="card-body">
+              <div *ngIf="isLoginFlag == true">
+                <form role="form" [formGroup]="loginForm" autocomplete="on">
+                  <div class="form-group">
+                    <label for="email" class="form-label">User Email Id</label>
+                    <input type="text" class="form-control" formControlName="c_Email">
+                    <div *ngIf="submittedLoginData && fLoginData['c_Email'].errors" class="text-right">
+                      <div *ngIf="fLoginData['c_Email'].errors['required']">
+                        <span class="error_msg">Email ID is Required.</span>
+                      </div>
+                      <div *ngIf="fLoginData['c_Email'].errors['pattern']">
+                        <span class="error_msg">Please Enter Valid Email ID.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group  ">
+                    <label class="form-label">Enter 4 Digit Pin</label>
+                    <ng-otp-input [config]="config" (onInputChange)="onOtpChange($event)"></ng-otp-input>
+                    <div class=""><span class="error_msg">{{otpMessage}}</span></div>
+                  </div>
+                  <button type="button" class="btn bg-gradient-dark w-100 mt-4 mb-0" (click)="login()">Sign in</button>
+                  <div class="text-center mt-3  text-primary">
+                    <strong (click)="forgotPinPage()" class="cursor-pointer">Forgot PIN</strong>
+                  </div>
+                </form>
+              </div>
+              <div *ngIf="isOTPSendFlag == true">
+                <div class="text-left mb-3">
+                  <h4>Forgot PIN</h4>
+                </div>
+                <form role="form" [formGroup]="otpForm" autocomplete="on">
+                  <div class="form-group">
+                    <label for="email" class="form-label required">User Email Id</label>
+                    <input type="text" class="form-control" placeholder="Email Id" formControlName="c_Email">
+                    <div *ngIf="submittedOtpData && fotpData['c_Email'].errors" class="text-right">
+                      <div *ngIf="fotpData['c_Email'].errors['required']">
+                        <span class="error_msg">Email ID is Required.</span>
+                      </div>
+                      <div *ngIf="fotpData['c_Email'].errors['pattern']">
+                        <span class="error_msg">Please Enter Valid Email ID.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="button" class="btn bg-gradient-dark w-100 mt-4 mb-0" (click)="otpSend()">Send
+                    OTP</button>
+                  <div class="text-center mt-3  text-primary">
+                    <strong (click)="loginPage()" class="cursor-pointer">Back to Login</strong>
+                  </div>
+                </form>
+              </div>
+              <div *ngIf="isOTPVerifyFlag == true">
+                <div class="text-left mb-3">
+                  <h4>OTP Verification</h4>
+                </div>
+                <form role="form" [formGroup]="otpVerifyForm" autocomplete="off">
+                  <div class="form-group">
+                    <label class="form-label required">Enter OTP</label>
+                    <ng-otp-input [config]="config"
+                      (onInputChange)="onOTPChangeFromOtpPinVerify($event)"></ng-otp-input>
+                    <div class=""><span class="error_msg">{{otpMessage}}</span></div>
+                  </div>
+                  <button type="button" class="btn bg-gradient-dark w-100 mt-4 mb-0" (click)="otpVerification()">OTP
+                    Verify</button>
+                  <div class="text-center mt-3  text-primary">
+                    <strong (click)="loginPage()" class="cursor-pointer">Back to Login</strong>
+                  </div>
+                </form>
+              </div>
+              <div *ngIf="isNewPINFlag == true">
+                <div class="text-left mb-3">
+                  <h4>Reset PIN</h4>
+                </div>
+                <form role="form" [formGroup]="newPinForm" autocomplete="off">
+                  <div class="form-group">
+                    <label class="form-label required">PIN</label>
+                    <ng-otp-input [config]="config" (onInputChange)="onPINChange($event)"></ng-otp-input>
+                    <div class=""><span class="error_msg">{{pinResetMessage}}</span></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label required">Confirm PIN</label>
+                    <ng-otp-input [config]="config" (onInputChange)="onCPINChange($event)"></ng-otp-input>
+                    <div class=""><span class="error_msg">{{cpinResetMessage}}</span></div>
+                  </div>
+                  <button type="button" class="btn bg-gradient-dark w-100 mt-4 mb-0" (click)="resetPin()">Reset
+                    PIN</button>
+                  <div class="text-center mt-3  text-primary">
+                    <strong (click)="loginPage()" class="cursor-pointer">Back to Login</strong>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

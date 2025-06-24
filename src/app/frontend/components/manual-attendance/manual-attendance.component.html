@@ -1,0 +1,256 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="row mt-15">
+                    <div class="">
+                        <a class="btn bg-gradient-dark m-3 add-btn d-block" (click)="applyManualAttendance()">Add
+                            Manual
+                            Attendance</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="theme-color">Attendance Status</th>
+                                    <th class="theme-color">Check In Time</th>
+                                    <th class="theme-color">Check Out Time</th>
+                                    <th class="theme-color">Reason</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let manualAttendanceData of manualAttendanceList;let menuIndex = index"
+                                    class="hover-table-row">
+                                    <td class="text-color">
+                                        <span class="badge"
+                                            [ngClass]="manualAttendanceData?.isApprovedManualAttendance == 1 ? 'bg-gradient-warning' : manualAttendanceData?.isApprovedManualAttendance == 2 ? 'bg-gradient-success':manualAttendanceData?.isApprovedManualAttendance == 3 ? 'bg-gradient-danger':'bg-gradient-secondary'">
+                                            {{manualAttendanceData?.isApprovedManualAttendance == 1 ? 'Pending' :
+                                            manualAttendanceData?.isApprovedManualAttendance == 2 ?
+                                            'Approved':manualAttendanceData?.isApprovedManualAttendance == 3 ?
+                                            'Rejected':manualAttendanceData?.isApprovedManualAttendance == 4 ?
+                                            'Cancled':'' }}
+                                        </span>
+                                    </td>
+                                    <td class="text-color">
+                                        {{manualAttendanceData?.checkInTimeInDate | date : 
+                                        'dd/MM/yyyy - hh:mm:ssa':'+0000'}}
+                                    </td>
+                                    <td class="text-color" *ngIf="!!manualAttendanceData.checkOutTimeInDate">
+                                        {{manualAttendanceData?.checkOutTimeInDate | date : 'dd/MM/yyyy - hh:mm:ssa':'+0000'}}
+                                    </td>
+                                    <td class="text-color" *ngIf="!manualAttendanceData.checkOutTimeInDate">
+                                        -
+                                    </td>
+
+                                    <td class="text-color white-space-normal">
+                                        {{manualAttendanceData?.manualAttendanceReason}}
+
+                                    </td>
+                                    <!-- <td class="text-color white-space-normal">
+                                        {{manualAttendanceData?.remark}}
+                                    </td> -->
+                                    <td class="action-list-item">
+                                        <div *ngIf="manualAttendanceData?.isApprovedManualAttendance == 1"      (click)="cancleManualAttendance(manualAttendanceData, menuIndex)"
+                                            title="Cancle Attendance"
+                                            class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-dark text-center ms-2 position-relative d-flex align-items-center cursor-pointer justify-content-center">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr *ngIf="noData" class="text-center">
+                                    <td colspan="5">
+                                        <span>
+                                            <h4>Data Not Found</h4>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="footer-pagination">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal quick-edit-modal fade" tabindex="-1" id="apply-manual-attendance" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center mb-2 w-100">Apply Manual Attendance</h4>
+                <!-- <h4 class="text-center mb-2 w-100">Edit Role Master</h4> -->
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancleManualAttendancePopup()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll">
+                <form role="form" class="add-employee-form add-leave-border-form"
+                    [formGroup]="applyManualAttendanceForm" autocomplete="off">
+                    <div class="p-3 basic-information-form">
+                        <div class="row">
+
+                            <div class="col-lg-4">
+                                <label for="role" class="required">Date</label>
+                                <div class="mb-3 position-relative mat-date-picker" (click)="date.open()">
+                                    <input matInput class="form-control" placeholder="Please Select Date"
+                                        [matDatepicker]="date" formControlName="date" [max]="maxDate">
+                                    <div class="mat-dat-picker-icon">
+                                        <div class="calendar-icon"><i class="bx bxs-calendar"></i></div>
+                                        <mat-datepicker-toggle matSuffix [for]="date">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #date></mat-datepicker>
+                                    </div>
+                                    <div *ngIf="submittedManualAttendance && fManualAttendance['date'].errors">
+                                        <div *ngIf="fManualAttendance['date'].errors['required']">
+                                            <span class="error_msg">Date is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="col-lg-8">
+                                <label for="role" class="required">Time</label>
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-lg-6 mb-3">
+                                            <ng-select [items]="hourList" formControlName="hours" class=""
+                                                bindLabel="name" bindValue="value" placeholder="Select Hour">
+                                            </ng-select>
+                                            <div *ngIf="submittedManualAttendance && fManualAttendance.hours.errors">
+                                                <div *ngIf="fManualAttendance.hours.errors.required">
+                                                    <span class="error_msg">Hours is Required.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-3">
+                                            <ng-select [items]="minitesList" formControlName="minutes" class=""
+                                                bindLabel="name" bindValue="value" placeholder="Select Minute">
+                                            </ng-select>
+                                            <div *ngIf="submittedManualAttendance && fManualAttendance.minutes.errors">
+                                                <div *ngIf="fManualAttendance.minutes.errors.required">
+                                                    <span class="error_msg">Minutes is Required.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div> -->
+                            <!-- </div> -->
+
+                            <div class="col-lg-12">
+                                <!-- <label for="role" class="required">Type</label> -->
+                                    <div class="row">
+                                        <label for="role" class="required">Check In</label>
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <div class="col-lg-6 mb-3">
+                                                    <ng-select [items]="hourList" formControlName="checkinhours" class=""
+                                                        bindLabel="name" bindValue="value" placeholder="Select Hour">
+                                                    </ng-select>
+                                                    <div *ngIf="submittedManualAttendance && fManualAttendance['checkinhours'].errors">
+                                                        <div *ngIf="fManualAttendance['checkinhours'].errors['required']">
+                                                            <span class="error_msg">Hours is Required.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 mb-3">
+                                                    <ng-select [items]="minitesList" formControlName="checkinminutes" class=""
+                                                        bindLabel="name" bindValue="value" placeholder="Select Minute">
+                                                    </ng-select>
+                                                    <div *ngIf="submittedManualAttendance && fManualAttendance['checkinminutes'].errors">
+                                                        <div *ngIf="fManualAttendance['checkinminutes'].errors['required']">
+                                                            <span class="error_msg">Minutes is Required.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+
+                                        <!-- <div class="col-lg-3">
+                                            <input type="radio" name="type" (change)="setReasonValidators()" formControlName="dayReportType" value="3">
+                                            Break In
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <input type="radio" name="type" (change)="setReasonValidators()" formControlName="dayReportType" value="4">
+                                            Break Out
+                                        </div> -->
+                                        <div class="col-lg-12">
+
+                                        <div class="row">
+                                            <label for="role" class="required">Check Out</label>
+                                            <div class="mb-3">
+                                                <div class="row">
+                                                    <div class="col-lg-6 mb-3">
+                                                        <ng-select [items]="hourList" formControlName="checkouthours" class=""
+                                                            bindLabel="name" bindValue="value" placeholder="Select Hour">
+                                                        </ng-select>
+                                                        <div *ngIf="submittedManualAttendance && fManualAttendance['checkouthours'].errors">
+                                                            <div *ngIf="fManualAttendance['checkouthours'].errors['required']">
+                                                                <span class="error_msg">Hours is Required.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-3">
+                                                        <ng-select [items]="minitesList" formControlName="checkoutminutes" class=""
+                                                            bindLabel="name" bindValue="value" placeholder="Select Minute">
+                                                        </ng-select>
+                                                        <div *ngIf="submittedManualAttendance && fManualAttendance['checkoutminutes'].errors">
+                                                            <div *ngIf="fManualAttendance['checkoutminutes'].errors['required']">
+                                                                <span class="error_msg">Minutes is Required.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+            
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div *ngIf="submittedManualAttendance && fManualAttendance.dayReportType.errors">
+                                        <div *ngIf="fManualAttendance.dayReportType.errors.required">
+                                            <span class="error_msg">Type is Required.</span>
+                                        </div>
+                                    </div> -->
+                                <!-- </div>
+                            </div> -->
+
+                            <div class="col-lg-12" >
+                            <!-- *ngIf="fManualAttendance.dayReportType.value == 1" -->
+                            
+                                <label for="role" class="required">Reason</label>
+                                <div class="mb-3">
+                                    <textarea rows="2" class="form-control ps-2"
+                                        formControlName="manualAttendanceReason" placeholder="Enter Reason"></textarea>
+                                    <div
+                                        *ngIf="submittedManualAttendance && fManualAttendance['manualAttendanceReason'].errors">
+                                        <div *ngIf="fManualAttendance['manualAttendanceReason'].errors['required']">
+                                            <span class="error_msg">Reason is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="text-center">
+                        <button type="button" class="btn bg-gradient-dark my-2"
+                            (click)="applyManualAttendanceSave()">Apply</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

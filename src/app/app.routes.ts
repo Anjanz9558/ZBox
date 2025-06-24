@@ -108,14 +108,7 @@ export const routes: Routes = [
       // },
 
 
-      {
-        path: 'login',
-        loadComponent: () => import('./frontend/user-login/user-login.component').then(m => m.UserLoginComponent),
-        data: {
-          title: 'Login Page'
-        }
-      },
-
+    
       {
         path: 'forgot-password',
         loadComponent: () => import('./frontend/user-login/user-login.component').then(m => m.UserLoginComponent),
@@ -149,6 +142,14 @@ export const routes: Routes = [
 
     ]
   },
+    {
+        path: 'login',
+        loadComponent: () => import('./frontend/user-login/user-login.component').then(m => m.UserLoginComponent),
+        data: {
+          title: 'Login Page'
+        }
+      },
+
   {
     path: '**',
     redirectTo: '404'

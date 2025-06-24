@@ -1,0 +1,239 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="row mt-15" style="padding-right: 15px;padding-top: 15px;">
+                    <div class="">
+                        <a class="btn bg-gradient-dark mb-0 add-btn d-block" (click)="shortLeaveModalOpen()">Apply
+                            Short Leave</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="theme-color">Status</th>
+                                    <th class="theme-color">Date</th>
+                                    <th class="theme-color">Time</th>
+                                    <th class="theme-color">Leave Type</th>
+                                    <th class="theme-color">Discuss With</th>
+                                    <th class="theme-color">Reason</th>
+                                    <th class="theme-color">Remark</th>
+                                    <th class="theme-color">Approved / Rejected By</th>
+                                    <th class="theme-color">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let shortLeaveLists of shortLeaveListData;let menuIndex = index"
+                                    class="hover-table-row">
+                                    <td class="text-color">
+                                        <span class="badge" [ngClass]="{'bg-gradient-success' : shortLeaveLists.shortLeavestatus == 2,
+                                            'bg-gradient-danger' : shortLeaveLists.shortLeavestatus == 3 || shortLeaveLists.shortLeavestatus == 4,
+                                            'bg-gradient-warning' : shortLeaveLists.shortLeavestatus == 1
+                                    }">
+                                            {{shortLeaveLists.shortLeavestatus == 1 ? 'Pending'
+                                            :shortLeaveLists.shortLeavestatus == 2 ? 'Approved'
+                                            :shortLeaveLists.shortLeavestatus == 4 ? 'Cancle'
+                                            :shortLeaveLists.shortLeavestatus == 3 ? 'Reject' : '' }}
+                                        </span>
+                                    </td>
+                                    <td class="text-color">
+                                        {{shortLeaveLists.dateObj | date : 'dd/MM/yyyy'}}
+                                    </td>
+                                    <td class="text-color">
+                                        {{shortLeaveLists.time}}
+                                    </td>
+                                    <td class="text-color white-space-normal">
+                                        {{shortLeaveLists.shortLeaveType == 1 ? 'Late' :shortLeaveLists.shortLeaveType
+                                        == 2 ? 'Early':'' }}
+                                    </td>
+                                    <td class="text-color white-space-normal">
+                                        {{shortLeaveLists.disscussWith}}
+                                    </td>
+                                    <td class="text-color white-space-normal">
+                                        {{shortLeaveLists.shortLeaveReason}}
+                                    </td>
+                                    <td class="text-color white-space-normal">
+                                        {{shortLeaveLists.remark ? shortLeaveLists.remark : '-'}}
+                                    </td>
+                                    <td class="text-color white-space-normal">
+                                        {{shortLeaveLists.shortLeavestatus == 2 ? shortLeaveLists?.approvedPerson :
+                                        shortLeaveLists.shortLeavestatus == 3 ? shortLeaveLists?.rejectedPerson : '-'}}
+                                    </td>
+                                    <td class="text-color">
+                                        <ul class="d-flex align-items-center action-list p-0">
+                                            <li class="action-list-item me-3"
+                                                *ngIf="shortLeaveLists.shortLeavestatus == 1">
+                                                <div (click)="cancleShortLeaveRemarkModalOpen(shortLeaveLists._id)"
+                                                    title="Cancle Short Leave"
+                                                    class="icon icon-shape icon-sm shadow border-radius-md bg-gradient-dark text-center me-2 d-flex align-items-center cursor-pointer justify-content-center">
+                                                    <!-- <i class="material-icons">{{menuItem.icon}}</i> -->
+                                                    <i class="fa fa-times"></i>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="noData" class="text-center">
+                                    <td colspan="9">
+                                        <span>
+                                            <h4>Data Not Found</h4>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="footer-pagination">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal quick-edit-modal fade" tabindex="-1" id="apply-short-leave-modal" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center mb-2 w-100">Apply Short Leave</h4>
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancleShortLeaveModal()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll">
+
+                <form role="form" class="add-employee-form add-leave-border-form" [formGroup]="shortLeaveForm"
+                    autocomplete="off">
+                    <div class="p-3 basic-information-form">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="role" class="required">Date</label>
+                                <div class="mb-3 position-relative mat-date-picker" (click)="dateObj.open()">
+                                    <input matInput class="form-control" placeholder="Please Select Date"
+                                        [matDatepicker]="dateObj" formControlName="dateObj">
+                                    <div class="mat-dat-picker-icon">
+                                        <div class="calendar-icon"><i class="bx bxs-calendar"></i></div>
+                                        <mat-datepicker-toggle matSuffix [for]="dateObj">
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #dateObj></mat-datepicker>
+                                    </div>
+                                    <div *ngIf="submittedShortLeaveData && fShortLeaveData['dateObj'].errors">
+                                        <div *ngIf="fShortLeaveData['dateObj'].errors['required']">
+                                            <span class="error_msg">Date is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="role" class="required">Hours</label>
+                                <ng-select [items]="hourList" formControlName="hours" class="" bindLabel="name"
+                                    bindValue="value" placeholder="Select Hour">
+                                </ng-select>
+                                <div *ngIf="submittedShortLeaveData && fShortLeaveData['hours'].errors">
+                                    <div *ngIf="fShortLeaveData['hours'].errors['required']">
+                                        <span class="error_msg">Hour is Required.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="role" class="required">Minutes</label>
+                                <ng-select [items]="minitesList" formControlName="minutes" class="" bindLabel="name"
+                                    bindValue="value" placeholder="Select Minute">
+                                </ng-select>
+                                <div *ngIf="submittedShortLeaveData && fShortLeaveData['minutes'].errors">
+                                    <div *ngIf="fShortLeaveData['minutes'].errors['required']">
+                                        <span class="error_msg">Minutes is Required.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="role" class="required">Reason</label>
+                                <div class="mb-3">
+                                    <textarea rows="2" class="form-control ps-2" formControlName="shortLeaveReason"
+                                        placeholder="Enter Short Leave Reason"></textarea>
+                                    <div *ngIf="submittedShortLeaveData && fShortLeaveData['shortLeaveReason'].errors">
+                                        <div *ngIf="fShortLeaveData['shortLeaveReason'].errors['required']">
+                                            <span class="error_msg">Reason is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="role" class="required">Leave Type</label>
+                                <div class="mb-3">
+                                    <input type="radio" value="2" name="shortLeaveType"
+                                        formControlName="shortLeaveType">
+                                    Early
+                                    <input type="radio" class="ml-10" value="1" name="shortLeaveType"
+                                        formControlName="shortLeaveType">
+                                    Late
+                                    <div *ngIf="submittedShortLeaveData && fShortLeaveData['shortLeaveType'].errors">
+                                        <div *ngIf="fShortLeaveData['shortLeaveType'].errors['required']">
+                                            <span class="error_msg">Leave Type is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <label for="role" class="required">Discuss With</label>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control ps-2" formControlName="disscussWith"
+                                        placeholder="Discuss With">
+                                    <div *ngIf="submittedShortLeaveData && fShortLeaveData['disscussWith'].errors">
+                                        <div *ngIf="fShortLeaveData['disscussWith'].errors['required']">
+                                            <span class="error_msg">Discuss with is Required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="text-center">
+                        <button type="button" class="btn bg-gradient-dark my-2"
+                            (click)="saveShortLeaveData()">Save</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal quick-edit-modal fade" tabindex="-1" id="cancle-short-leave-modal" role="dialog">
+    <div class="modal-dialog model-setting-menu-width" role="document">
+        <div class="card modal-content">
+            <div class="modal-header">
+                <h4 class="text-center mb-2 w-100">Cancel Remark</h4>
+                <button class="btn bg-gradient-dark cancel-btn popup-close-btn" (click)="cancleShortLeaveModalclose()">
+                    <i class="fa fa-times" style="font-size: 10px;"></i>
+                </button>
+            </div>
+            <div class="card-body model-scroll">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label for="role" class="">Remark</label>
+                        <div class="mb-3">
+                            <textarea name="" class="form-control ps-2" id="" [(ngModel)]="remark" placeholder="Remark"
+                                rows="3"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="text-center">
+                        <button type="button" (click)="cancleShortLeaveSave()" class="btn bg-gradient-dark my-2">Cancle
+                            Short Leave</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

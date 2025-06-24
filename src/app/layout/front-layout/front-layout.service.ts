@@ -10,7 +10,25 @@ export class FrontLayoutService {
     environment: any;
     constructor(private commonService: CommonService, private http: HttpClient) { }
 
+ loginwithPin(pinDataObj: any) {
+    return this.http.post(this.commonService.rootData.rootUrl + 'adminSide/loginWithPIN', pinDataObj);
+  }
+  otpSendInEmail(pinDataObj: any) {
+    return this.http.post(this.commonService.rootData.rootUrl + 'adminSide/forgotPinEmailVerification', pinDataObj);
+  }
+  otpVerificationWithEmployeeId(pinDataObj: any) {
+    return this.http.post(this.commonService.rootData.rootUrl + 'adminSide/forgotPinOTPVerification', pinDataObj);
+  }
+  resetPinByEmployeeId(pinDataObj: any) {
+    return this.http.post(this.commonService.rootData.rootUrl + 'adminSide/passwordResetForUser', pinDataObj);
+  }
+//   activeIpAddressList() {
+//     return this.http.get(this.commonService.rootData.rootUrl + 'ipAddress/ActiveIpAddressList');
+//   }
 
+//   getIPAddress() {
+//     return this.http.get('https://api.ipify.org/?format=json');
+//   }
     getIPAddress() {
         return this.http.get('https://api.bigdatacloud.net/data/client-ip');
     }
