@@ -106,7 +106,7 @@ export class EmployeeListComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
   ) {
-    let pagePermission = { module: "employeelist" }
+    let pagePermission = { module: "EmployeeList" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {

@@ -243,7 +243,7 @@ export class AddNewUserComponent implements OnInit {
           public storageService: StorageService,
         // private companyManagementService: CompanyManagementService
     ) {
-        let pagePermission = { module: "employeelist" }
+        let pagePermission = { module: "EmployeeList" }
         this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
             if (Response.meta.code == 200) {

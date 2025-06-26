@@ -112,7 +112,7 @@ export class PendingAttendanceComponent implements OnInit {
     { name: "Cancled", value: 4 }
   ]
   constructor(public commonService: CommonService, public route: ActivatedRoute, public storageService: StorageService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router) {
-    let pagePermission = { module: "pendingattendancelist" }
+    let pagePermission = { module: "PendingAttendance" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
       if (Response.meta.code == 200) {
         this.isView = Response.data.isView;

@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
   assignPersonUserStatusList: any[] = [];
 
   constructor(public adminLayoutService: AdminLayoutService, public commonService: CommonService, public router: Router, private fb: FormBuilder) {
-    let pagePermission = { module: "dashboard" }
+    let pagePermission = { module: "Dashboard" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {

@@ -74,7 +74,7 @@ export class DesignationMasterComponent implements OnInit {
   isDeleted: boolean = false;
 
   constructor(public commonService: CommonService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private spinner: NgxSpinnerService, public storageService: StorageService) {
-    let pagePermission = { module: "designationmaster" }
+    let pagePermission = { module: "DesignationMaster" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {

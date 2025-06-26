@@ -175,7 +175,7 @@ export class UserLoginComponent implements OnInit {
     this.frontLayoutService.loginwithPin(obj).subscribe((Response: any) => {
       if (Response.meta.code == 200) {
         localStorage.setItem('LoginUserData', JSON.stringify(Response.data));
-        localStorage.setItem('myToken', JSON.stringify(Response.data.myToken));
+        localStorage.setItem('userToken', Response.data.myToken);
         localStorage.setItem('IsDiyanLogin', 'true');
         this.otp = "";
         setTimeout(() => {

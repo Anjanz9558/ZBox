@@ -51,6 +51,7 @@
     "aos": "^2.3.4",
     "bootstrap": "^5.3.6",
     "chart.js": "^4.4.6",
+    "countrycitystatejson": "^25.5.2908",
     "exceljs": "^4.4.0",
     "highcharts": "^12.2.0",
     "html2canvas": "^1.4.1",

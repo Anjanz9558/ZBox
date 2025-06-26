@@ -68,7 +68,7 @@ export class IpAddressMasterComponent implements OnInit {
   searchTerm: any;
 
   constructor(public commonService: CommonService, public storageService: StorageService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private spinner: NgxSpinnerService) {
-    let pagePermission = { module: "ipaddressmaster" }
+    let pagePermission = { module: "IPAddressMaster" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {

@@ -75,7 +75,7 @@ export class DepartmentMasterComponent implements OnInit {
   searchTerm: string = '';
 
   constructor(public commonService: CommonService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private spinner: NgxSpinnerService) {
-    let pagePermission = { module: "departmentmaster" }
+    let pagePermission = { module: "DepartmentMaster" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {

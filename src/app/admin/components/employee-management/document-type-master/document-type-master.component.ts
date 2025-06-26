@@ -76,7 +76,7 @@ export class DocumentTypeMasterComponent implements OnInit {
 
 
   constructor(public commonService: CommonService, public storageService: StorageService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private spinner: NgxSpinnerService) {
-    let pagePermission = { module: "documenttypemaster" }
+    let pagePermission = { module: "DocumentTypeMaster" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {

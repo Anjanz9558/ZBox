@@ -51,7 +51,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 })
 export class DashboardComponent implements OnInit {
   initTimer: boolean = true;
-  distance_minutes: number = 498; // Total timer duration in minutes
+  distance_minutes: number = 480; // Total timer duration in minutes
   animation_id: number | null = null;
   elapsed_time_minutes: number = 0; // Minutes completed based on production time
   time_left: number = 0;
@@ -127,7 +127,7 @@ export class DashboardComponent implements OnInit {
     this.deviceType = this.deviceService.getDeviceInfo().deviceType;
 
     this.socketIOService.getBreakListner().subscribe((response: any) => {
-      console.log("breakListner");
+      // console.log("breakListner");
       this.getDailyReportList()
       let audio: HTMLAudioElement = new Audio('assets/audio/MessageTone.mp3');
       audio.play();
@@ -860,7 +860,7 @@ export class DashboardComponent implements OnInit {
     let endDate = new Date(0, 0, 0, endTime[0], endTime[1], endTime[2]);
     let Count = Math.abs(new Date(startDate).getTime() - new Date(endDate).getTime());
     this.productionTime = this.stopWatch(Count);
-    console.log(this.productionTime)
+    // console.log(this.productionTime)
 
     if (this.initTimer == true) {
       this.initialize_timer(this.productionTime);
@@ -993,7 +993,7 @@ export class DashboardComponent implements OnInit {
 
     // Convert production time to total minutes
     this.elapsed_time_minutes = hours * 60 + minutes;
-    console.log(this.elapsed_time_minutes);
+    // console.log(this.elapsed_time_minutes);
 
     // Calculate initial progress percentage based on production time
     let initial_progress = this.elapsed_time_minutes / this.distance_minutes;
@@ -1001,7 +1001,7 @@ export class DashboardComponent implements OnInit {
 
     // Set remaining time and start the timer
     this.remaining_time = (this.distance_minutes - this.elapsed_time_minutes) * 60 * 1000;
-    console.log(this.remaining_time / 60000)
+    // console.log(this.remaining_time / 60000)
     this.start_timer();
   }
 
@@ -1019,10 +1019,10 @@ export class DashboardComponent implements OnInit {
   // Modified start_timer function to resume timer from pause
   start_timer(): void {
     if (this.animation_id != null) return; // If timer is already running, ignore
-    console.log(this.animation_id)
+    // console.log(this.animation_id)
     let target_time = new Date().getTime() + this.remaining_time;
     this.process_timer(target_time);
-    console.log("resume timer");
+    // console.log("resume timer");
   }
 
   // Stop the timer completely
@@ -1037,7 +1037,7 @@ export class DashboardComponent implements OnInit {
 
   // Process the timer and update the animation
   process_timer(target_time: number): void {
-    console.log("process timer")
+    // console.log("process timer")
     this.time_left = target_time - new Date().getTime();
     if (this.initTimer == false) {
       const [hours, minutes, seconds] = this.productionTime.split(':').map(Number);
@@ -1051,7 +1051,7 @@ export class DashboardComponent implements OnInit {
     }
 
     if (this.time_left > 0) {
-      console.log("process timer1")
+      // console.log("process timer1")
 
       let minutes_left: number = Math.floor(this.time_left / (1000 * 60));
       let seconds_left: number = Math.floor((this.time_left % (1000 * 60)) / 1000);
@@ -1065,9 +1065,9 @@ export class DashboardComponent implements OnInit {
       this.update_progress_display(progress);
 
       this.animation_id = window.requestAnimationFrame(() => this.process_timer(target_time));
-      console.log(this.animation_id)
+      // console.log(this.animation_id)
     } else {
-      console.log("process timer2")
+      // console.log("process timer2")
 
       this.stop_timer();
     }

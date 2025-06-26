@@ -66,7 +66,7 @@ export class HolidayListComponent implements OnInit {
   isDeleted: boolean = false;
 
   constructor(public commonService: CommonService, private fb: FormBuilder, private el: ElementRef, public adminLayoutService: AdminLayoutService, public router: Router) {
-    let pagePermission = { module: "holidaylist" }
+    let pagePermission = { module: "HolidayList" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {

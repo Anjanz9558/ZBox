@@ -97,7 +97,7 @@ export class LeaveListComponent  implements OnInit {
     ]
 
     constructor(public commonService: CommonService, public route: ActivatedRoute, public storageService: StorageService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private spinner: NgxSpinnerService) {
-        let pagePermission = { module: "leavelist" }
+        let pagePermission = { module: "LeaveList" }
         this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
             if (Response.meta.code == 200) {

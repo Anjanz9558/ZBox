@@ -40,6 +40,7 @@ export class MenuMasterComponent implements OnInit {
 
   ISeditMenu = false;
   menuList: any[] = [];
+  moduleList: any[] = [];
   allmenu: any[] = [];
   MenuList: any[] = [];
   l: number = 0;
@@ -64,7 +65,7 @@ export class MenuMasterComponent implements OnInit {
   searchTerm: string = '';
 
   constructor(public commonService: CommonService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router, private cookieService: CookieService, private spinner: NgxSpinnerService) {
-    let pagePermission = { module: "menumaster" }
+    let pagePermission = { module: "MenuMaster" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {
@@ -189,6 +190,14 @@ export class MenuMasterComponent implements OnInit {
 
       if (Response.meta.code == 200) {
         this.MenuList = Response.data;
+        const menuData = Response.data; 
+        this.moduleList = menuData
+          .filter((item: any) => item.path && item.path.trim() !== '') 
+          .map((item: any) => ({
+            name: item.title,
+            value: item.title.replace(/[\s-]/g, '')
+          }))
+          .filter((item: any) => item.value && item.value !== ''); 
         this.menuList = this.MenuList.sort((a: any, b: any) => a.order - b.order)
         this.allmenu = this.menuList
         this.menuList = this.MenuList.slice();
@@ -330,182 +339,182 @@ export class MenuMasterComponent implements OnInit {
     }
   }
 
-  moduleList = [
-    {
-      name: "Dashboard",
-      value: "dashboard"
-    },
-    {
-      name: "Employee List",
-      value: "employeelist"
-    },
-    {
-      name: "Designation Master",
-      value: "designationmaster"
-    },
-    {
-      name: "Template Master",
-      value: "templatemaster"
-    },
-    {
-      name: "Project Master",
-      value: "projectmaster"
-    },
-    {
-      name: "Role Master",
-      value: "rolemaster"
-    },
-    {
-      name: "Menu Master",
-      value: "menumaster"
-    },
-    {
-      name: "IP Address Master",
-      value: "ipaddressmaster"
-    },
-     {
-      name: "General Settings",
-      value: "generalsettings"
-    },
-    {
-      name: "Role Wise Menu",
-      value: "rolewisemenu"
-    },
-    {
-      name: "User Wise Menu",
-      value: "userwisemenu"
-    },
-    {
-      name: "Holiday",
-      value: "holidaylist"
-    },
-    {
-      name: "Task List",
-      value: "taskslist"
-    },
-    {
-      name: "Leave List",
-      value: "leavelist"
-    },
-    {
-      name: "User",
-      value: "user"
-    },
-    {
-      name: "Attandence List",
-      value: "attandence"
-    },
-    {
-      name: "Pending List",
-      value: "pendingattendancelist"
-    },
-    {
-      name: "Attendance Consolidate Report",
-      value: "attendanceConsolidateReport"
-    },
-    {
-      name: "File Upload",
-      value: "fileupload"
-    },
-    {
-      name: "Department Master",
-      value: "departmentmaster"
-    },
-    {
-      name: "Document Type Master",
-      value: "documenttypemaster"
-    },
-    {
-      name: "Supplier Master",
-      value: "suppliermaster"
-    },
-    {
-      name: "Supplier Purchase Master",
-      value: "supplierpurchasemaster"
-    },
-    {
-      name: "Category Master",
-      value: "categorymaster"
-    },
-    {
-      name: "Product Master",
-      value: "productmaster"
-    },
-    {
-      name: "Assign Product",
-      value: "assignproduct"
-    },
-    {
-      name: "Client Master",
-      value: "clientmaster"
-    }, {
-      name: "Company List",
-      value: "companylist"
-    },
-    {
-      name: "Company Details",
-      value: "companydetails"
-    },
-    {
-      name: "Document Master",
-      value: "documentmaster"
-    },
-    {
-      name: "Generate Invoice",
-      value: "generateinvoice"
-    },
-    {
-      name: "Group Master",
-      value: "groupmaster"
-    },
-    {
-      name: "Unit Master",
-      value: "unitmaster"
-    },
-    {
-      name: "Ledger Master",
-      value: "ledgermaster"
-    },
-    {
-      name: "Account Entry Master",
-      value: "accountentrymaster"
-    },
-    {
-      name: "Account To Account Transfer Master",
-      value: "accounttoaccountmaster"
-    },
-    {
-      name: "Account Entry Report",
-      value: "accountentryreport"
-    },
-    {
-      name: "Group Wise Account Entry Report",
-      value: "groupwiseaccountentryreport"
-    },
-    {
-      name: "Account List",
-      value: "accountlist"
-    },
-    {
-      name: "Salary Generation",
-      value: "salarygeneration"
-    },
-    {
-      name: "Interview",
-      value: "interview"
-    },
-    {
-      name: "Work From Home",
-      value: "workfromhome"
-    },
-    {
-      name: "Short Leave",
-      value: "shortleave"
-    },
-    {
-      name: "Monthly Salary Details",
-      value: "monthlysalarydetails"
-    },
-  ]
+  // moduleList = [
+  //   {
+  //     name: "Dashboard",
+  //     value: "dashboard"
+  //   },
+  //   {
+  //     name: "Employee List",
+  //     value: "employeelist"
+  //   },
+  //   {
+  //     name: "Designation Master",
+  //     value: "designationmaster"
+  //   },
+  //   {
+  //     name: "Template Master",
+  //     value: "templatemaster"
+  //   },
+  //   {
+  //     name: "Project Master",
+  //     value: "projectmaster"
+  //   },
+  //   {
+  //     name: "Role Master",
+  //     value: "rolemaster"
+  //   },
+  //   {
+  //     name: "Menu Master",
+  //     value: "menumaster"
+  //   },
+  //   {
+  //     name: "IP Address Master",
+  //     value: "ipaddressmaster"
+  //   },
+  //   {
+  //     name: "General Settings",
+  //     value: "generalsettings"
+  //   },
+  //   {
+  //     name: "Role Wise Menu",
+  //     value: "rolewisemenu"
+  //   },
+  //   {
+  //     name: "User Wise Menu",
+  //     value: "userwisemenu"
+  //   },
+  //   {
+  //     name: "Holiday",
+  //     value: "holidaylist"
+  //   },
+  //   {
+  //     name: "Task List",
+  //     value: "taskslist"
+  //   },
+  //   {
+  //     name: "Leave List",
+  //     value: "leavelist"
+  //   },
+  //   {
+  //     name: "User",
+  //     value: "user"
+  //   },
+  //   {
+  //     name: "Attandence List",
+  //     value: "attandence"
+  //   },
+  //   {
+  //     name: "Pending List",
+  //     value: "pendingattendancelist"
+  //   },
+  //   {
+  //     name: "Attendance Consolidate Report",
+  //     value: "attendanceConsolidateReport"
+  //   },
+  //   {
+  //     name: "File Upload",
+  //     value: "fileupload"
+  //   },
+  //   {
+  //     name: "Department Master",
+  //     value: "departmentmaster"
+  //   },
+  //   {
+  //     name: "Document Type Master",
+  //     value: "documenttypemaster"
+  //   },
+  //   {
+  //     name: "Supplier Master",
+  //     value: "suppliermaster"
+  //   },
+  //   {
+  //     name: "Supplier Purchase Master",
+  //     value: "supplierpurchasemaster"
+  //   },
+  //   {
+  //     name: "Category Master",
+  //     value: "categorymaster"
+  //   },
+  //   {
+  //     name: "Product Master",
+  //     value: "productmaster"
+  //   },
+  //   {
+  //     name: "Assign Product",
+  //     value: "assignproduct"
+  //   },
+  //   {
+  //     name: "Client Master",
+  //     value: "clientmaster"
+  //   }, {
+  //     name: "Company List",
+  //     value: "companylist"
+  //   },
+  //   {
+  //     name: "Company Details",
+  //     value: "companydetails"
+  //   },
+  //   {
+  //     name: "Document Master",
+  //     value: "documentmaster"
+  //   },
+  //   {
+  //     name: "Generate Invoice",
+  //     value: "generateinvoice"
+  //   },
+  //   {
+  //     name: "Group Master",
+  //     value: "groupmaster"
+  //   },
+  //   {
+  //     name: "Unit Master",
+  //     value: "unitmaster"
+  //   },
+  //   {
+  //     name: "Ledger Master",
+  //     value: "ledgermaster"
+  //   },
+  //   {
+  //     name: "Account Entry Master",
+  //     value: "accountentrymaster"
+  //   },
+  //   {
+  //     name: "Account To Account Transfer Master",
+  //     value: "accounttoaccountmaster"
+  //   },
+  //   {
+  //     name: "Account Entry Report",
+  //     value: "accountentryreport"
+  //   },
+  //   {
+  //     name: "Group Wise Account Entry Report",
+  //     value: "groupwiseaccountentryreport"
+  //   },
+  //   {
+  //     name: "Account List",
+  //     value: "accountlist"
+  //   },
+  //   {
+  //     name: "Salary Generation",
+  //     value: "salarygeneration"
+  //   },
+  //   {
+  //     name: "Interview",
+  //     value: "interview"
+  //   },
+  //   {
+  //     name: "Work From Home",
+  //     value: "workfromhome"
+  //   },
+  //   {
+  //     name: "Short Leave",
+  //     value: "shortleave"
+  //   },
+  //   {
+  //     name: "Monthly Salary Details",
+  //     value: "monthlysalarydetails"
+  //   },
+  // ]
 
 }

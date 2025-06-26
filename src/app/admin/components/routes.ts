@@ -100,12 +100,36 @@ export const routes: Routes = [
                     title: 'Ip Address Master',
                 },
             },
-             {
+            {
                 path: 'setting/general-settings',
                 loadComponent: () =>
                     import('./Setting/general-setting/general-setting.component').then((m) => m.GeneralSettingComponent),
                 data: {
                     title: 'General Setting',
+                },
+            },
+            {
+                path: 'setting/company-management/company-list',
+                loadComponent: () =>
+                    import('./Setting/company-management/company-management.component').then((m) => m.CompanyManagementComponent),
+                data: {
+                    title: 'Company Management',
+                },
+            },
+            {
+                path: 'setting/company-management/add-company-details',
+                loadComponent: () =>
+                    import('./Setting/company-master/company-master.component').then((m) => m.CompanyMasterComponent),
+                data: {
+                    title: 'Company Management',
+                },
+            },
+            {
+                path: 'setting/company-management/edit-company-details/:id',
+                loadComponent: () =>
+                    import('./Setting/company-master/company-master.component').then((m) => m.CompanyMasterComponent),
+                data: {
+                    title: 'Company Management',
                 },
             },
             {

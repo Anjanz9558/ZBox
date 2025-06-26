@@ -4,7 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CommonService } from '../../../shared/common.service';
 import { AdminLayoutService } from '../admin-layout.service';
-import { CommonModule,Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 // import { CoreHelperService } from '../../Providers/core-helper/core-helper.service';
 import { StorageService, StorageKey } from '../../../shared/storage.service';
@@ -12,15 +12,15 @@ import { TITLEROUTES } from '../admin-sidebar/admin-sidebar.component';
 import { environment } from '../../../../environments/environment';
 
 @Component({
-  selector: 'app-admin-navbar',
-  standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule, ReactiveFormsModule, NgSelectModule],
-  templateUrl: './admin-navbar.component.html',
-  styleUrl: './admin-navbar.component.scss'
+    selector: 'app-admin-navbar',
+    standalone: true,
+    imports: [RouterModule, CommonModule, FormsModule, ReactiveFormsModule, NgSelectModule],
+    templateUrl: './admin-navbar.component.html',
+    styleUrl: './admin-navbar.component.scss'
 })
 export class AdminNavbarComponent implements OnInit {
-private listTitles: any[] = [];
-private children: any[] = [];
+    private listTitles: any[] = [];
+    private children: any[] = [];
     location: any;
     mobile_menu_visible: any = 0;
     private toggleButton: any;
@@ -37,19 +37,19 @@ private children: any[] = [];
     hide3 = true;
     file: any;
     imgURL: any;
-    public imagePath:any;
+    public imagePath: any;
     message: any;
-    submitteduserData: boolean= false;
+    submitteduserData: boolean = false;
     fullName: any;
     userName: any;
     profileId: any;
-    sidebarClose:any;
+    sidebarClose: any;
 
     get formControlChangePassword() { return this.changePasswordForm.controls; }
     get fData() { return this.profileForm.controls; }
-@ViewChild('file') myInputVariable!: ElementRef;
+    @ViewChild('file') myInputVariable!: ElementRef;
 
-    constructor(location: Location, private element: ElementRef, private fb: FormBuilder, private router: Router,  private cookieService: CookieService, public commonService: CommonService, public adminLayoutService: AdminLayoutService, public storageService: StorageService,) {
+    constructor(location: Location, private element: ElementRef, private fb: FormBuilder, private router: Router, private cookieService: CookieService, public commonService: CommonService, public adminLayoutService: AdminLayoutService, public storageService: StorageService,) {
         this.location = location;
         this.sidebarVisible = false;
 
@@ -361,11 +361,32 @@ private children: any[] = [];
                 currentPageName: 'General Settings'
             };
         }
-          else if (titlee.includes('')) {
+        else if (titlee.includes('company-list')) {
             return {
                 pastUrl: '#',
                 pastLinkName: '',
-                currentPageName: 'User Wise Menu'
+                currentPageName: 'Company List'
+            };
+        }
+        else if (titlee.includes('add-company-details')) {
+            return {
+                pastUrl: 'setting/company-management/company-list',
+                pastLinkName: 'Company-List / ',
+                currentPageName: 'Add Company'
+            };
+        }
+        else if (titlee.includes('edit-company-details')) {
+            return {
+                pastUrl: 'setting/company-management/company-list',
+                pastLinkName: 'Company-List / ',
+                currentPageName: 'Edit Company'
+            };
+        }
+        else if (titlee.includes('')) {
+            return {
+                pastUrl: '#',
+                pastLinkName: '',
+                currentPageName: 'Page Not Found'
             };
         }
 
@@ -637,6 +658,6 @@ private children: any[] = [];
             currentPageName: 'Dashboard'
         };
     }
-    
+
 }
 

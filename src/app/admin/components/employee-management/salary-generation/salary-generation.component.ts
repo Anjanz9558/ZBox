@@ -64,7 +64,7 @@ export class SalaryGenerationComponent implements OnInit {
   searchTerm:any;
 
   constructor(private commonService: CommonService, public adminLayoutService: AdminLayoutService, private fb: FormBuilder, private router: Router) {
-    let pagePermission = { module: "salarygeneration" }
+    let pagePermission = { module: "SalaryGeneration" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {

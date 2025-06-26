@@ -62,7 +62,7 @@ export class GeneralSettingComponent implements OnInit {
         public commonService: CommonService,
         public adminLayoutService: AdminLayoutService
     ) { 
-            let pagePermission = { module: "generalsettings" }
+            let pagePermission = { module: "GeneralSettings" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
       if (Response.meta.code == 200) {
         this.isView = Response.data.isView;
