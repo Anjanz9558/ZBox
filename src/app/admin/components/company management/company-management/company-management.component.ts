@@ -90,7 +90,7 @@ export class CompanyManagementComponent implements OnInit {
   isDeleted: Boolean = false;
 
   constructor(private http: HttpClient, private fb: FormBuilder, public storageService: StorageService, private coreHelper: CoreHelperService, private route: ActivatedRoute, private router: Router, public commonService: CommonService, public adminLayoutService: AdminLayoutService) {
-    let pagePermission = { module: "CompanyManagement" }
+    let pagePermission = { module: "CompanyList" }
     this.adminLayoutService.getpagePermission(pagePermission).subscribe((Response: any) => {
 
       if (Response.meta.code == 200) {

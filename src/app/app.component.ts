@@ -20,7 +20,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
   imports: [RouterOutlet, LoaderComponent]
 })
 export class AppComponent implements OnInit {
-  title = 'ZBox';
+  title = 'ZBox | Welcome';
 
   readonly #destroyRef: DestroyRef = inject(DestroyRef);
   readonly #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   readonly #iconSetService = inject(IconSetService);
   readonly #document = inject(DOCUMENT);
   constructor(private AdminLayoutService: AdminLayoutService,
-        public commonService: CommonService,
+    public commonService: CommonService,
   ) {
 
 
@@ -42,13 +42,28 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.#router.events.pipe(
-      takeUntilDestroyed(this.#destroyRef)
-    ).subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-    });
+    this.#router.events
+      .pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+        map(() => {
+          let route = this.#activatedRoute;
+          while (route.firstChild) {
+            route = route.firstChild;
+          }
+          return route;
+        }),
+        filter(route => route.outlet === 'primary'),
+        map(route => route.snapshot.data['title']),
+        tap((pageTitle: string) => {
+          if (pageTitle) {
+            this.#titleService.setTitle(`ZBox | ${pageTitle}`);
+          } else {
+            this.#titleService.setTitle('ZBox');
+          }
+        }),
+        takeUntilDestroyed(this.#destroyRef)
+      )
+      .subscribe();
 
     this.#activatedRoute.queryParams
       .pipe(
@@ -61,14 +76,11 @@ export class AppComponent implements OnInit {
         takeUntilDestroyed(this.#destroyRef)
       )
       .subscribe();
-
-      
   }
 
-  
   setFavicon(faviconUrl: string): void {
     let link = this.#document.getElementById('dynamic-favicon') as HTMLLinkElement;
-  
+
     if (!link) {
       link = this.#document.createElement('link');
       link.id = 'dynamic-favicon';
@@ -76,8 +88,8 @@ export class AppComponent implements OnInit {
       link.type = 'image/x-icon';
       this.#document.head.appendChild(link);
     }
-  
+
     link.href = faviconUrl;
   }
-  
+
 }

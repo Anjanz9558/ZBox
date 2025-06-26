@@ -17,7 +17,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./dashboard/dashboard.component').then((m) => m.DashboardComponent),
                 data: {
-                    title: 'dashbaord List',
+                    title: 'Dashboard',
                 },
             },
             {
@@ -25,7 +25,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./employee-management/role-master/role-master.component').then((m) => m.RoleMasterComponent),
                 data: {
-                    title: 'role master',
+                    title: 'Role Master',
                 },
             },
             {
@@ -33,7 +33,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./employee-management/designation-master/designation-master.component').then((m) => m.DesignationMasterComponent),
                 data: {
-                    title: 'designation master',
+                    title: 'Designation Master',
                 },
             },
             {
@@ -41,7 +41,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./employee-management/department-master/department-master.component').then((m) => m.DepartmentMasterComponent),
                 data: {
-                    title: 'department master',
+                    title: 'Department Master',
                 },
             },
             {
@@ -49,7 +49,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./setting/menu-master/menu-master.component').then((m) => m.MenuMasterComponent),
                 data: {
-                    title: 'menu master',
+                    title: 'Menu Master',
                 }
             },
             {
@@ -65,7 +65,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./employee-management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
                 data: {
-                    title: 'Employee List',
+                    title: 'Add Employee',
                 },
             },
             {
@@ -73,7 +73,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./employee-management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
                 data: {
-                    title: 'Employee List',
+                    title: 'Update Employee',
                 },
             },
             {
@@ -81,7 +81,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./employee-management/add-new-user/add-new-user.component').then((m) => m.AddNewUserComponent),
                 data: {
-                    title: 'Profile List',
+                    title: 'Profile',
                 },
             },
             {
@@ -97,7 +97,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./Setting/ip-address-master/ip-address-master.component').then((m) => m.IpAddressMasterComponent),
                 data: {
-                    title: 'Ip Address Master',
+                    title: 'IP Address Master',
                 },
             },
             {
@@ -109,27 +109,35 @@ export const routes: Routes = [
                 },
             },
             {
-                path: 'setting/company-management/company-list',
+                path: 'company-management/company-list',
                 loadComponent: () =>
-                    import('./Setting/company-management/company-management.component').then((m) => m.CompanyManagementComponent),
+                    import('./company management/company-management/company-management.component').then((m) => m.CompanyManagementComponent),
                 data: {
                     title: 'Company Management',
                 },
             },
             {
-                path: 'setting/company-management/add-company-details',
+                path: 'company-management/add-company-details',
                 loadComponent: () =>
-                    import('./Setting/company-master/company-master.component').then((m) => m.CompanyMasterComponent),
+                    import('./company management/company-master/company-master.component').then((m) => m.CompanyMasterComponent),
                 data: {
-                    title: 'Company Management',
+                    title: 'Add Company',
                 },
             },
             {
-                path: 'setting/company-management/edit-company-details/:id',
+                path: 'company-management/edit-company-details/:id',
                 loadComponent: () =>
-                    import('./Setting/company-master/company-master.component').then((m) => m.CompanyMasterComponent),
+                    import('./company management/company-master/company-master.component').then((m) => m.CompanyMasterComponent),
                 data: {
-                    title: 'Company Management',
+                    title: 'Update Company',
+                },
+            },
+            {
+                path: 'company-management/company-document-master',
+                loadComponent: () =>
+                    import('./company management/company-doc-master/company-doc-master.component').then((m) => m.CompanyDocMasterComponent),
+                data: {
+                    title: 'Company Documents',
                 },
             },
             {
@@ -161,7 +169,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./leave-management/work-from-home/work-from-home.component').then((m) => m.WorkFromHomeComponent),
                 data: {
-                    title: 'Work From Home List',
+                    title: 'WFH List',
                 },
             },
             {

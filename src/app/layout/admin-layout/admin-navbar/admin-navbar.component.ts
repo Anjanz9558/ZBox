@@ -203,8 +203,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Dashboard'
             };
         }
-        // employee management
-        //1. employee master
         else if (titlee.includes('employee-list')) {
             return {
                 pastUrl: '#',
@@ -254,7 +252,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Interview Details'
             };
         }
-        //2. role master
         else if (titlee.includes('role-master')) {
             return {
                 pastUrl: '#',
@@ -262,7 +259,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Role Master'
             };
         }
-        //3. designation master
         else if (titlee.includes('designation-master')) {
             return {
                 pastUrl: '#',
@@ -270,18 +266,14 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Designation Master'
             };
         }
-        //4. technology master
         else if (titlee.includes('department-master')) {
             return {
                 pastUrl: '#',
                 pastLinkName: '',
-                // currentPageName: 'Technology Master'
                 currentPageName: 'Department Master'
 
             };
         }
-        
-        //5. document type master
         else if (titlee.includes('document-type-master')) {
             return {
                 pastUrl: '#',
@@ -289,7 +281,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Document Type Master'
             };
         }
-        //6. profile master
         else if (titlee.includes('profile')) {
             return {
                 pastUrl: '#',
@@ -304,8 +295,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Salary Generation'
             };
         }
-
-        // change password
         else if (titlee.includes('change-password')) {
             return {
                 pastUrl: '#',
@@ -313,9 +302,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Change Password'
             };
         }
-
-        // leave management
-        //1. holiday list
         else if (titlee.includes('holiday-list')) {
             return {
                 pastUrl: '#',
@@ -323,7 +309,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Holiday List'
             };
         }
-        //2. leave list
         else if (titlee.includes('leave-list')) {
             return {
                 pastUrl: '#',
@@ -331,8 +316,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Leave List'
             };
         }
-
-        // setting
         else if (titlee.includes('menu-master')) {
             return {
                 pastUrl: '#',
@@ -370,27 +353,25 @@ export class AdminNavbarComponent implements OnInit {
         }
         else if (titlee.includes('add-company-details')) {
             return {
-                pastUrl: 'setting/company-management/company-list',
+                pastUrl: 'company-management/company-list',
                 pastLinkName: 'Company-List / ',
                 currentPageName: 'Add Company'
             };
         }
         else if (titlee.includes('edit-company-details')) {
             return {
-                pastUrl: 'setting/company-management/company-list',
+                pastUrl: 'company-management/company-list',
                 pastLinkName: 'Company-List / ',
                 currentPageName: 'Edit Company'
             };
         }
-        else if (titlee.includes('')) {
+        else if (titlee.includes('company-document-master')) {
             return {
                 pastUrl: '#',
                 pastLinkName: '',
-                currentPageName: 'Page Not Found'
+                currentPageName: 'Company Document Master'
             };
         }
-
-        // attendance management
         else if (titlee.includes('attendance-list')) {
             return {
                 pastUrl: '#',
@@ -412,8 +393,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Attendance Consolidate Report'
             };
         }
-
-        // task management
         else if (titlee.includes('task-list')) {
             return {
                 pastUrl: '#',
@@ -421,8 +400,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Task List'
             };
         }
-
-        // assets managemet
         else if (titlee.includes('assign-product-list')) {
             return {
                 pastUrl: '#',
@@ -479,9 +456,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Product Master'
             };
         }
-
-        // project management
-        //1. project master
         else if (titlee.includes('project-master')) {
             return {
                 pastUrl: '#',
@@ -503,7 +477,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Add Project'
             };
         }
-        //2. Client Master
         else if (titlee.includes('client-master')) {
             return {
                 pastUrl: '#',
@@ -525,8 +498,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Add Client'
             };
         }
-
-        // company management
         else if (titlee.includes('company-list')) {
             return {
                 pastUrl: '#',
@@ -576,8 +547,6 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Edit Generated Invoice'
             };
         }
-
-        //account management
         else if (titlee.includes('group-master')) {
             return {
                 pastUrl: '#',
@@ -648,10 +617,13 @@ export class AdminNavbarComponent implements OnInit {
                 currentPageName: 'Short Leave List'
             };
         }
-
-
-
-
+        else if (titlee.includes('')) {
+            return {
+                pastUrl: '#',
+                pastLinkName: '',
+                currentPageName: 'Page Not Found'
+            };
+        }
         return {
             pastUrl: '#',
             pastLinkName: '',

@@ -471,7 +471,7 @@ export class CompanyMasterComponent implements OnInit {
     companyInformationDetailsObj.append('companyDirectorSeal', this.directorSealFile);
 
 
-    this.adminLayoutService.SaveCompanyInformationData(companyInformationDetailsObj).subscribe((Res: any) => {
+    this.adminLayoutService.SaveCompanyInformation(companyInformationDetailsObj).subscribe((Res: any) => {
       if (Res.meta.code == 200) {
         this.submittedCompanyInfoData = false;
         this.defualtcompanyDetailsForm();
@@ -530,7 +530,7 @@ export class CompanyMasterComponent implements OnInit {
     companyInformationDetailsObj.append('companyRoundSeal', this.roundSealFile);
     companyInformationDetailsObj.append('companyDirectorSeal', this.directorSealFile);
 
-    this.adminLayoutService.UpdateCompanyInformationData(companyInformationDetailsObj).subscribe((Res: any) => {
+    this.adminLayoutService.UpdateCompanyInformation(companyInformationDetailsObj).subscribe((Res: any) => {
       if (Res.meta.code == 200) {
         this.submittedCompanyInfoData = false;
         this.defualtcompanyDetailsForm();
@@ -551,7 +551,7 @@ export class CompanyMasterComponent implements OnInit {
     let companyObj = {
       _id: id
     }
-    this.adminLayoutService.getCompanyDetailsByID(companyObj).subscribe((Res: any) => {
+    this.adminLayoutService.getCompanyDetailsByIDS(companyObj).subscribe((Res: any) => {
       if (Res.meta.code == 200) {
 
         this.companyDetailsForm.controls['_id'].setValue(Res.data._id);
@@ -617,7 +617,7 @@ export class CompanyMasterComponent implements OnInit {
     let companyObj = {
       _id: this.companyId
     }
-    this.adminLayoutService.getCompanyDetailsByID(companyObj).subscribe((Response: any) => {
+    this.adminLayoutService.getCompanyDetailsByIDS(companyObj).subscribe((Response: any) => {
       if (Response.meta.code == 200) {
         this.employeeCompanyList = Response.data;
 

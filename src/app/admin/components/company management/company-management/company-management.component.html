@@ -7,7 +7,7 @@
           [(ngModel)]="searchTerm" placeholder="Type here...">
         <div class="right-container" *ngIf="this.isCreated == true">
           <button class="btn bg-gradient-dark mb-0 add-btn right-container-button"
-             routerLink="/admin/setting/company-management/add-company-details">
+             routerLink="/admin/company-management/add-company-details">
             <span class="long-text">Add New</span>
             <i class="fas fa-plus" aria-hidden="true"></i></button>
         </div>
@@ -67,7 +67,7 @@
                       <ul class="d-flex align-items-center action-list p-0">
                         <li class="action-list-item me-3" *ngIf="this.isUpdated == true">
                           <button class="font-20 btn bg-gradient-dark emp-edit-btn" title="Edit Company"
-                            routerLink="admin/setting/company-management/edit-company-details{{employeeCompanyData._id}}">
+                            routerLink="admin/company-management/edit-company-details{{employeeCompanyData._id}}">
                             <i class="fa fa-edit"></i></button>
                         </li>
                         <li class="action-list-item" *ngIf="this.isDeleted == true">

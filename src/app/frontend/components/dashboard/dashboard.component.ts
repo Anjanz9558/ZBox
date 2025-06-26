@@ -921,12 +921,14 @@ export class DashboardComponent implements OnInit {
   addManualBreakPopup() {
     this.defaultManualBreakForm();
     this.submittedManualBreak = false;
-    $("#break-add-manually").modal({ backdrop: 'static', keyboard: false, show: true });
+    $("#break-add-manually").modal({ backdrop: 'static', keyboard: false });
+    $("#break-add-manually").modal("show");
   }
   listShowType: any;
   showList(type: any) {
     this.listShowType = type
-    $("#current-status-modal").modal({ backdrop: 'static', keyboard: false, show: true });
+    $("#current-status-modal").modal({ backdrop: 'static', keyboard: false });
+    $("#current-status-modal").modal("show");
   }
   cancleCurrentStatusModal() {
     $("#current-status-modal").modal('hide');
