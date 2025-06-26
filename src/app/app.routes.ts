@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 import { AdminLayoutComponent, FrontLayoutComponent } from './layout';
 import { adminAuthGuard } from './admin/guards/admin-auth.guard';
+import { frontAuthGuard } from './frontend/guards/front-auth.guard';
 export const routes: Routes = [
-   
+
   {
     path: '',
     redirectTo: 'dashboard',
@@ -87,6 +88,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
+        canActivate: [frontAuthGuard],
         loadChildren: () => import('./frontend/components/routes').then((m) => m.routes)
       },
 
@@ -108,7 +110,7 @@ export const routes: Routes = [
       // },
 
 
-    
+
       {
         path: 'forgot-password',
         loadComponent: () => import('./frontend/user-login/user-login.component').then(m => m.UserLoginComponent),
@@ -142,13 +144,13 @@ export const routes: Routes = [
 
     ]
   },
-    {
-        path: 'login',
-        loadComponent: () => import('./frontend/user-login/user-login.component').then(m => m.UserLoginComponent),
-        data: {
-          title: 'Login Page'
-        }
-      },
+  {
+    path: 'login',
+    loadComponent: () => import('./frontend/user-login/user-login.component').then(m => m.UserLoginComponent),
+    data: {
+      title: 'Login Page'
+    }
+  },
 
   {
     path: '**',
