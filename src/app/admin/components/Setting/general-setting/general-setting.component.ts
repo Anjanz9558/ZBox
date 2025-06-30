@@ -105,7 +105,8 @@ export class GeneralSettingComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             properiterCompany: ['', Validators.required],
             properiterName: ['', Validators.required],
-            mobileNumbers: this.fb.array([this.createMobileField()])
+            mobileNumbers: this.fb.array([this.createMobileField()]),
+            address: ['', Validators.required],
         });
     }
 
@@ -363,7 +364,8 @@ export class GeneralSettingComponent implements OnInit {
                         website: response.data.website,
                         email: response.data.email,
                         properiterCompany: response.data.properiterCompany,
-                        properiterName: response.data.properiterName
+                        properiterName: response.data.properiterName,
+                        address:response.data.address
                     });
 
                     // Mobile numbers - ensure dynamic form array is updated
@@ -424,6 +426,8 @@ export class GeneralSettingComponent implements OnInit {
         formData.append('email', this.pdfInfoForm.value.email);
         formData.append('properiterCompany', this.pdfInfoForm.value.properiterCompany);
         formData.append('properiterName', this.pdfInfoForm.value.properiterName);
+        formData.append('address', this.pdfInfoForm.value.address);
+
 
         mobileArray.controls.forEach((ctrl, i) => {
             formData.append(`mobileNumbers[${i}]`, ctrl.value);
