@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -44,20 +44,23 @@ export class AdminNavbarComponent implements OnInit {
     userName: any;
     profileId: any;
     sidebarClose: any;
+    dropdownOpen = false;
+
 
     get formControlChangePassword() { return this.changePasswordForm.controls; }
     get fData() { return this.profileForm.controls; }
     @ViewChild('file') myInputVariable!: ElementRef;
 
+    
     constructor(location: Location, private element: ElementRef, private fb: FormBuilder, private router: Router, private cookieService: CookieService, public commonService: CommonService, public adminLayoutService: AdminLayoutService, public storageService: StorageService,) {
         this.location = location;
         this.sidebarVisible = false;
-
-
+        
+        
     }
-
+    
     ngOnInit() {
-
+        
         this.userName = this.storageService.getValue(StorageKey.firstName) + ' ' + this.storageService.getValue(StorageKey.middleName) + ' ' + this.storageService.getValue(StorageKey.lastName);
         this.profileId = this.storageService.getValue(StorageKey.employeeId);
         this.listTitles = TITLEROUTES.filter(listTitle => listTitle);
@@ -78,6 +81,19 @@ export class AdminNavbarComponent implements OnInit {
         }, 0);
     }
 
+    toggleDropdown() {
+  this.dropdownOpen = !this.dropdownOpen;
+}
+
+
+// Optionally close on outside click:
+@HostListener('document:click', ['$event'])
+onOutsideClick(event: Event) {
+  const clickedInside = (event.target as HTMLElement).closest('.nav-item.dropdown');
+  if (!clickedInside) {
+    this.dropdownOpen = false;
+  }
+}
 
     profile() {
         this.router.navigate(['/admin/profile/' + this.profileId]);

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { ROUTES } from '../front-sidebar/front-sidebar.component';
 import { CommonModule, Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router,RouterLink } from '@angular/router';
@@ -30,6 +30,7 @@ export class FrontNavbarComponent implements OnInit {
   isViewCount = 0;
   noNotificationData: boolean = false;
   dropdownOpen: any;
+  dropdownOpenClose = false;
 
   constructor(location: Location, private element: ElementRef, public commonService: CommonService, private router: Router, private socketIOService: SocketIOService, private frontLayoutService: FrontLayoutService) {
     this.location = location;
@@ -191,6 +192,19 @@ export class FrontNavbarComponent implements OnInit {
 
 
 
+toggleDropdown() {
+  this.dropdownOpenClose = !this.dropdownOpenClose;
+}
+
+@HostListener('document:click', ['$event'])
+onOutsideClick(event: Event) {
+  const clickedInside = (event.target as HTMLElement).closest('.nav-item.dropdown');
+  if (!clickedInside) {
+    this.dropdownOpenClose = false;
+  }
+}
+
+
   getNotificationList() {
     this.notificationPageNumber = 0
     this.notificationList = []
@@ -242,7 +256,7 @@ export class FrontNavbarComponent implements OnInit {
       return;
     }
 
-    this.router.navigate(['/admin/my-profile/' + empId]);
+    this.router.navigate(['/my-profile/' + empId]);
   }
 
   sidebarOpen() {

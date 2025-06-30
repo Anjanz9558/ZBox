@@ -1,5 +1,3 @@
-
-
 <nav class="navbar bg-white navbar-main navbar-expand-lg px-0 mx-4 shadow border-radius-xl mt-2 sticky-top"
   id="navbarBlur" navbar-scroll="true">
   <div class="container-fluid py-1 px-3">
@@ -35,8 +33,7 @@
       <ul class="navbar-nav  justify-content-end logout-option">
 
         <li class="nav-item dropdown px-2 d-flex align-items-center">
-          <a href="javascript:;"
-            class="nav-link position-relative  text-body p-0 d-flex align-items-center"
+          <a href="javascript:;" class="nav-link position-relative  text-body p-0 d-flex align-items-center"
             data-toggle="dropdown">
             <i class="fas fa-bell user-icon" style="font-size: 25px;"></i>
             <span class="badge bg-danger rounded-pill badge-notifications position-absolute" *ngIf="isViewCount > 0"
@@ -119,20 +116,21 @@
 
 
 
-          
-        <!-- </li> -->
-        <li class="nav-item dropdown pr-20  px-3 d-flex align-items-center">
-          <a href="javascript:;" class="nav-link text-body p-0 d-flex align-items-center" data-bs-toggle="dropdown">
-            <!-- <i class="fa fa-user mr-10 user-icon"></i> -->
+
+          <!-- </li> -->
+        <li class="nav-item dropdown pr-20 px-3 d-flex align-items-center">
+          <a href="javascript:;" class="nav-link text-body p-0 d-flex align-items-center" (click)="toggleDropdown()"
+            [class.show]="dropdownOpenClose">
             <img [src]="profileImage" onerror="this.src ='../assets/img/no-image-available.jpg'" class="user-pic">
             <span class="d-sm-block d-none user-name">{{userName}}</span>
           </a>
-          <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4">
+          <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" [class.show]="dropdownOpenClose"
+            [style.display]="dropdownOpenClose ? 'block' : 'none'">
             <li class="mb-2">
               <a class="dropdown-item border-radius-md" (click)="myprofile()">
                 <div class="d-flex py-1">
                   <div class="my-auto">
-                    <i class="fa fa-user avatar avatar-sm bg-gradient-dark  me-3"></i>
+                    <i class="fa fa-user avatar avatar-sm bg-gradient-dark me-3"></i>
                   </div>
                   <div class="d-flex flex-column justify-content-center">
                     <span class="font-weight-bold">My Profile</span>
@@ -144,7 +142,8 @@
               <a class="dropdown-item border-radius-md" (click)="logout()">
                 <div class="d-flex py-1">
                   <div class="my-auto">
-                    <i class="fa fa-sign-out-alt avatar avatar-sm bg-gradient-dark me-3" style="display: flex; font-size: 17px;" aria-hidden="true"></i>
+                    <i class="fa fa-sign-out-alt avatar avatar-sm bg-gradient-dark me-3"
+                      style="display: flex; font-size: 17px;" aria-hidden="true"></i>
                   </div>
                   <div class="d-flex flex-column justify-content-center">
                     <span class="font-weight-bold">Logout</span>
@@ -154,6 +153,7 @@
             </li>
           </ul>
         </li>
+
       </ul>
     </div>
   </div>

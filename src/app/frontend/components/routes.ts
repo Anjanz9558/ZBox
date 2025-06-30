@@ -55,6 +55,13 @@ export const routes: Routes = [
           title: 'Summary Report'
         }
       },
+       {
+      path: 'my-profile/:id',
+        loadComponent: () => import('../components/my-profile/my-profile.component').then(m => m.MyProfileComponent),
+        data: {
+          title: ''
+        }
+      },
     ]
   },
   // {
