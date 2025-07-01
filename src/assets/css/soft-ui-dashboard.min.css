@@ -2694,12 +2694,12 @@ progress {
 }
 
 .form-control:focus {
-  color: #495057 !important;
-  background-color: #f2f2f2 !important;
-  border-color: #dedede !important;
-  outline: 0 !important;
-  box-shadow: 0 0 0 2px #dedede !important;
-  font-family: var(--bs-body-font-family) !important;
+  color: #495057;
+  background-color: #f2f2f2;
+  border-color: #dedede;
+  outline: 0;
+  box-shadow: 0 0 0 2px #dedede;
+  font-family: var(--bs-body-font-family);
 }
 
 .form-control::-webkit-date-and-time-value {
@@ -21353,8 +21353,8 @@ label {
 }
 
 .icon-sm {
-  width: 32px;
-  height: 32px;
+  width: 32px !important;
+  height: 32px !important;
 }
 
 .icon-sm i {

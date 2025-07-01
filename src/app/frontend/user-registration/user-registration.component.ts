@@ -1,27 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FrontLayoutService } from '../../layout/front-layout/front-layout.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonService } from '../../shared/common.service';
-import { environment } from '../../../environments/environment';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterModule } from '@angular/router';
-import {
-  AlignDirective, BorderDirective, ButtonDirective, CardBodyComponent, CardComponent, CardHeaderComponent, ColComponent, CollapseDirective, PageItemComponent, PaginationComponent, RowComponent, TableActiveDirective, TableColorDirective, TableDirective, TextColorDirective, ModalComponent,
-  ModalFooterComponent,
-  ModalHeaderComponent,
-  ModalTitleDirective,
-  ModalToggleDirective,
-  ButtonCloseDirective,
-  ModalBodyComponent,
-  FormCheckComponent, FormCheckInputDirective, FormControlDirective, FormLabelDirective, FormDirective
-} from '@coreui/angular';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Modal } from 'bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { Tooltip } from 'bootstrap';
 
 
 @Component({

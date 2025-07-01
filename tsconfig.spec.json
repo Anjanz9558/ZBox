@@ -4,7 +4,7 @@
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine",
-      "@angular/localize"
+      "node"
     ],
     "paths": {
       "@docs-components/*": ["./src/components/*"]
