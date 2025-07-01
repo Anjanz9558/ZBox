@@ -732,7 +732,7 @@ export class AdminLayoutService {
         let headers = new HttpHeaders({
             'Authorization': `Bearer ${myToken}`
         })
-        return this.http.get(this.commonService.rootData.rootUrl + 'salaryDetails/appoinmentLetterGenerate', { params: id, headers: headers });
+        return this.http.get(this.commonService.rootData.rootUrl + 'salaryDetails/experienceLatterSlipPdfGenerate', { params: id, headers: headers });
     }
     downloadOfferLetter(id: any) {
         let myToken = localStorage.getItem("myToken")

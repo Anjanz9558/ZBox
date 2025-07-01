@@ -109,39 +109,6 @@ export const routes: Routes = [
       //   loadChildren: () => import('./admin/content-management/routes').then((m) => m.routes)
       // },
 
-
-
-      {
-        path: 'forgot-password',
-        loadComponent: () => import('./frontend/user-login/user-login.component').then(m => m.UserLoginComponent),
-        data: {
-          title: 'Forgot Password Page'
-        }
-      },
-
-      {
-        path: 'verify-otp',
-        loadComponent: () => import('./frontend/user-login/user-login.component').then(m => m.UserLoginComponent),
-        data: {
-          title: 'Otp Verification Page'
-        }
-      },
-
-      {
-        path: 'reset-password',
-        loadComponent: () => import('./frontend/user-login/user-login.component').then(m => m.UserLoginComponent),
-        data: {
-          title: 'Reset Password Page'
-        }
-      },
-      {
-        path: 'register',
-        loadComponent: () => import('./frontend/user-registration/user-registration.component').then(m => m.UserRegistrationComponent),
-        data: {
-          title: 'Register Page'
-        }
-      },
-
     ]
   },
   {
