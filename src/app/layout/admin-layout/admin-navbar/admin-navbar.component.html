@@ -34,53 +34,51 @@
         </div> -->
       </div>
       <ul class="navbar-nav  justify-content-end">
-     <li class="nav-item dropdown pr-20 px-3 d-flex align-items-center">
-  <a href="javascript:;" class="nav-link text-body p-0 d-flex align-items-center"
-     (click)="toggleDropdown()" [class.show]="dropdownOpen">
-    <img [src]="profileImg" onerror="this.src ='../assets/img/no-image-available.jpg'" class="user-pic">
-    <span class="d-sm-block d-none user-name">{{userName}}</span>
-  </a>
-  <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4"
-      [class.show]="dropdownOpen" [style.display]="dropdownOpen ? 'block' : 'none'">
-    <li class="mb-2">
-      <a class="dropdown-item border-radius-md" (click)="profile()">
-        <div class="d-flex py-1">
-          <div class="my-auto">
-            <i class="fa fa-user avatar avatar-sm bg-gradient-dark me-3"></i>
-          </div>
-          <div class="d-flex flex-column justify-content-center">
-            <span class="font-weight-bold">Profile</span>
-          </div>
-        </div>
-      </a>
-    </li>
-    <li class="mb-2">
-      <a class="dropdown-item border-radius-md" (click)="changePassword()">
-        <div class="d-flex py-1">
-          <div class="my-auto">
-            <i class="fa fa-lock avatar avatar-sm bg-gradient-dark me-3"></i>
-          </div>
-          <div class="d-flex flex-column justify-content-center">
-            <span class="font-weight-bold">Change Password</span>
-          </div>
-        </div>
-      </a>
-    </li>
-    <li class="mb-2">
-      <a class="dropdown-item border-radius-md" (click)="logout()">
-        <div class="d-flex py-1">
-          <div class="my-auto">
-            <i class="fas fa-sign-out-alt avatar avatar-sm bg-gradient-dark me-3"></i>
-          </div>
-          <div class="d-flex flex-column justify-content-center">
-            <span class="font-weight-bold">Logout</span>
-          </div>
-        </div>
-      </a>
-    </li>
-  </ul>
-</li>
-
+        <li class="nav-item dropdown pr-20  px-3 d-flex align-items-center">
+          <a href="javascript:;" class="nav-link text-body p-0 d-flex align-items-center" data-bs-toggle="dropdown">
+            <!-- <i class="fa fa-user mr-10 user-icon"></i> -->
+            <img [src]="profileImg" onerror="this.src ='../assets/img/no-image-available.jpg'" class="user-pic">
+            <span class="d-sm-block d-none user-name">{{userName}}</span>
+          </a>
+          <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4">
+            <li class="mb-2">
+              <a class="dropdown-item border-radius-md" (click)="profile()">
+                <div class="d-flex py-1">
+                  <div class="my-auto">
+                    <i class="fa fa-user avatar avatar-sm bg-gradient-dark me-3" style="display: flex; font-size: 17px; font-weight: 600;"></i>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center">
+                    <span class="font-weight-bold">Profile</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a class="dropdown-item border-radius-md" (click)="changePassword()">
+                <div class="d-flex py-1">
+                  <div class="my-auto">
+                    <i class="fa fa-lock avatar avatar-sm bg-gradient-dark  me-3" style="display: flex; font-size: 17px; font-weight: 600;"></i>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center">
+                    <span class="font-weight-bold">Change Password</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="mb-2">
+              <a class="dropdown-item border-radius-md" (click)="logout()">
+                <div class="d-flex py-1">
+                  <div class="my-auto">
+                    <i class="fas fa-sign-out-alt avatar avatar-sm bg-gradient-dark  me-3" style="display: flex; font-size: 17px; font-weight: 600;"></i>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center">
+                    <span class="font-weight-bold">Logout</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
       
     </div>

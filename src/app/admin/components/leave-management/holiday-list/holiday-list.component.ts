@@ -18,7 +18,6 @@ declare const $: any;
 import { environment } from '../../../../../environments/environment';
 import { NgSelectModule } from '@ng-select/ng-select';
 import moment from 'moment';
-import { CalendarOptions } from '@fullcalendar/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -48,7 +47,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class HolidayListComponent implements OnInit {
 
   newsEvent: any[] = [];
-  calendarOptions: CalendarOptions = {};
+  // calendarOptions: CalendarOptions = {};
   uploadedDocumentsName: any;
   uploadedDocuments: any;
   @ViewChild('file') myInputVariable!: ElementRef;
@@ -125,7 +124,7 @@ export class HolidayListComponent implements OnInit {
 
   getHolidayList() {
     this.newsEvent = [];
-    this.calendarOptions = {};
+    // this.calendarOptions = {};
     this.holidayTableWiseData = [];
     this.adminLayoutService.getActiveHolidayList().subscribe((Response: any) => {
       if (Response.meta.code == 200) {
@@ -158,14 +157,14 @@ export class HolidayListComponent implements OnInit {
         })
 
 
-        this.calendarOptions = {
-          initialView: 'dayGridMonth',
-          events: this.newsEvent,
-          // events:  [{ title: 'Event Now', start: new Date() }],
-          headerToolbar: {
-            right: 'prev,next'
-          },
-        };
+        // this.calendarOptions = {
+        //   initialView: 'dayGridMonth',
+        //   events: this.newsEvent,
+        //   // events:  [{ title: 'Event Now', start: new Date() }],
+        //   headerToolbar: {
+        //     right: 'prev,next'
+        //   },
+        // };
       }
     }, (error) => {
       console.log(error.error.Message);

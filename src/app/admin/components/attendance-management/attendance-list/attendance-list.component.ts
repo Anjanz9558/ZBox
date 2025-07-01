@@ -20,7 +20,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 declare const $: any;
 import moment from 'moment';
 import * as XLSX from 'xlsx';
-import * as fs from 'file-saver';
+import fs from 'file-saver'; 
 import { NgOtpInputComponent } from 'ng-otp-input';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ConfirmDirective } from '../../../../shared/directives/common.directive';

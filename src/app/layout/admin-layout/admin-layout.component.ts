@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
-import { INavData } from '@coreui/angular';
 import { AdminLayoutService } from './admin-layout.service';
 import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';

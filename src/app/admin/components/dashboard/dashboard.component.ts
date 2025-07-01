@@ -10,8 +10,25 @@ import { CommonService } from '../../../shared/common.service';
 import { CommonModule } from '@angular/common';
 declare const $: any;
 import { NgSelectModule } from '@ng-select/ng-select';
-import { NgPipesModule } from 'ngx-pipes';
 import { MatSortModule } from '@angular/material/sort';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatRadioModule } from '@angular/material/radio';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { NgOtpInputComponent } from 'ng-otp-input';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { ConfirmDirective } from '../../../shared/directives/common.directive';
+import { ArraySortPipeAsc, ArraySortPipeDesc, ArraySortPipeSimple, FilterPipe, GroupByPipe, NiceTimePipe } from '../../../shared/pipe/common.pipe';
 
 
 @Component({
@@ -19,7 +36,35 @@ import { MatSortModule } from '@angular/material/sort';
   imports: [RouterModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule, NgSelectModule,NgPipesModule,MatSortModule],
+    ReactiveFormsModule,
+    NgSelectModule,
+    MatSortModule,
+    DragDropModule,
+    MatButtonModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    HttpClientModule,
+    AngularEditorModule,
+    MatAutocompleteModule,
+    EditorModule,
+    NgOtpInputComponent,
+    NgxMatSelectSearchModule,
+    ConfirmDirective,
+    NiceTimePipe,
+    GroupByPipe,
+    ArraySortPipeDesc,
+    ArraySortPipeAsc,
+    ArraySortPipeSimple,
+    FilterPipe,
+
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

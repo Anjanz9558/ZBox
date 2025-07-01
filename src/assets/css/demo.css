@@ -1,0 +1,487 @@
+/*
+* demo.css
+* File include item demo only specific css only
+******************************************************************************/
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.menu .app-brand.demo {
+  height: 64px;
+  margin-top: 12px;
+}
+
+.app-brand-logo.demo svg {
+  width: 22px;
+  height: 38px;
+}
+
+.app-brand-text.demo {
+  font-size: 1.75rem;
+  letter-spacing: -0.5px;
+  text-transform: lowercase;
+}
+
+/* ! For .layout-navbar-fixed added fix padding top tpo .layout-page */
+/* Detached navbar */
+.layout-navbar-fixed
+  .layout-wrapper:not(.layout-horizontal):not(.layout-without-menu)
+  .layout-page {
+  padding-top: 76px !important;
+}
+/* Default navbar */
+.layout-navbar-fixed .layout-wrapper:not(.layout-without-menu) .layout-page {
+  padding-top: 64px !important;
+}
+
+/* Navbar page z-index issue solution */
+.content-wrapper .navbar {
+  z-index: auto;
+}
+
+/*
+    * Content
+    ******************************************************************************/
+
+.demo-blocks > * {
+  display: block !important;
+}
+
+.demo-inline-spacing > * {
+  margin: 1rem 0.375rem 0 0 !important;
+}
+
+/* ? .demo-vertical-spacing class is used to have vertical margins between elements. To remove margin-top from the first-child, use .demo-only-element class with .demo-vertical-spacing class. For example, we have used this class in forms-input-groups.html file. */
+.demo-vertical-spacing > * {
+  margin-top: 1rem !important;
+  margin-bottom: 0 !important;
+}
+.demo-vertical-spacing.demo-only-element > :first-child {
+  margin-top: 0 !important;
+}
+
+.demo-vertical-spacing-lg > * {
+  margin-top: 1.875rem !important;
+  margin-bottom: 0 !important;
+}
+.demo-vertical-spacing-lg.demo-only-element > :first-child {
+  margin-top: 0 !important;
+}
+
+.demo-vertical-spacing-xl > * {
+  margin-top: 5rem !important;
+  margin-bottom: 0 !important;
+}
+.demo-vertical-spacing-xl.demo-only-element > :first-child {
+  margin-top: 0 !important;
+}
+
+.rtl-only {
+  display: none !important;
+  text-align: left !important;
+  direction: ltr !important;
+}
+
+[dir="rtl"] .rtl-only {
+  display: block !important;
+}
+
+/*
+    * Layout demo
+    ******************************************************************************/
+
+.layout-demo-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+.layout-demo-placeholder img {
+  width: 900px;
+}
+.layout-demo-info {
+  text-align: center;
+  margin-top: 1rem;
+}
+.float-left {
+  float: left;
+}
+.mat-date-picker .mat-dat-picker-icon .calendar-icon {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 40px;
+  height: 100%;
+  text-align: center;
+}
+.mat-date-picker .mat-dat-picker-icon .mat-datepicker-toggle {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 100000;
+}
+.leave-info-box {
+  border: 1px solid #e5e5e5;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.leave-info-box:last-child {
+  margin-bottom: 0;
+}
+.avatar {
+  background-color: #aaa;
+  border-radius: 50%;
+  color: #fff;
+  display: inline-block;
+  font-weight: 500;
+  height: 38px;
+  line-height: 30px;
+  margin: 0 10px 0 0;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: 38px;
+  position: relative;
+  white-space: nowrap;
+}
+.avatar > img {
+  border-radius: 50%;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+}
+.text-sm {
+  font-size: 0.875rem !important;
+}
+
+.bg-inverse-danger {
+  background-color: #f211361f !important;
+  color: #e63c3c !important;
+}
+.bg-inverse-success {
+  background-color: rgba(15, 183, 107, 0.12) !important;
+  color: #26af48 !important;
+}
+.bg-inverse-warning {
+  background-color: rgba(255, 152, 0, 0.12) !important;
+  color: #f39c12 !important;
+}
+.pl-30px {
+  padding-left: 30px;
+}
+.pl-75px {
+  padding-left: 75px;
+}
+.ml-18px {
+  margin-left: 18px;
+}
+
+.inputContainer {
+  height: 80px;
+  position: relative;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.fileupload-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 0;
+}
+
+.qq-upload-button {
+  border: 1px dashed;
+  border-radius: 4px;
+  height: 80px;
+  font-size: 18px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  word-break: break-word;
+  overflow-x: scroll;
+}
+
+.qq-upload-button:before {
+  background-image: url("../img/fileUploadImage.svg");
+  content: "";
+  width: 40px;
+  height: 28px;
+  /* margin-bottom: 16px; */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.jfUpload-heading {
+  font-size: 14px;
+  color: #57647e;
+  font-weight: 400;
+}
+.jfUpload-heading.forDesktop {
+  display: block;
+}
+.jfUpload-heading.forMobile {
+  display: none;
+}
+.qq-upload-list {
+  padding: 0;
+  list-style: none;
+}
+
+.qq-upload-list > li {
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: 500;
+}
+.qq-upload-file,
+.qq-upload-img-container {
+  background-color: #f2f2f2;
+  white-space: nowrap;
+  padding-right: 13px;
+  line-height: 45px;
+  width: 41px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.qq-upload-img-container {
+  padding: 4px;
+  border-radius: 4px 0 0 4px;
+}
+.qq-upload-img-container > img {
+  border-color: #b5c2db;
+}
+.qq-upload-img-container > img {
+  display: block;
+  object-position: center;
+  width: 27px;
+  padding-left: 5px;
+  border-radius: 4px;
+  height: 32px;
+}
+img {
+  max-width: 100%;
+}
+img {
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
+.qq-upload-file {
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  word-wrap: break-all;
+  overflow: hidden;
+}
+.qq-upload-delete {
+  background-color: #05334d;
+}
+.qq-upload-delete {
+  background-image: url("../img/removeDocument.svg");
+  width: 32px;
+  border-radius: 4px;
+  background-size: 12px;
+  background-position: 50%;
+  margin-left: 10px;
+  background-repeat: no-repeat;
+  color: transparent;
+  cursor: pointer;
+}
+.upload-file span {
+  font-size: 14px;
+  white-space: nowrap;
+  width: 190px;
+  padding-left: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.upload-file {
+  background: #f2f2f2;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.download-icone {
+  background: #05334d;
+  padding: 7px 12px;
+  border-radius: 8px;
+  margin-left: 12px;
+}
+.download-icone i {
+  color: white;
+  font-size: 14px;
+}
+.pdf-upload-file {
+  overflow: auto;
+  padding-right: 10px;
+  max-height: 170px;
+}
+.bg-default {
+  color: #000 !important;
+  background: #f2f2f2 !important;
+  box-shadow: unset !important;
+}
+
+/* task board-card-design */
+/* .kanban-cont {
+    overflow: auto;
+} */
+
+.kanban-cont .kanban-primary {
+  background-color: #42a5f533;
+  border-radius: 10px;
+}
+.kanban-cont .kanban-success {
+  background-color: #4caf5033;
+  border-radius: 10px;
+}
+.kanban-cont .kanban-warning {
+  background-color: #ffb30033;
+  border-radius: 10px;
+}
+.ui-sortable {
+  max-height: calc(100vh - 245px);
+  overflow: auto;
+}
+.ui-sortable::-webkit-scrollbar {
+  width: 0px;
+}
+.ui-sortable-handle {
+  padding: 15px;
+}
+.task-status-main .task-status {
+  display: inline-block;
+  float: left;
+}
+.cursor-move {
+  cursor: move;
+}
+.task-status-main p {
+  padding-left: 100px;
+}
+
+/* .kanban-cont .kanban-list {
+  align-self: flex-start;
+  min-width: 300px;
+  width: 300px;
+  margin: 0 30px 0 0;
+} */
+
+.kanban-cont .kanban-list.kanban-primary .kanban-header {
+  background-color: #42a5f5;
+  border-radius: 10px 10px 0 0;
+}
+.kanban-cont .kanban-list.kanban-success .kanban-header {
+  background-color: #4caf50;
+  border-radius: 10px 10px 0 0;
+}
+.kanban-cont .kanban-list.kanban-warning .kanban-header {
+  background-color: #ffb300;
+  border-radius: 10px 10px 0 0;
+}
+
+.kanban-cont .kanban-list .kanban-header {
+  padding: 10px 20px;
+}
+
+.kanban-cont .kanban-list .kanban-wrap {
+  padding: 20px;
+}
+.kanban-cont .kanban-list .kanban-header .status-title {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+.kanban-cont .kanban-list .kanban-wrap .card {
+  background-color: #fff;
+  border: 1px solid #e3e3e3;
+  border-radius: 2px;
+  box-shadow: unset;
+  margin: 0 0 12px;
+}
+.kanban-cont .kanban-list .kanban-wrap .task-board-header {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.status-title span {
+  font-weight: normal;
+}
+.assign-task-list {
+  background: #42a5f5;
+}
+.assign-task {
+  margin-bottom: 25px;
+}
+.upload-file {
+  background: #f2f2f2;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 4px;
+}
+.upload-file span {
+  font-size: 14px;
+  white-space: nowrap;
+  width: 190px;
+  padding-left: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.download-icone {
+  background: #05334d;
+  padding: 7px 12px;
+  border-radius: 8px;
+  margin-left: 12px;
+}
+.download-icone i {
+  color: white;
+  font-size: 14px;
+}
+.pdf-upload-file {
+  overflow: auto;
+  padding-right: 10px;
+  max-height: 170px;
+}
+.view-btn {
+  cursor: pointer;
+}
+
+/* task-board-design-end */
+.emoji-mart {
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  width: 100% !important;
+}
+
+.emoji-mart-anchor-selected {
+  color: #4f5b67 !important;
+}
+
+.emoji-mart-anchor-selected .emoji-mart-anchor-bar {
+  background-color: #4f5b67 !important;
+}

@@ -9,9 +9,6 @@ import { StorageService, StorageKey } from '../../shared/storage.service';
 // import { CoreHelperService } from '../../Providers/core-helper/core-helper.service';
 import { environment } from '../../../environments/environment';
 import { CommonModule } from '@angular/common';
-import { CardBodyComponent, CardComponent, CardGroupComponent, ColComponent, ContainerComponent, InputGroupComponent, InputGroupTextDirective, RowComponent, TextColorDirective } from '@coreui/angular';
-import { IconDirective } from '@coreui/icons-angular';
-
 
 
 @Component({
@@ -20,16 +17,6 @@ import { IconDirective } from '@coreui/icons-angular';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ContainerComponent,
-    RowComponent,
-    ColComponent,
-    CardGroupComponent,
-    TextColorDirective,
-    CardComponent,
-    CardBodyComponent,
-    InputGroupComponent,
-    InputGroupTextDirective,
-    IconDirective
 ],
   templateUrl: './admin-login.component.html',
   styleUrl: './admin-login.component.scss'
